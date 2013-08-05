@@ -5,6 +5,9 @@
 </head>
 <body>
 
+<script type="text/javascript" src="jquery/jquery.js"></script>
+<script type="text/javascript" src="underscore/underscore.js"></script>
+
 <script type="text/javascript" src="lib/peditor.js"></script>
 
 </body>
