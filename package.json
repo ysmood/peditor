@@ -1,5 +1,5 @@
 {
-  "name": "Peditor",
+  "name": "peditor",
   "version": "0.0.1",
   "description": "An application to abstract and visualize the edit procedure of common webpages.",
   "main": "app.js",
@@ -23,7 +23,8 @@
   "dependencies": {
     "express": "3.3.4",
     "underscore": "1.5.1",
-    "coffee-script": "1.6.3"
+    "coffee-script": "1.6.3",
+    "bower": "1.1.0"
   },
   "devDependencies": {
     "node-inspector": "*",

@@ -26,6 +26,7 @@ class Peditor_server
 		)
 
 	init_client: ->
+		@app.use(express.static('bower_components'))
 		@app.use(express.static('client'))
 
 

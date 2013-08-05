@@ -1,0 +1,9 @@
+{
+  "name": "peditor",
+  "version": "0.0.1",
+  "main": "client/lib/peditor.js",
+  "dependencies": {
+    "jquery": "2.0.3",
+    "underscore": "1.5.1"
+  }
+}
