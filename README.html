@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Peditor Documentation</title>
+	<style type="text/css">
+		body { background: #eee; padding-bottom: 500px; }
+		h1 { font-size: 30px; }
+		h2 { font-size: 24px; }
+		h3 { font-size: 18px; }
+		body { font-size: 14px; }
+		pre { color: #832BAC; }
+		.em { color: #E21010; }		/* emphasis */
+		.al { color: #C4259D }		/* alert */
+		.pt { color: #2BAC45 }		/* point */
+		hr {
+			border-bottom: 1px solid #fff;
+			border-top: 1px solid #ddd;
+		}
+		img {
+			box-shadow: 0 1px 3px #777;
+		}
+
+		li, .section {
+			padding: 3px 10px;
+			-webkit-transition: all 0.2s ease-out;
+		}
+		li:hover, .section:hover {
+			background: rgba(255, 255, 255, 0.5);
+			box-shadow: 1px 1px 3px #777;
+		}
+	</style>
+</head>
+<body>
+
+<div class="section">
+	<h1>Overview</h1>
+	<p>
+		An application to abstract and visualize the edit procedure of common webpages.
+		Combine the two words Page and Editor, I create the <b>Peditor</b> <em>| 'peditə |</em>.
+	</p>
+</div>
+
+<hr />
+
+<div class="section">
+	<h1>Build & Launch</h1>
+
+	<p>
+		Install dependencies: <pre>npm install</pre>
+	</p>
+	<p>
+		Launch: <pre>npm start</pre>
+	</p>
+</div>
+
+<hr />
+
+<div class="section">
+	<h1>Test & Debug</h1>
+		
+	<p>
+		Auto test: <pre>npm test</pre>
+	</p>
+	<p>
+		Debug: <pre>npm run-script debug</pre>
+	</p>
+</div>
+
+<hr />
+
+<div class="section">
+	<h1>Tech</h1>
+
+	<ul>
+		<li>Frameworks: Linux, Enginx, CouchDB, Node.</li>
+		<li>Libraries: Express.js, Underscore.js, jQuery.</li>
+		<li>Languages: Coffeescript, Javascript, html, css.</li>
+	</ul>
+</div>
+
+<hr />
+
+<div class="section">
+	<h1>Design</h1>
+
+	<p>Agile.</p>
+	<p>
+		Here I should introduce a new web app architecture that I created,
+		<a href="http://blog.ysmood.org/2012/12/msv-application-architecture/">MSV</a>.
+		
+		The design pattern on the editor is <a href="http://en.wikipedia.org/wiki/Command_pattern">Command Pattern</a>.
+	</p>
+</div>
+
+<hr />
+
+<div class="section">
+	<h1>Client System</h1>
+	<ol>
+		<li>
+			<p>
+				<p>A visual editable grid editor. Easily split the page into containers.</p>
+				<img src="docs/img/height_responsive_design.jpg" alt="height_responsive_design" />
+			</p>			
+		</li>
+		<li>
+			<p>
+				Common widgets:
+				<ul>
+					<li>slider</li>
+				</ul>
+				<ul>
+					<li>music list</li>
+				</ul>
+				<ul>
+					<li>custom</li>
+				</ul>
+			</p>
+		</li>
+		<li>
+			<p>Widget editor.</p>			
+		</li>
+		<li>
+			<p><s>History control</s>, this will be implement in future.</p> 
+		</li>
+		<li>
+			<p>Save and load manager.</p>
+		</li>
+	</ol>
+</div>
+
+<hr />
+
+<div class="section">
+	<h1>Protocol</h1>
+
+	<p>
+		Mainly a file format for saving the edit's states is enough. I call the format <b>Page Document</b>,
+		file extension '.pdoc'. It saves the edit commands and page resources.
+	</p>
+
+</div>
+
+<hr />
+
+<div class="section">
+	<h1>Server System</h1>
+
+	<p>The CouchDB is good enough, it has already covered most the requirements with its build-in functions.</p>
+
+		<ol>
+			<li>Page documents manager, CRUD.</li>
+		</ol>
+</div>
+
+</body>
+</html>

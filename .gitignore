@@ -1,0 +1,5 @@
+# Coffeescript Project
+*.js
+*.log
+
+node_modules
