@@ -2,6 +2,9 @@
 *.js
 *.log
 
+# Stylus Project
+client/styles/peditor.css
+
 .runtime_info
 
 node_modules

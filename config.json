@@ -1,4 +1,12 @@
 {
 	"port": 7017,
-	"mode": "development"
+	"mode": "development",
+	"stylus_compile_paths": [
+		"client/styles/peditor.styl"
+	],
+	"coffee_compile_paths": [
+		"app.coffee",
+		"lib",
+		"client/lib"
+	]
 }
