@@ -33,6 +33,7 @@
 		"request": "*"
 	},
 	"scripts": {
+		"client": "node_modules/.bin/bower install",
 		"test": "test/test.sh",
 		"start": "kit/server_ctl.sh start",
 		"stop": "kit/server_ctl.sh stop",
