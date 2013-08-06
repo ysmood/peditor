@@ -1,3 +1,4 @@
 {
-	"port": 7017
+	"port": 7017,
+	"mode": "development"
 }
