@@ -1,11 +1,17 @@
 # Coffeescript Project
 *.js
-*.log
 
 # Stylus Project
-client/styles/peditor.css
+client/styles/*.css
 
+# App
 .runtime_info
+*.log
 
+# Libs
 node_modules
 bower_components
+
+# Sublime
+peditor.sublime-project
+peditor.sublime-workspace
