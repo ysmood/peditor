@@ -2,8 +2,13 @@
 <html>
 <head>
 	<title>Peditor</title>
+	<link rel="icon" type="image/png" href="/img/peditor.png" />
+
+	<!-- Third Libs -->
 	<link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="/font-awesome/css/font-awesome.css">
+
+	<!-- Peditor -->
 	<link rel="stylesheet" type="text/css" href="/styles/fonts.css">
 	<link rel="stylesheet" type="text/css" href="/styles/peditor.css">
 </head>
