@@ -33,8 +33,8 @@
   },
   "scripts": {
     "test": "test/test.sh",
-    "debug": "kit/debug.sh",
-    "docs": "kit/generate_docs.sh",
-    "start": "kit/start.sh"
+    "start": "kit/server_ctl.sh start",
+    "stop": "kit/server_ctl.sh stop",
+    "launch": "nohup kit/server_ctl.sh start >/dev/null 2>&1 &"
   }
 }

@@ -5,6 +5,7 @@ The main server.
 ###
 
 express = require 'express'
+fs = require 'fs'
 
 config = require '../config.json'
 
@@ -19,7 +20,6 @@ class Peditor_server
 		@init_routes()
 
 	start: ->
-		console.log "Peditor server start on port " + config.port
 		@app.listen(config.port)
 
 	init_view_engine: ->
@@ -37,10 +37,12 @@ class Peditor_server
 
 	init_routes: ->
 		@app.use((req, res) ->
+			console.warn('404: ' + req.originalUrl)
 			res.render('404')
 		)
 
 
+# ************ Exports ************
 
 peditor_server = new Peditor_server
 

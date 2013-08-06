@@ -2,5 +2,7 @@
 *.js
 *.log
 
+.runtime_info
+
 node_modules
 bower_components

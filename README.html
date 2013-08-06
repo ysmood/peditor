@@ -6,7 +6,8 @@
 		body {
 			font-size: 14px;
 			font-family: "Open Sans", Helvetica, Arial, sans-serif;
-			padding-bottom: 800px; padding: 10px
+			margin-bottom: 60%;
+			padding: 10px;
 		}
 		h1 { font-size: 26px; }
 		h2 { font-size: 22px; }
@@ -44,37 +45,58 @@
 <body>
 
 <div class="section">
-	<h1>Overview</h1>
+	<h1>Peditor Overview</h1>
 	<p>
-		An application to abstract and visualize the edit procedure of common webpages.
-		Combine the two words Page and Editor, we get the <b>Peditor</b> <em>| 'peditə |</em>.
+		An application to abstract and visualize the edit procedure of common web pages.
+		Combine the two words Page and Editor, we get the project's name
+		<b>Peditor</b> <em>| 'peditə |</em>.
 	</p>
 </div>
 
 <hr />
 
 <div class="section">
-	<h1>Build & Launch</h1>
-
-	<p>
-		Install dependencies: <pre>npm install --production</pre>
-	</p>
-	<p>
-		Launch: <pre>npm start</pre>
-	</p>
+	<h1>Build & Control</h1>
+	<ul>
+		<li>
+			<span class="al">config.json</span> file. The global configuration.
+			<p>
+				The default mode is <b>development</b> mode.
+			</p>
+		</li>
+		<li>
+			Install dependencies: <pre>npm install --production</pre>
+		</li>
+		<li>
+			Start server: <pre>npm start</pre>
+		</li>
+		<li>
+			Restart server: <pre>npm restart</pre>
+		</li>
+		<li>
+			Stop server: <pre>npm stop</pre>
+		</li>
+		<li>
+			Launch server in background: <pre>npm run-script launch</pre>
+		</li>
+	</ul>
 </div>
 
 <hr />
 
 <div class="section">
 	<h1>Test & Debug</h1>
-		
-	<p>
-		Auto test: <pre>npm test</pre>
-	</p>
-	<p>
-		Debug: <pre>npm run-script debug</pre>
-	</p>
+	<ul>	
+		<li>
+			Install dev dependencies: <pre>npm install</pre>
+		</li>
+		<li>
+			Auto test: <pre>npm test</pre>
+		</li>
+		<li>
+			Debug: <pre>npm run-script debug</pre>
+		</li>
+	</ul>
 </div>
 
 <hr />
