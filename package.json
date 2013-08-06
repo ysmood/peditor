@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "express": "3.3.4",
-    "jshtml-express": "0.3.0",
+    "jshtml-express": "0.0.1",
     "underscore": "1.5.1",
     "coffee-script": "1.6.3",
     "bower": "1.1.0"
