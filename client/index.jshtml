@@ -2,13 +2,26 @@
 <html>
 <head>
 	<title>Peditor</title>
+	<link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="/font-awesome/css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="/styles/fonts.css">
+	<link rel="stylesheet" type="text/css" href="/styles/peditor.css">
 </head>
 <body>
 
-<script type="text/javascript" src="jquery/jquery.js"></script>
-<script type="text/javascript" src="underscore/underscore.js"></script>
+<!-- Front-end framework test -->
+<div class="text-center">
+		<h1 class="font-l"><i class="icon-compass"></i> Peditor</h1>
+		<p class="h3 font-n">An application to abstract and visualize the edit procedure of common web pages.</p>
+</div>
 
-<script type="text/javascript" src="lib/peditor.js"></script>
+<!-- Third Libs -->
+<script type="text/javascript" src="/jquery/jquery.js"></script>
+<script type="text/javascript" src="/underscore/underscore.js"></script>
+<script type="text/javascript" src="/bootstrap/dist/js/bootstrap.js"></script>
+
+<!-- Peditor -->
+<script type="text/javascript" src="/lib/peditor.js"></script>
 
 </body>
 </html>
