@@ -43,10 +43,10 @@ start_server = ->
 	else
 		app = spawn('node', ['app.js'])
 		app.stdout.on('data', (data) ->
-			fs.appendFile('.std.log', data)
+			fs.appendFile('log/std.log', data)
 		)
 		app.stderr.on('data', (data) ->
-			fs.appendFile('.err.log', data)
+			fs.appendFile('log/err.log', data)
 		)
 
 	save_runtime_info(app)
