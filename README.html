@@ -3,23 +3,34 @@
 <head>
 	<title>Peditor Documentation</title>
 	<style type="text/css">
-		body { background: #eee; padding-bottom: 60%; }
-		h1 { font-size: 30px; }
-		h2 { font-size: 24px; }
-		h3 { font-size: 18px; }
-		body { font-size: 14px; }
-		pre { color: #832BAC; }
-		.em { color: #E21010; }		/* emphasis */
-		.al { color: #C4259D }		/* alert */
-		.pt { color: #2BAC45 }		/* point */
-		hr {
-			border-bottom: 1px solid #fff;
-			border-top: 1px solid #ddd;
+		body {
+			font-size: 14px;
+			font-family: "Open Sans", Helvetica, Arial, sans-serif;
+			padding-bottom: 800px; padding: 10px
 		}
-		img {
-			box-shadow: 0 1px 3px #777;
+		h1 { font-size: 26px; }
+		h2 { font-size: 22px; }
+		h3 { font-size: 18px; }
+		pre { color: #832BAC; }
+		.em { color: #E21010; }   /* emphasis */
+		.al { color: #C4259D; }   /* alert */
+		.pt { color: #2BAC45; }   /* point */
+		.large { font-size: 18px; }
+		.grey { color: #777; }
+		.code { font-family:  monospace, Courier; }
+		.center { text-align: center; }
+		table {
+			margin: 10px 0;
+		}
+		td {
+			padding: 3px 10px;
+			border: 1px dashed #ccc;
 		}
 
+		hr {
+			border-bottom: 1px solid #fff;
+			border-top: 1px solid #ccc;
+		}
 		li, .section {
 			padding: 3px 10px;
 			-webkit-transition: all 0.2s ease-out;
@@ -36,7 +47,7 @@
 	<h1>Overview</h1>
 	<p>
 		An application to abstract and visualize the edit procedure of common webpages.
-		Combine the two words Page and Editor, I create the <b>Peditor</b> <em>| 'peditə |</em>.
+		Combine the two words Page and Editor, we get the <b>Peditor</b> <em>| 'peditə |</em>.
 	</p>
 </div>
 
@@ -71,11 +82,24 @@
 <div class="section">
 	<h1>Tech</h1>
 
-	<ul>
-		<li>Frameworks: Linux, Enginx, CouchDB, Node.</li>
-		<li>Libraries: Express.js, Underscore.js, jQuery.</li>
-		<li>Languages: Coffeescript, Javascript, html, css.</li>
-	</ul>
+	<table class="code">
+		<tr>
+			<td>Frameworks</td>
+			<td>Linux, Enginx, CouchDB, Node</td>
+		</tr>
+		<tr>
+			<td>Libraries</td>
+			<td>Express.js, Underscore.js, jQuery</td>
+		</tr>
+		<tr>
+			<td>Package Manager</td>
+			<td>npm, bower</td>
+		</tr>
+		<tr>
+			<td>Languages</td>
+			<td>Coffeescript, Javascript, html, css</td>
+		</tr>
+	</table>
 </div>
 
 <hr />
@@ -85,10 +109,13 @@
 
 	<p>Agile.</p>
 	<p>
-		Here I should introduce a new web app architecture that I created,
-		<a href="http://blog.ysmood.org/2012/12/msv-application-architecture/">MSV</a>.
+		Here I introduce a new web app architecture that I created,
+		<a target="_blank" href="http://blog.ysmood.org/2012/12/msv-application-architecture/">MSV</a>.
+		Compared with the famous MVC, there is no controller component. Instead the service component will take the charge.
+
+		<br />
 		
-		The design pattern on the editor is <a href="http://en.wikipedia.org/wiki/Command_pattern">Command Pattern</a>.
+		The design pattern on the editor is <a target="_blank" href="http://en.wikipedia.org/wiki/Command_pattern">Command Pattern</a>.
 	</p>
 </div>
 
