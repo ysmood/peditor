@@ -38,6 +38,14 @@ class Peditor_server
 		@app.use(express.static('bower_components'))
 		@app.use(express.static('client'))
 
+		@app.get('/', (req, res)->
+			res.render('index')
+		)
+		@app.get('/workbench', (req, res)->
+			res.render('workbench')
+		)
+
+
 	init_routes: ->
 		@app.use((req, res) ->
 			console.warn('404: ' + req.originalUrl)

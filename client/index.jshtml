@@ -16,7 +16,27 @@
 </head>
 <body>
 
-<div class="main"></div>
+<div class="main">
+
+	<div class="topbar">
+		
+		<div class="font-l font-26">Peditor</div>
+
+	</div>
+
+	<div class="workspace">
+
+		<div class="workbench">
+			<iframe src="/workbench"></iframe>
+		</div>
+
+		<div class="workpanel">
+			<div class="font-l font-26 text-center">Work Panel</div>
+		</div>
+
+	</div>
+
+</div>
 
 <!-- Third Libs -->
 <script type="text/javascript" src="/jquery/jquery.js"></script>
