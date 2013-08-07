@@ -30,8 +30,8 @@ class Peditor_server
 		# For security reason, remote user shouldn't have 
 		# access to the page source code.
 		@app.get(/\/(.+)(\.jshtml)$/, (req, res) ->
-			jshtml_path = req.params[0]
-			res.render(jshtml_path)
+			console.warn('404: ' + req.originalUrl)
+			res.render('404')
 		)
 
 	init_client: ->
