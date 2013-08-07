@@ -1,12 +1,4 @@
 {
 	"port": 7017,
-	"mode": "development",
-	"stylus_compile_paths": [
-		"client/styles"
-	],
-	"coffee_compile_paths": [
-		"app.coffee",
-		"lib",
-		"client/lib"
-	]
+	"mode": "development"
 }

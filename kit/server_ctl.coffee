@@ -24,23 +24,7 @@ save_runtime_info = (app) ->
 		JSON.stringify(info)
 	)		
 
-compile_client = ->
-	# Compile stylus.
-	spawn(
-		'node_modules/.bin/stylus',
-		config.stylus_compile_paths,
-		{ stdio: ['pipe', 'pipe', process.stderr] }
-	)
-
-	# Compile coffeescripts.
-	exec(
-		'node_modules/.bin/coffee',
-		['-c'].concat(config.coffee_compile_paths)
-	)
-
-start_server = ->
-	compile_client()
-	
+start_server = ->	
 	# If in production mode, output all info into log files.
 	if config.mode == 'development'
 		app = exec('node', ['--debug', 'app.js'])
