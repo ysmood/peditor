@@ -31,7 +31,7 @@ class Peditor_server
 		# access to the page source code.
 		@app.get(/\/(.+)(\.jshtml)$/, (req, res) ->
 			console.warn('404: ' + req.originalUrl)
-			res.render('404')
+			res.render('pages/404')
 		)
 
 	init_client: ->
@@ -49,7 +49,7 @@ class Peditor_server
 	init_routes: ->
 		@app.use((req, res) ->
 			console.warn('404: ' + req.originalUrl)
-			res.render('404')
+			res.render('pages/404')
 		)
 
 
