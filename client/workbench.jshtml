@@ -13,7 +13,13 @@
 
 <div class="main">
 	
-	<div class="grid"></div>
+	<div class="grid">
+		
+	@for(var i = 0; i < 12; i++) {
+		<div class="col"></div>
+	}
+
+	</div>
 
 </div>
 
