@@ -5,10 +5,24 @@
 <meta charset="UTF-8">
 <title>Workbench</title>
 
+<link rel="stylesheet" href="/normalize-css/normalize.css">
+<link rel="stylesheet" href="/styles/workbench.css">
+
 </head>
 <body>
 
-<h1>Workbench</h1>
+<div class="main">
+	
+	<div class="grid"></div>
+
+</div>
+
+<!-- Third Libs -->
+<script type="text/javascript" src="/jquery/jquery.js"></script>
+<script type="text/javascript" src="/underscore/underscore.js"></script>
+
+
+<script type="text/javascript" src="/lib/workbench.js"></script>
 
 </body>
 </html>

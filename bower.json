@@ -5,6 +5,7 @@
 	"dependencies": {
 		"jquery": "2.0.3",
 		"underscore": "1.5.1",
+		"normalize-css": "2.1.2",
 		"bootstrap": "3.0.0-rc1",
 		"font-awesome": "3.2.1"
 	}
