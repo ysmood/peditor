@@ -27,13 +27,16 @@ class Peditor_server
 		@app.set('view engine', 'jshtml')
 		@app.set('views', 'client')
 
+		# For security reason, remote user shouldn't have 
+		# access to the page source code.
+		@app.get(/\/(.+)(\.jshtml)$/, (req, res) ->
+			jshtml_path = req.params[0]
+			res.render(jshtml_path)
+		)
+
 	init_client: ->
 		@app.use(express.static('bower_components'))
 		@app.use(express.static('client'))
-		
-		@app.get('/', (req, res) ->
-			res.render('index')
-		)
 
 	init_routes: ->
 		@app.use((req, res) ->
