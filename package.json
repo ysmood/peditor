@@ -26,8 +26,9 @@
 		"jshtml-express": "0.0.1",
 		"underscore": "1.5.1",
 		"coffee-script": "1.6.3",
-		"bower": "1.1.0",
-		"stylus": "0.36.1"
+		"bower": "1.1.1",
+		"stylus": "0.36.1",
+		"grunt-cli": "0.1.9"
 	},
 	"devDependencies": {
 		"node-inspector": "*"
