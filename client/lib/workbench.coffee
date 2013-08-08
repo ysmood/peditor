@@ -40,10 +40,17 @@ class Workbench
 		})
 
 	add_column: ->
-		e_start = null
+		# This should be call first to make its children
+		# have available width and height.
+		@$grid_guide.show()
 
+		col_width = @$grid_guide.columns[0].width()
+		grid_guide_left = @$grid_guide.offset().left		
+
+		e_start = null
 		mouse_down = (e) =>
 			e_start = e
+
 			@$selection_area.show()
 			@$window.mousemove(mouse_move)
 
@@ -52,6 +59,7 @@ class Workbench
 
 		mouse_move = (e) =>
 			# Find the right rect from the mouse trace.
+			# Simple direction detection.
 			left = _.min([e.pageX, e_start.pageX])
 			top = _.min([e.pageY, e_start.pageY])
 			width = Math.abs(e.pageX - e_start.pageX)
@@ -64,16 +72,51 @@ class Workbench
 				height: height
 			})
 
+			# Highlight columns that are in selection area.
+			# Area detection, or collision detection.
+			# Here width detection only, so not complex.
+			start_num = Math.floor(
+				(left - grid_guide_left) / col_width
+			)
+			end_num = Math.ceil(
+				(left + width - grid_guide_left) / col_width
+			)
+
+			for i in [0 ... @$grid_guide.columns.length]
+				$col = @$grid_guide.columns[i]
+
+				if start_num <= i < end_num
+					$col.addClass('col-selected')
+				else
+					$col.removeClass('col-selected')
+
+		# After the mouseup, the add column action will be done, and
+		# a new column holder should be added and ready to serve.
 		mouse_up = =>
 			@$selection_area.hide()
 			@$selection_area.css({
 				left: -10000,
 				top: -10000
 			})
+
+			# Release event resource.
+			@$window.unbind('mousedown', mouse_down)
 			@$window.unbind('mousemove', mouse_move)
+			@$window.unbind('mouseup', mouse_up)
+
+			# Unhighlight the guide columns.
+			for $col in @$grid_guide.columns
+				$col.removeClass('col-selected')
+
+			@$grid_guide.hide()
+
+			# Add column holder
+			$col_holder = $('<div class="col-holder">')
+			@$grid.append($col_holder)
 
 		@$window.mousedown(mouse_down)
 		@$window.mouseup(mouse_up)
+
 
 	# ********** Private **********
 
@@ -85,6 +128,7 @@ class Workbench
 
 		# Add columns to grid guide.
 		@$grid_guide.empty()
+		columns = []
 		for i in [0 ... col_num]
 			$col = $('<div class="col">')
 			$col.css({
@@ -92,6 +136,11 @@ class Workbench
 			})
 			
 			@$grid_guide.append($col)
+			columns.push $col
+
+		@$grid_guide.columns = columns
+
+		@$grid_guide.hide()
 
 
 if window.parent.ys

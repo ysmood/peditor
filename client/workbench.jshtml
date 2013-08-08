@@ -13,13 +13,7 @@
 
 <div class="main">
 	
-	<div class="grid">
-		
-	@for(var i = 0; i < 100; i++) {
-		<div>Test</div>
-	}
-
-	</div>
+	<div class="grid"></div>
 
 	<div class="grid-guide" data-col-num="12"></div>
 	<div class="selection-area"></div>
