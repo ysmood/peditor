@@ -6,13 +6,17 @@ Aug 2013, ys
 
 ###
 
+
 class Peditor
 	constructor: ->
-		console.log 'Peditor init...'
+		@init_grid_width_input()
 
-	start: ->
-		console.log 'Peditor start.'
+	init_grid_width_input: ->
+		$input = $('#grid_width_input')
 
+		$input.change(->
+			val = $input.val()
+			ys.workbench.set_grid_wdith(val)
+		)
 
-peditor = new Peditor
-peditor.start()
+ys.peditor = new Peditor

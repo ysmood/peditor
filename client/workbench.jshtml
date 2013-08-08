@@ -15,17 +15,20 @@
 	
 	<div class="grid">
 		
-	@for(var i = 0; i < 12; i++) {
-		<div class="col"></div>
+	@for(var i = 0; i < 100; i++) {
+		<div>Test</div>
 	}
 
 	</div>
 
+	<div class="grid-guide" data-col-num="12"></div>
+
 </div>
 
+
 <!-- Third Libs -->
-<script type="text/javascript" src="/jquery/jquery.js"></script>
-<script type="text/javascript" src="/underscore/underscore.js"></script>
+<script type="text/javascript" src="/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/underscore/underscore-min.js"></script>
 
 
 <script type="text/javascript" src="/lib/workbench.js"></script>

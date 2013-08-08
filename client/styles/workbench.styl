@@ -1,7 +1,21 @@
+// Normalization
+
+div
+	box-sizing: border-box    // * prefix required
+
+// Normalization End
+
+
+// Main
 
 .main
 	.grid
+		width: 100%
+		margin: auto
+
+	.grid-guide
 		position: fixed
+		z-index: 10000
 		top: 0
 		left: 0
 		width: 100%
@@ -9,11 +23,9 @@
 
 		.col
 			float: left
-			width: (100 / 12) %
 			height: 100%
 			border-right: 1px dashed #000
-			box-sizing: border-box
-			background: #c6d7ff
+			background: #D9DFEE
 			opacity: .3
 
 		.col:hover
