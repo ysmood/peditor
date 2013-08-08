@@ -19,7 +19,7 @@ class Workbench
 
 		console.log 'Workbench Loaded.'
 
-		@add_column()
+		@add_col_holder()
 
 	set_grid_wdith: (width) ->
 		@$grid.css({
@@ -39,11 +39,12 @@ class Workbench
 			marginLeft: margin_left
 		})
 
-	add_column: ->
+	add_col_holder: ->
 		# This should be call first to make its children
 		# have available width and height.
 		@$grid_guide.show()
 
+		col_num = @$grid_guide.columns.length
 		col_width = @$grid_guide.columns[0].width()
 		grid_guide_left = @$grid_guide.offset().left		
 
@@ -57,6 +58,7 @@ class Workbench
 			# Prevent the default text selection area.
 			e.preventDefault()
 
+		start_num = end_num = 0
 		mouse_move = (e) =>
 			# Find the right rect from the mouse trace.
 			# Simple direction detection.
@@ -93,6 +95,16 @@ class Workbench
 		# After the mouseup, the add column action will be done, and
 		# a new column holder should be added and ready to serve.
 		mouse_up = =>
+			# Add column holder
+			$col_holder = $('<div class="col-holder">')
+			$col_holder.css({
+				width: 100 / col_num * (end_num - start_num) + '%',
+				marginLeft: 100 / col_num * start_num + '%'
+			})
+
+			@$grid.append($col_holder)
+
+			# Clear
 			@$selection_area.hide()
 			@$selection_area.css({
 				left: -10000,
@@ -109,10 +121,6 @@ class Workbench
 				$col.removeClass('col-selected')
 
 			@$grid_guide.hide()
-
-			# Add column holder
-			$col_holder = $('<div class="col-holder">')
-			@$grid.append($col_holder)
 
 		@$window.mousedown(mouse_down)
 		@$window.mouseup(mouse_up)

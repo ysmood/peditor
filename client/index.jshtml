@@ -18,10 +18,8 @@
 
 <div class="main">
 
-	<div class="topbar">
-		
+	<div class="topbar">	
 		<div class="font-l font-26 text-center">Peditor</div>
-
 	</div>
 
 	<div class="workspace">
@@ -30,17 +28,19 @@
 			<iframe src="/workbench"></iframe>
 		</div>
 
-		<div class="workpanel">
-			<div class="font-l font-26 text-center">Work Panel</div>
-
+		<div class="workpanel text-center">
+			<div class="font-l font-26">Work Panel</div>
 			<hr>
 
 			<div class="form-group">
 				<label class="font-n" for="grid_width_input">Grid width</label>
 				<input class="form-control input-small" id="grid_width_input" type="text" placeholder="Unit: % or px" />
 			</div>
-
 			<hr>
+
+			<div>
+				<button class="btn btn-primary btn-small" onclick="ys.workbench.add_col_holder()">Add Column holder</button>
+			</div>
 		</div>
 
 	</div>
