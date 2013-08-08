@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+<title>Peditor</title>
+
+<!-- Third Libs -->
+<link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/font-awesome/css/font-awesome.min.css">
+
+<!-- Peditor -->
+<link rel="stylesheet" type="text/css" href="/styles/fonts.css">
+<link rel="stylesheet" type="text/css" href="/styles/peditor.css">
+
+</head>
+<body>
+
+<div class="main">
+
+	<div class="topbar">	
+		<div class="font-l font-26 text-center">Peditor</div>
+	</div>
+
+	<div class="workspace">
+
+		<div class="workbench">
+			<iframe src="/workbench"></iframe>
+		</div>
+
+		<div class="workpanel text-center">
+			<div class="font-l font-26">Work Panel</div>
+			<hr>
+
+			<div class="form-group">
+				<label class="font-n" for="grid_width_input">Grid width</label>
+				<input class="form-control input-small" id="grid_width_input" type="text" placeholder="Unit: % or px" />
+			</div>
+			<hr>
+
+			<div>
+				<button class="btn btn-primary btn-small" onclick="ys.workbench.add_col_holder()">Add Column holder</button>
+			</div>
+		</div>
+
+	</div>
+
+</div>
+
+<script type="text/javascript">
+(function(){
+	// Namespace
+	var ys = {};
+
+	// TODO
+
+	window.ys = ys;
+})();
+</script>
+
+
+<!-- Third Libs -->
+<script type="text/javascript" src="/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/underscore/underscore-min.js"></script>
+<script type="text/javascript" src="/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<!-- Peditor -->
+<script type="text/javascript" src="/lib/peditor.js"></script>
+
+</body>
+</html>

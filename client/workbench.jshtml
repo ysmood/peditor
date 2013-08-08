@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+<title>Workbench</title>
+
+<link rel="stylesheet" href="/normalize-css/normalize.css">
+<link rel="stylesheet" href="/styles/workbench.css">
+
+</head>
+<body>
+
+<div class="main">
+	
+	<div class="grid"></div>
+
+	<div class="grid-guide" data-col-num="12"></div>
+	<div class="selection-area"></div>
+
+</div>
+
+
+<!-- Third Libs -->
+<script type="text/javascript" src="/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/underscore/underscore-min.js"></script>
+
+
+<script type="text/javascript" src="/lib/workbench.js"></script>
+
+</body>
+</html>

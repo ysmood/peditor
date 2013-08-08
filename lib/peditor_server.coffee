@@ -31,17 +31,25 @@ class Peditor_server
 		# access to the page source code.
 		@app.get(/\/(.+)(\.jshtml)$/, (req, res) ->
 			console.warn('404: ' + req.originalUrl)
-			res.render('404')
+			res.render('pages/404')
 		)
 
 	init_client: ->
 		@app.use(express.static('bower_components'))
 		@app.use(express.static('client'))
 
+		@app.get('/', (req, res)->
+			res.render('index')
+		)
+		@app.get('/workbench', (req, res)->
+			res.render('workbench')
+		)
+
+
 	init_routes: ->
 		@app.use((req, res) ->
 			console.warn('404: ' + req.originalUrl)
-			res.render('404')
+			res.render('pages/404')
 		)
 
 
