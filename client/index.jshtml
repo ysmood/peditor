@@ -47,16 +47,24 @@
 
 </div>
 
+<script type="text/javascript">
+(function(){
+	// Namespace
+	var ys = {};
+
+	// TODO
+
+	window.ys = ys;
+})();
+</script>
+
+
 <!-- Third Libs -->
 <script type="text/javascript" src="/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="/underscore/underscore-min.js"></script>
 <script type="text/javascript" src="/bootstrap/dist/js/bootstrap.min.js"></script>
 
 <!-- Peditor -->
-<script type="text/javascript">
-	// Namespace
-	var ys = {}
-</script>
 <script type="text/javascript" src="/lib/peditor.js"></script>
 
 </body>

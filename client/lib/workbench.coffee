@@ -5,6 +5,9 @@ Take the charge of Peditor's grid system.
 ###
 
 class Workbench
+
+	# ********** Public **********
+
 	constructor: ->
 		@$window = $(window)
 
@@ -12,6 +15,28 @@ class Workbench
 		@$grid_guide = $('.grid-guide')
 
 		@init_grid_guide()
+
+		console.log 'Workbench Loaded.'
+
+	set_grid_wdith: (width) ->
+		@$grid.css({
+			width: width
+		})
+
+		# Check whether the unit is percentage or px.
+		if width.indexOf('%') > -1
+			margin_left =
+				-parseInt(width.replace('%', '')) / 2 + '%'
+		else
+			margin_left = -parseInt(width) / 2
+
+		@$grid_guide.css({
+			width: width,
+			left: '50%'
+			marginLeft: margin_left
+		})
+
+	# ********** Private **********
 
 	init_grid_guide: ->
 		col_num = parseInt(
@@ -29,22 +54,16 @@ class Workbench
 			
 			@$grid_guide.append($col)
 
-	set_grid_wdith: (width) ->
-		@$grid.css({
-			width: width
-		})
 
-		# Check whether the unit is percentage or px.
-		if width.indexOf('%') > -1
-			margin_left =
-				-parseInt(width.replace('%', '')) / 2 + '%'
-		else
-			margin_left = -width / 2
+if window.parent.ys
+	workbench = new Workbench
 
-		@$grid_guide.css({
-			width: width,
-			left: '50%'
-			marginLeft: margin_left
-		})
+	# This will sync the loading order.
+	loaded_evt = new CustomEvent(
+		'workbench_loaded',
+		{ "detail": workbench }
+	)
+	window.parent.dispatchEvent(loaded_evt)
+else
+	new Workbench
 
-window.parent.ys.workbench = new Workbench

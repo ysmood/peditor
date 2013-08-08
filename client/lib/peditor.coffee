@@ -8,15 +8,26 @@ Aug 2013, ys
 
 
 class Peditor
-	constructor: ->
+
+	# ********** Public **********
+
+	constructor: () ->
 		@init_grid_width_input()
 
-	init_grid_width_input: ->
+		console.log 'Peditor loaded.'
+
+	# ********** Private **********
+
+	init_grid_width_input: =>
 		$input = $('#grid_width_input')
 
-		$input.change(->
+		$input.change(=>
 			val = $input.val()
 			ys.workbench.set_grid_wdith(val)
 		)
 
-ys.peditor = new Peditor
+# To sync the loading order.
+addEventListener('workbench_loaded', (e) ->
+	ys.workbench = e.detail
+	ys.peditor = new Peditor
+)
