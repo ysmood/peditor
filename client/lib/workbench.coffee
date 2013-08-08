@@ -13,10 +13,13 @@ class Workbench
 
 		@$grid = $('.grid')
 		@$grid_guide = $('.grid-guide')
+		@$selection_area = $('.selection-area')
 
 		@init_grid_guide()
 
 		console.log 'Workbench Loaded.'
+
+		@add_column()
 
 	set_grid_wdith: (width) ->
 		@$grid.css({
@@ -35,6 +38,42 @@ class Workbench
 			left: '50%'
 			marginLeft: margin_left
 		})
+
+	add_column: ->
+		e_start = null
+
+		mouse_down = (e) =>
+			e_start = e
+			@$selection_area.show()
+			@$window.mousemove(mouse_move)
+
+			# Prevent the default text selection area.
+			e.preventDefault()
+
+		mouse_move = (e) =>
+			# Find the right rect from the mouse trace.
+			left = _.min([e.pageX, e_start.pageX])
+			top = _.min([e.pageY, e_start.pageY])
+			width = Math.abs(e.pageX - e_start.pageX)
+			height = Math.abs(e.pageY - e_start.pageY)
+			
+			@$selection_area.css({
+				left: left,
+				top: top,
+				width: width,
+				height: height
+			})
+
+		mouse_up = =>
+			@$selection_area.hide()
+			@$selection_area.css({
+				left: -10000,
+				top: -10000
+			})
+			@$window.unbind('mousemove', mouse_move)
+
+		@$window.mousedown(mouse_down)
+		@$window.mouseup(mouse_up)
 
 	# ********** Private **********
 
@@ -65,5 +104,5 @@ if window.parent.ys
 	)
 	window.parent.dispatchEvent(loaded_evt)
 else
-	new Workbench
+	workbench = new Workbench
 
