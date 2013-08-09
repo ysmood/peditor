@@ -6,35 +6,32 @@ div
 // Normalization End
 
 
-// Main
+.grid
+	margin: auto
 
-.main
-	.grid
-		margin: auto
+	.col-holder
+		background: #ccc
+		min-height: 100px
 
-		.col-holder
-			background: #ccc
-			min-height: 300px
+.grid-guide
+	position: fixed
+	top: 0
+	left: 0
+	width: 100%
+	height: 100%
 
-	.grid-guide
-		position: fixed
-		top: 0
-		left: 0
-		width: 100%
+	.col
+		float: left
 		height: 100%
+		border-right: 1px dashed #000
+		background: #D9DFEE
+		opacity: .3
 
-		.col
-			float: left
-			height: 100%
-			border-right: 1px dashed #000
-			background: #D9DFEE
-			opacity: .3
+	.col-selected
+		opacity: .5
 
-		.col-selected
-			opacity: .5
-
-	.selection-area
-		position: absolute
-		border: 3px dotted #8696f7
-		opacity: .9
-		display: none
+.selection-area
+	position: absolute
+	border: 3px dotted #8696f7
+	opacity: .9
+	display: none
