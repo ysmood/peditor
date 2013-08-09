@@ -28,18 +28,20 @@
 			<iframe src="/workbench"></iframe>
 		</div>
 
-		<div class="workpanel text-center">
-			<div class="font-l font-26">Work Panel</div>
+		<div class="workpanel">
+			<div class="font-l font-26 text-center">Work Panel</div>
 			<hr>
 
 			<div class="form-group">
 				<label class="font-n" for="grid_width_input">Grid width</label>
-				<input class="form-control input-small" id="grid_width_input" type="text" placeholder="Unit: % or px" />
+				<input class="form-control" id="grid_width_input" type="text" placeholder="Unit: % or px" />
 			</div>
 			<hr>
 
 			<div>
-				<button class="btn btn-primary btn-small" onclick="ys.workbench.add_col_holder()">Add Column holder</button>
+				<button class="btn btn-primary" onclick="ys.workbench.add_col_holder(this)">
+					Add Column holder
+				</button>
 			</div>
 		</div>
 
@@ -63,6 +65,7 @@
 <script type="text/javascript" src="/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="/underscore/underscore-min.js"></script>
 <script type="text/javascript" src="/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/mousetrap/mousetrap.min.js"></script>
 
 <!-- Peditor -->
 <script type="text/javascript" src="/lib/peditor.js"></script>
