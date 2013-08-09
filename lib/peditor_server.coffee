@@ -6,6 +6,7 @@ The main server.
 
 express = require 'express'
 fs = require 'fs'
+_ = require 'underscore'
 
 config = require '../config.json'
 
@@ -27,6 +28,9 @@ class Peditor_server
 		@app.set('view engine', 'jshtml')
 		@app.set('views', 'client')
 
+		# Expose the underscore to every view.
+		@app.locals._ = _
+
 		# For security reason, remote user shouldn't have 
 		# access to the page source code.
 		@app.get(/\/(.+)(\.jshtml)$/, (req, res) ->
@@ -39,12 +43,12 @@ class Peditor_server
 		@app.use(express.static('client'))
 
 		@app.get('/', (req, res)->
+			res.locals.a = 'test'
 			res.render('peditor')
 		)
 		@app.get('/workbench', (req, res)->
 			res.render('workbench')
 		)
-
 
 	init_routes: ->
 		@app.use((req, res) ->

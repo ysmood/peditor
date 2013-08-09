@@ -98,13 +98,14 @@ class Workbench
 		# a new column holder should be added and ready to serve.
 		mouse_up = =>
 			# Add column holder
-			$col_holder = $('<div class="col-holder">')
-			$col_holder.css({
-				width: 100 / col_num * (end_num - start_num) + '%',
-				marginLeft: 100 / col_num * start_num + '%'
-			})
+			if end_num != start_num			
+				$col_holder = $('<div class="col-holder">')
+				$col_holder.css({
+					width: 100 / col_num * (end_num - start_num) + '%',
+					marginLeft: 100 / col_num * start_num + '%'
+				})
 
-			@$grid.append($col_holder)
+				@$grid.append($col_holder)
 
 			# Clear
 			@$selection_area.hide()
@@ -124,11 +125,13 @@ class Workbench
 
 			@$grid_guide.hide()
 
-			sender.disabled = false
+			sender.disabled = false			
 
 		@$window.mousedown(mouse_down)
 		@$window.mouseup(mouse_up)
 
+	add_col_holder_cancel: ->
+		@$window.mouseup()
 
 	# ********** Private **********
 
@@ -166,4 +169,3 @@ if window.parent.ys
 	window.parent.dispatchEvent(loaded_evt)
 else
 	workbench = new Workbench
-

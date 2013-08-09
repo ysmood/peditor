@@ -14,6 +14,10 @@ class Peditor
 	constructor: () ->
 		@init_grid_width_input()
 
+		@init_cancel_manager()
+
+		task_stack = []
+
 		console.log 'Peditor loaded.'
 
 	# ********** Private **********
@@ -25,6 +29,17 @@ class Peditor
 			val = $input.val()
 			ys.workbench.set_grid_wdith(val)
 		)
+
+	init_cancel_manager: ->
+		Mousetrap.bind(
+			'esc',
+			->
+				console.log('escape')
+			,
+			'keyup'
+		)
+
+	add_col_clicked: ->
 
 # To sync the loading order.
 addEventListener('workbench_loaded', (e) ->
