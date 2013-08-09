@@ -39,7 +39,9 @@
 			<hr>
 
 			<div>
-				<button class="btn btn-primary btn-small" onclick="ys.workbench.add_col_holder()">Add Column holder</button>
+				<button class="btn btn-primary btn-small" onclick="ys.workbench.add_col_holder(this)">
+					Add Column holder
+				</button>
 			</div>
 		</div>
 

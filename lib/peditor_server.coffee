@@ -39,7 +39,7 @@ class Peditor_server
 		@app.use(express.static('client'))
 
 		@app.get('/', (req, res)->
-			res.render('index')
+			res.render('peditor')
 		)
 		@app.get('/workbench', (req, res)->
 			res.render('workbench')

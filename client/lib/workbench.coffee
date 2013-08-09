@@ -19,7 +19,7 @@ class Workbench
 
 		console.log 'Workbench Loaded.'
 
-		@add_col_holder()
+		# @add_col_holder()
 
 	set_grid_wdith: (width) ->
 		@$grid.css({
@@ -39,7 +39,9 @@ class Workbench
 			marginLeft: margin_left
 		})
 
-	add_col_holder: ->
+	add_col_holder: (sender) ->
+		if sender then sender.disabled = true
+
 		# This should be call first to make its children
 		# have available width and height.
 		@$grid_guide.show()
@@ -121,6 +123,8 @@ class Workbench
 				$col.removeClass('col-selected')
 
 			@$grid_guide.hide()
+
+			sender.disabled = false
 
 		@$window.mousedown(mouse_down)
 		@$window.mouseup(mouse_up)
