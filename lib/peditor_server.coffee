@@ -7,6 +7,7 @@ The main server.
 express = require 'express'
 fs = require 'fs'
 _ = require 'underscore'
+consolidate = require 'consolidate'
 
 config = require '../config.json'
 
@@ -24,8 +25,8 @@ class Peditor_server
 		@app.listen(config.port)
 
 	init_view_engine: ->
-		@app.engine('jshtml', require('jshtml-express'))
-		@app.set('view engine', 'jshtml')
+		@app.engine('html', consolidate.underscore)
+		@app.set('view engine', 'html')
 		@app.set('views', 'client')
 
 		# Expose the underscore to every view.
