@@ -12,15 +12,17 @@ class Peditor
 	# ********** Public **********
 
 	constructor: () ->
+		@$workspace = $('.workspace')
+		@$workbench = $('.workbench')
+		@$workpanel = $('.workpanel')
+
 		@init_grid_width_input()
-
-		@init_cancel_manager()
-
-		task_stack = []
 
 		console.log 'Peditor loaded.'
 
 	# ********** Private **********
+
+	init_layout: =>
 
 	init_grid_width_input: =>
 		$input = $('#grid_width_input')
@@ -28,15 +30,6 @@ class Peditor
 		$input.change(=>
 			val = $input.val()
 			ys.workbench.set_grid_wdith(val)
-		)
-
-	init_cancel_manager: ->
-		Mousetrap.bind(
-			'esc',
-			->
-				console.log('escape')
-			,
-			'keyup'
 		)
 
 	add_col_clicked: ->

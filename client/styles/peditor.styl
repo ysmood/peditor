@@ -5,18 +5,21 @@
 // ************* Dev Kit *************
 
 .grey-box
-	background-color: #aaa
+	background-color #aaa
 
 // ************** Theme **************
 
 // Normalization
 
 iframe
-	display: block
-	border:none
+	display block
+	border none
 
 div
-	box-sizing: border-box    // * prefix required
+	box-sizing border-box    // * prefix required
+
+html, body, .main
+	height 100%
 
 // Normalization End
 
@@ -24,37 +27,37 @@ div
 // Topbar
 
 topbar_height = 36px
-
 .topbar
-	height: topbar_height
-	border-bottom: 1px solid #8d83ed
+	height topbar_height
+	border-bottom 1px solid #8d83ed
 
 // Topbar End
 
 
 // Workspace
 
-workpanel_width = 240px
+workpanel_width = 300px
+
+.workspace
+	height: calc(100% \- topbar_height)    // 'calc' not supported: Safari
 
 .workbench, .workpanel
-	position: fixed
-	height: 100%
+	float left
+	height 100%
 
 .workbench
-	width: 100%
-	padding-right: workpanel_width
+	width 100%
+	margin-right - workpanel_width
+	padding-right workpanel_width
 
 	iframe
-		width: 100%
-		height: 100%
+		width 100%
+		height 100%
 
 .workpanel
-	right: 0
-	top: 0
-	margin-top: topbar_height
-	padding: 0 10px
-	width: workpanel_width
-	overflow: auto
-	border-left: 1px solid #82ed80
+	padding 0 10px
+	width workpanel_width
+	overflow auto
+	border-left 1px solid #82ed80
 
 // Workspace End
