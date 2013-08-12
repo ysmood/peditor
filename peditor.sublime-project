@@ -1,0 +1,23 @@
+{
+	"folders":
+	[
+		{
+			"file_exclude_patterns":
+			[
+				"*.js",
+				"*.css",
+				"peditor.sublime-project",
+				"client/favicon.ico"
+			],
+			"folder_exclude_patterns":
+			[
+				"bower_components",
+				"node_modules",
+				"client/img",
+				"client/fonts"
+			],
+			"follow_symlinks": true,
+			"path": "/Users/ys/Cosmos/Cradle/Vane/peditor"
+		}
+	]
+}
