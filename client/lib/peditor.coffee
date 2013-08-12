@@ -20,10 +20,6 @@ class Peditor
 
 	# ********** Private **********
 
-	init_layout: =>
-
-	add_col_clicked: (btn) ->
-		ys.workbench.add_col_holder(btn)
 
 # To sync the loading order.
 addEventListener('workbench_loaded', (e) ->
