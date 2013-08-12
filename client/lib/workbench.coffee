@@ -66,17 +66,17 @@ class Workbench
 					$col = @$row_guide.columns[i]
 
 					if data.start_num <= i < data.end_num
-						$col.addClass('col-selected')
+						$col.addClass('selected')
 					else
-						$col.removeClass('col-selected')
+						$col.removeClass('selected')
 			,
 			mouse_up: (e, data) =>
 			# After the mouseup, the add column action will be done, and
-			# a new column holder should be added and ready to serve.
+			# a new column should be added and ready to serve.
 
-				# Add column holder
+				# Add a column
 				if data.end_num != data.start_num			
-					$column = $('<div class="col-holder">')
+					$column = $('<div class="col">')
 					$column.css({
 						width: 100 / data.col_num * (data.end_num - data.start_num) + '%',
 						marginLeft: 100 / data.col_num * data.start_num + '%'
@@ -93,7 +93,7 @@ class Workbench
 
 				# Unhighlight the guide columns.
 				for $col in @$row_guide.columns
-					$col.removeClass('col-selected')
+					$col.removeClass('selected')
 
 				@$row_guide.hide()
 
