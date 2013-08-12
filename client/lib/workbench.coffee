@@ -1,6 +1,6 @@
 ###
 
-Take the charge of Peditor's grid system.
+Take the charge of Peditor's row system.
 
 ###
 
@@ -11,44 +11,24 @@ class Workbench
 	constructor: ->
 		@$window = $(window)
 
-		@$grid = $('.grid')
-		@$grid_guide = $('.grid-guide')
+		@$row = $('.row')
+		@$row_guide = $('.row-guide')
 		@$selection_area = $('.selection-area')
 
-		@init_grid_guide()
+		@init_row_guide()
 
 		console.log 'Workbench Loaded.'
-
-		# @add_col_holder()
-
-	set_grid_wdith: (width) ->
-		@$grid.css({
-			width: width
-		})
-
-		# Check whether the unit is percentage or px.
-		if width.indexOf('%') > -1
-			margin_left =
-				-parseInt(width.replace('%', '')) / 2 + '%'
-		else
-			margin_left = -parseInt(width) / 2
-
-		@$grid_guide.css({
-			width: width,
-			left: '50%'
-			marginLeft: margin_left
-		})
 
 	add_col_holder: (sender) ->
 		if sender then sender.disabled = true
 
 		# This should be call first to make its children
 		# have available width and height.
-		@$grid_guide.show()
+		@$row_guide.show()
 
-		col_num = @$grid_guide.columns.length
-		col_width = @$grid_guide.columns[0].width()
-		grid_guide_left = @$grid_guide.offset().left		
+		col_num = @$row_guide.columns.length
+		col_width = @$row_guide.columns[0].width()
+		row_guide_left = @$row_guide.offset().left		
 
 		e_start = null
 		mouse_down = (e) =>
@@ -80,14 +60,14 @@ class Workbench
 			# Area detection, or collision detection.
 			# Here width detection only, so not complex.
 			start_num = Math.floor(
-				(left - grid_guide_left) / col_width
+				(left - row_guide_left) / col_width
 			)
 			end_num = Math.ceil(
-				(left + width - grid_guide_left) / col_width
+				(left + width - row_guide_left) / col_width
 			)
 
-			for i in [0 ... @$grid_guide.columns.length]
-				$col = @$grid_guide.columns[i]
+			for i in [0 ... @$row_guide.columns.length]
+				$col = @$row_guide.columns[i]
 
 				if start_num <= i < end_num
 					$col.addClass('col-selected')
@@ -105,7 +85,7 @@ class Workbench
 					marginLeft: 100 / col_num * start_num + '%'
 				})
 
-				@$grid.append($col_holder)
+				@$row.append($col_holder)
 
 			# Clear
 			@$selection_area.hide()
@@ -120,10 +100,10 @@ class Workbench
 			@$window.unbind('mouseup', mouse_up)
 
 			# Unhighlight the guide columns.
-			for $col in @$grid_guide.columns
+			for $col in @$row_guide.columns
 				$col.removeClass('col-selected')
 
-			@$grid_guide.hide()
+			@$row_guide.hide()
 
 			sender.disabled = false			
 
@@ -135,14 +115,14 @@ class Workbench
 
 	# ********** Private **********
 
-	init_grid_guide: ->
+	init_row_guide: ->
 		col_num = parseInt(
-			@$grid_guide.attr('data-col-num')
+			@$row_guide.attr('data-col-num')
 		)
 		width = (100 / col_num) + '%'
 
-		# Add columns to grid guide.
-		@$grid_guide.empty()
+		# Add columns to row guide.
+		@$row_guide.empty()
 		columns = []
 		for i in [0 ... col_num]
 			$col = $('<div class="col">')
@@ -150,12 +130,12 @@ class Workbench
 				width: width
 			})
 			
-			@$grid_guide.append($col)
+			@$row_guide.append($col)
 			columns.push $col
 
-		@$grid_guide.columns = columns
+		@$row_guide.columns = columns
 
-		@$grid_guide.hide()
+		@$row_guide.hide()
 
 
 if window.parent.ys
