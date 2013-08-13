@@ -16,44 +16,64 @@
 </head>
 <body>
 
-<div class="main">
+<div id="main">
 
-	<div class="topbar">	
+	<div id="topbar">	
 		<div class="font-l font-26 text-center">Peditor</div>
 	</div>
 
-	<div class="workspace">
+	<div id="workspace" class="font-n">
 
-		<div class="workbench">
-			<iframe src="/workbench"></iframe>
+		<div id="workbench">
+			<div id="outline">
+				<div class="r">
+					<div class="c-8">
+						<div class="r">
+							<div class="c-3">test</div>
+							<div class="c-9">test</div>
+						</div>
+					</div>
+					<div class="c-4">test</div>
+				</div>
+			</div>
 		</div>
 
-		<div class="workpanel">
-			<div class="font-l font-26 text-center">Work Panel</div>
+		<div id="workpanel">
+			<h1 class="font-l font-26 text-center">Work Panel</h1>
 			<hr>
 
+			<h2 class="font-l font-20">Display Mode</h2>
+			<form>
+				<input type="radio" name="mode" id="ouline_mode" checked>
+				<label for="ouline_mode">Outline</label>
+				<br>
+				<input type="radio" name="mode" id="preview_mode" disabled>
+				<label for="preview_mode">Preview</label>
+			</form>
+			<hr>
+
+			<h2 class="font-l font-20">Containers</h2>
+			<p class="text-muted">Drag and drop to add a container</p>
 			<div>
-				<button class="btn btn-primary" onclick="ys.workbench.add_column(this)">
-					Add Column holder
+				<button class="btn btn-primary btn-small">
+					Grid
+				</button>
+				<button class="btn btn-primary btn-small">
+					Column
 				</button>
 			</div>
+			<hr>
+
+			<h2 class="font-l font-20">Widgets</h2>
+			<hr>
 		</div>
 
 	</div>
 
+	<div id="preview">
+	</div>
+
 </div>
-
-<script type="text/javascript">
-(function(){
-	// Namespace
-	var ys = {};
-
-	// TODO
-
-	window.ys = ys;
-})();
-</script>
-
 
 <!-- Third Libs -->
 <script type="text/javascript" src="/jquery/jquery.min.js"></script>
@@ -61,7 +81,11 @@
 <script type="text/javascript" src="/bootstrap/dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/mousetrap/mousetrap.min.js"></script>
 
+<!-- ys -->
+<script type="text/javascript" src="/lib/ys.ui_helper.js"></script>
+
 <!-- Peditor -->
+<script type="text/javascript" src="/lib/workbench.js"></script>
 <script type="text/javascript" src="/lib/peditor.js"></script>
 
 </body>
