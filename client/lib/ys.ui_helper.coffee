@@ -29,3 +29,35 @@ $.fn.dragging = (options) ->
 		$(window).off('mouseup', mouse_up)
 
 	options.$target.mousedown(mouse_down)
+
+$.fn.msg_box = (options) ->
+	# options: object
+	#	title: string
+	#	body: string
+
+	html = _.template('
+		<div class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<%= title %>
+					</div>
+					<div class="modal-body">
+						<%= body %>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>',
+		options
+	)
+
+	$modal = $(html)
+
+	$modal.on('hidden.bs.modal', ->
+		$modal.remove()
+	)
+
+	$modal.modal('show')
