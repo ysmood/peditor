@@ -164,9 +164,29 @@
 	<ol>
 		<li>
 			<p>
-				<p>A visual editable grid editor. Easily split the page into containers.</p>
-				<img src="docs/img/height_responsive_design.jpg" alt="height_responsive_design" />
+				<h3>Flexible Height Grid System</h3>
 				<img src="docs/img/peditor_grid_system.png" alt="height_responsive_design" />
+				<ul>
+					<li>
+						All containers' height has no height constraint.
+					</li>
+					<li>
+						Each leaf of a grid tree must be a <b style="color: #00BEFF">column</b>.
+						A <b style="color: #6D63FF">row</b> can only be an inode.
+					</li>
+					<li>
+						A row's width can be an absolute value,
+						but a column's width is always a relate value of its parent node.
+					</li>
+					<li>
+						Each row has a <b style="color: #FFA641">ruler</b> guide inside.
+						When adding column command is triggered, it will appear and guide the definition of the column width.
+					</li>
+					<li>
+					Only column can contain <b style="color: #FF73FF">widget</b>.
+						A column can remain empty, or has several widgets inside, which behaves like a Stack List.
+					</li>
+				</ul>
 			</p>			
 		</li>
 		<li>
