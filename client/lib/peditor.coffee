@@ -16,7 +16,7 @@ class Peditor
 
 		@init_add_row_btn()
 
-		console.log 'Peditor loaded.'	
+		console.log 'Peditor loaded.'
 
 	init_add_row_btn: ->
 		$.fn.dragging({
@@ -36,7 +36,6 @@ class Peditor
 					left: e.pageX,
 					top: e.pageY
 				})
-
 			,
 			mouse_up: (e, data) =>
 				workbench.add_row()

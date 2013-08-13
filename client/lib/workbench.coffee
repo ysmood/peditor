@@ -19,13 +19,20 @@ class Workbench
 
 
 	add_row: ->
-		$parent = _.last(@grid_mouse_on_stack)
+		$container = _.last(@grid_mouse_on_stack)
 
-		if not $parent then return
+		if not $container then return
+
+		if $container.find('>[class|="c"]').length > 0
+			$.fn.msg_box({
+				title: 'Warning',
+				body: 'A container that has columns inside can\'t hold another row.' 
+			})
+			return
 
 		$row = $('<div class="r"></div>')
 
-		$parent.append($row)
+		$container.append($row)
 
 		@container_hover($row)
 
