@@ -12,40 +12,38 @@ class Peditor
 	# ********** Public **********
 
 	constructor: ->
-		console.log 'Peditor loaded.'
+		@$cur_decoration = $('#cur_decoration')
 
-		@init_grid_hover_effect()
+		@init_add_row_btn()
 
-	init_grid_hover_effect: ->
-		# When entering a child box, the parent effect will be removed,
-		# When leaving a child box, the parent effect will be recovered.
-		# In this situation a stack is used to trace the behavior.
-		
-		$containers = $('#outline').find('.r, [class|="c"]')
-		stack = []
+		console.log 'Peditor loaded.'	
 
-		mouse_enter = (e) ->
-			$elem = $(@)
-			stack.push $elem
+	init_add_row_btn: ->
+		$.fn.dragging({
+			$target: $('#add_row_btn')
+			data: {
 
-			if stack.length > 1
-				stack[stack.length - 2].removeClass('hover')
+			},
+			mouse_down: (e, data) =>
+				@$cur_decoration.show()
+				@$cur_decoration.html('<i class="icon-align-justify font-20"></i>')
 
-			$elem.addClass('hover')
+				# Prevent the default text selection area.
+				e.preventDefault()
+			,
+			mouse_move: (e, data) =>
+				@$cur_decoration.css({
+					left: e.pageX,
+					top: e.pageY
+				})
 
-		mouse_leave = (e) ->
-			if stack.length > 1
-				stack[stack.length - 2].addClass('hover')
+			,
+			mouse_up: (e, data) =>
+				workbench.add_row()
 
-			$elem = stack.pop()
-			if $elem
-				$elem.removeClass('hover')
-
-		$containers
-			.off('mouseenter')
-			.off('mouse_leave')
-			.mouseenter(mouse_enter)
-			.mouseleave(mouse_leave)
+				@$cur_decoration.removeAttr('style').hide()
+			,
+		})
 
 	# ********** Private **********
 
