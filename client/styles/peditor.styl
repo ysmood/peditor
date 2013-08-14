@@ -2,12 +2,7 @@
 	The main style of Peditor.
  */
 
-@import "prefix"
-
-// ************* Dev Kit *************
-
-.grey-box
-	background #aaa
+@import "ys.mixins"
 
 // ************** Theme **************
 
@@ -68,7 +63,7 @@ $workpanel_width = 300px
 			background: #ecf0ff
 
 		.r
-			border 2px solid #6D63FF
+			border 3px solid #6D63FF
 
 		// Clearfix
 		.r:before, .r:after
@@ -77,9 +72,15 @@ $workpanel_width = 300px
 		.r:after
 			clear both
 
+		.r.before
+			border-top-color red
+
+		.r.after
+			border-bottom-color red
+
 		div[class|="c"]
 			float left
-			border 2px solid #00BEFF
+			border 3px solid #00BEFF
 
 		for i in (1 .. 12)
 			.c-{i}

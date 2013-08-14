@@ -8,30 +8,41 @@ class Workbench
 
 	# ********** Public **********
 
-	constructor: ->		
+	constructor: ->
 		@$outline = $('#outline')
 
-		@grid_mouse_on_stack = []
+		@$pos_guide = $('#pos_guide')
+
+		@container_stack = []
 
 		@init_grid_hover()
 
 		console.log 'Workbench Loaded.'
 
 	add_row: ->
-		$container = _.last(@grid_mouse_on_stack)
+		if @container_stack.length == 0
+			return
 
-		if not $container then return
+		$container = _.last(@container_stack)
 
-		if $container.find('>[class|="c"]').length > 0
+		$row = $('<div class="r"></div>')
+
+		# Check the container or its parent has no column inside.
+		no_column = $container.find('>[class|="c"]').length == 0
+		p_no_column = $container.parent().find('>[class|="c"]').length == 0
+
+		if $container.hasClass('before') and p_no_column
+			$container.before($row)
+		else if $container.hasClass('after') and p_no_column
+			$container.after($row)
+		else if no_column
+			$container.append($row)
+		else
 			$.fn.msg_box({
 				title: 'Warning',
 				body: 'A container that has columns inside can\'t hold another row.' 
 			})
-			return
-
-		$row = $('<div class="r"></div>')
-
-		$container.append($row)
+			return		
 
 		@container_hover($row)
 
@@ -41,6 +52,30 @@ class Workbench
 		$new_col = $("<div class=\"c-#{size}\"></div>")
 
 	add_widgete: ($col) ->
+
+	update_pos_guide: (e) ->
+		if @container_stack.length == 0
+			return
+
+		# Get current container
+		$cur_con = _.last(@container_stack)
+
+		pos = $cur_con.offset()
+		delta = {
+			x: e.pageX - pos.left
+			y: e.pageY - pos.top
+		}
+		con_height = $cur_con.height()
+		con_width = $cur_con.width()
+
+		$cur_con.removeClass('before after')
+		if $cur_con.hasClass('r')
+			if delta.y < con_height / 4
+				$cur_con.addClass('before')
+			else if delta.y > con_height * 3 / 4
+				$cur_con.addClass('after')
+				
+
 
 	# ********** Private **********
 
@@ -57,13 +92,15 @@ class Workbench
 		# In this situation a stack is used to trace the behavior.
 		
 		$elem = if elem instanceof $ then elem else $(elem)
-		stack = @grid_mouse_on_stack
+		stack = @container_stack
 
 		mouse_enter = ->
 			stack.push $elem
 
 			if stack.length > 1
-				stack[stack.length - 2].removeClass('hover')
+				stack[stack.length - 2]
+					.removeClass('hover')
+					.removeClass('before after')
 
 			$elem.addClass('hover')
 
@@ -72,7 +109,8 @@ class Workbench
 				stack[stack.length - 2].addClass('hover')
 
 			$e = stack.pop()
-			if $e then $e.removeClass('hover')
+			if $e
+				$e.removeClass('hover').removeClass('before after')
 
 		$elem.hover(mouse_enter, mouse_leave)
 

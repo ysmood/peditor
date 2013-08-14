@@ -36,6 +36,10 @@ class Peditor
 					left: e.pageX,
 					top: e.pageY
 				})
+
+				# The positioning guide will help indicate which side to 
+				# insert the new container.
+				workbench.update_pos_guide(e)
 			,
 			mouse_up: (e, data) =>
 				workbench.add_row()

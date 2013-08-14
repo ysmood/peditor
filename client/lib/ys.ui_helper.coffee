@@ -6,6 +6,7 @@ UI helper
 
 $.fn.report_compatibility = ->
 	# Here will list all html5 tech used in project.
+	# If the report is not empty, alert a report.
 
 	report = ''
 	if not Modernizr.boxsizing
