@@ -57,11 +57,14 @@ $workspace_height = calc(100% \- $topbar_height)    // 'calc' not supported: Saf
 			min-height 100px
 			background: #fff
 
-		.r.hover
-			background: #ffddec
+		&.hover, .r.hover
+			background: #fff2f8
 
 		div[class|="c"].hover
-			background: #e4eaff
+			background: #ecf0ff
+
+		.r
+			border 2px solid #6D63FF
 
 		// Clearfix
 		.r:before, .r:after
@@ -69,8 +72,6 @@ $workspace_height = calc(100% \- $topbar_height)    // 'calc' not supported: Saf
 			display table
 		.r:after
 			clear both
-		.r
-			border 2px solid #6D63FF
 
 		
 		div[class|="c"]
@@ -81,9 +82,6 @@ $workspace_height = calc(100% \- $topbar_height)    // 'calc' not supported: Saf
 		for i in (1 .. 12)
 			.c-{i}
 				width: calc((100 / 12 * i) % \- 30px )
-
-	#outline.hover
-		background #ffddec
 
 #workpanel
 	padding 0 10px
