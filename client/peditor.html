@@ -43,13 +43,14 @@
 			<hr>
 
 			<h2 class="font-l font-20">Display Mode</h2>
-			<form>
-				<input type="radio" name="mode" id="ouline_mode" checked>
-				<label for="ouline_mode">Outline</label>
-				<br>
-				<input type="radio" name="mode" id="preview_mode" disabled>
-				<label for="preview_mode">Preview</label>
-			</form>
+			<div class="btn-group" data-toggle="buttons">
+				<label class="btn btn-info active">
+					<input type="radio" name="mode" checked="checked"> Outline
+				</label>
+				<label class="btn btn-info" disabled>
+					<input type="radio" name="mode"> Preview
+				</label>
+			</div>
 			<hr>
 
 			<h2 class="font-l font-20">Containers</h2>
