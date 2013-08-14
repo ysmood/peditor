@@ -3,6 +3,7 @@
 	"version": "0.0.1",
 	"main": "client/lib/peditor.js",
 	"dependencies": {
+		"modernizr": "2.6.2",
 		"jquery": "2.0.3",
 		"underscore": "1.5.1",
 		"underscore.string": "2.3.3",

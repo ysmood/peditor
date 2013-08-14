@@ -4,6 +4,43 @@ UI helper
 
 ###
 
+$.fn.report_compatibility = ->
+	# Here will list all html5 tech used in project.
+
+	report = ''
+	if not Modernizr.boxsizing
+		report += "CSS box-sizing not supported.<br>"
+
+	report = ''
+	if not Modernizr.css_calc
+		report += "CSS calc not supported.<br>"
+
+	if not Modernizr.draganddrop
+		report += "DnD not supported."
+
+	if report
+		ys.msg_box(
+			'<div class="alert alert-danger">Compatibility Report</div>',
+			report
+		)
+	else
+		console.log "Compatibility: support all."
+
+Modernizr.addTest("boxsizing", ->
+    return Modernizr.testAllProps("boxSizing") and
+    (document.documentMode == undefined or document.documentMode > 7)
+)
+
+Modernizr.addTest('css_calc', ->
+	prop = 'width:'
+	value = 'calc(10px);'
+	el = document.createElement('div')
+
+	el.style.cssText = prop + Modernizr._prefixes.join(value + prop)
+
+	return !!el.style.length
+)
+
 $.fn.dragging = (options) ->
 	# options: object
 	# 	$target: jQuery
@@ -32,8 +69,8 @@ $.fn.dragging = (options) ->
 
 $.fn.msg_box = (options) ->
 	# options: object
-	#	title: string
-	#	body: string
+	#	title: html
+	#	body: html
 
 	html = _.template('
 		<div class="modal fade">
@@ -61,3 +98,6 @@ $.fn.msg_box = (options) ->
 	)
 
 	$modal.modal('show')
+
+
+$.fn.report_compatibility()

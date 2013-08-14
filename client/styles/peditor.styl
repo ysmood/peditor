@@ -2,6 +2,8 @@
 	The main style of Peditor.
  */
 
+@import "prefix"
+
 // ************* Dev Kit *************
 
 .grey-box
@@ -24,16 +26,16 @@ $topbar_height = 36px
 	height $topbar_height
 	border-bottom 1px solid #333
 
+
 // Topbar End
 
 
 // Workspace
 
 $workpanel_width = 300px
-$workspace_height = calc(100% \- $topbar_height)    // 'calc' not supported: Safari
 
 #workspace
-	height $workspace_height
+	height_calc 100% \- $topbar_height
 	border 1px solid #333
 
 #workbench, #workpanel
@@ -50,6 +52,7 @@ $workspace_height = calc(100% \- $topbar_height)    // 'calc' not supported: Saf
 	#outline
 		width 100%
 		height 100%
+		position relative
 		overflow auto
 
 		.r, div[class|="c"]
@@ -81,7 +84,7 @@ $workspace_height = calc(100% \- $topbar_height)    // 'calc' not supported: Saf
 
 		for i in (1 .. 12)
 			.c-{i}
-				width: calc((100 / 12 * i) % \- 30px )
+				width_calc (100 / 12 * i)% \- 30px
 
 #workpanel
 	padding 0 10px
@@ -90,7 +93,3 @@ $workspace_height = calc(100% \- $topbar_height)    // 'calc' not supported: Saf
 	border-left 1px solid #333
 
 // Workspace End
-
-#cur_decoration
-	position absolute
-	margin 15px

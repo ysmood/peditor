@@ -17,7 +17,6 @@ class Workbench
 
 		console.log 'Workbench Loaded.'
 
-
 	add_row: ->
 		$container = _.last(@grid_mouse_on_stack)
 

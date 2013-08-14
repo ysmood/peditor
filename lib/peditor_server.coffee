@@ -43,18 +43,27 @@ class Peditor_server
 		@app.use(express.static('bower_components'))
 		@app.use(express.static('client'))
 
-		@app.get('/', (req, res)->
-			res.locals.a = 'test'
-			res.render('peditor')
-		)
-		@app.get('/workbench', (req, res)->
-			res.render('workbench')
+		@app.get('/', (req, res) =>
+			@render('peditor', res)
 		)
 
 	init_routes: ->
-		@app.use((req, res) ->
+		@app.use((req, res) =>
 			console.warn('404: ' + req.originalUrl)
-			res.render('pages/404')
+			res.status(404)
+			@render('pages/404', res)
+		)
+
+	render: (path, res) ->
+		# Render the page inside a frame page.
+
+		@app.render(path, (err, html) =>
+			@app.render(
+				'pages/app_frame',
+				{ body: html },
+				(err, html) ->
+					res.send(html)
+			)			
 		)
 
 
