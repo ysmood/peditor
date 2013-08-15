@@ -2,7 +2,7 @@
 	The main style of Peditor.
  */
 
-@import "ys.mixins"
+@import "peditor.mixins"
 
 // ************** Theme **************
 
@@ -50,7 +50,7 @@ $workpanel_width = 300px
 		position relative
 		overflow auto
 
-		.r, div[class|="c"]
+		.r, [class|="c"]
 			position relative
 			margin 15px
 			min-height 100px
@@ -58,23 +58,22 @@ $workpanel_width = 300px
 
 		&.hover, .r.hover
 			background: #fff2f8
-
-		div[class|="c"].hover
-			background: #ecf0ff
-
+		
 		.r
 			border 3px solid #6D63FF
 			clearfix()
+			insertion_guide()
 
-		.r.before
-			border-top-color red
-
-		.r.after
-			border-bottom-color red
-
-		div[class|="c"]
+		[class|="c"]
 			float left
 			border 3px solid #00BEFF
+
+		[class|="c"].hover
+			background: #ecf0ff
+
+		// Column insertion guide
+		[class|="c"]
+			insertion_guide()
 
 		for i in (1 .. 12)
 			.c-{i}

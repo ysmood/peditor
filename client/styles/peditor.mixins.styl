@@ -1,0 +1,43 @@
+// Auto prefix mixins.
+height_calc(args...)
+	height -webkit-calc(args)
+	height -moz-calc(args)
+	height calc(args)
+
+width_calc(args...)
+	width -webkit-calc(args)
+	width -moz-calc(args)
+	width calc(args)
+
+// Clearfix from bootstrap.
+clearfix()
+	&:before, &:after
+		content: " ";
+		display: table;
+	&:after
+		clear: both;
+
+animation(args...)
+	-webkit-animation args
+	-moz-animation args
+	-o-animation args
+	animation 
+
+@keyframes row_before
+	100%
+		border-top-color red
+@keyframes row_after
+	100%
+		border-bottom-color red
+@keyframes col_before
+	100%
+		border-left-color red
+@keyframes col_after
+	100%
+		border-right-color red
+
+insertion_guide()
+	&.before
+		animation row_before 0.5s ease 0s infinite alternate
+	&.after
+		animation row_after 0.5s ease 0s infinite alternate
