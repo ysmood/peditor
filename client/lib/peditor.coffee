@@ -22,6 +22,9 @@ class Peditor
 		for btn in $('.add_container')
 			@init_container_btn($(btn))
 
+
+	# ********** Private **********	
+
 	init_container_btn: ($btn) ->
 		type = $btn.attr('peditor-type')
 		$.fn.dragging({
@@ -60,8 +63,6 @@ class Peditor
 
 				@$cur_decoration.removeAttr('style').hide()
 		})
-
-	# ********** Private **********	
 
 
 peditor = new Peditor
