@@ -11,8 +11,6 @@ class Workbench
 	constructor: ->
 		@$outline = $('#outline')
 
-		@$pos_guide = $('#pos_guide')
-
 		@container_stack = []
 
 		@init_grid_hover()
@@ -49,8 +47,6 @@ class Workbench
 	add_column: ->
 		# Add a column to another column's left or right side.
 
-		$new_col = $("<div class=\"c-#{size}\"></div>")
-
 	add_widgete: ($col) ->
 
 	update_pos_guide: (e) ->
@@ -74,7 +70,6 @@ class Workbench
 				$cur_con.addClass('before')
 			else if delta.y > con_height * 3 / 4
 				$cur_con.addClass('after')
-				
 
 
 	# ********** Private **********

@@ -47,16 +47,22 @@ $.fn.dragging = (options) ->
 	# 	mouse_up:  (e, data) ->
 
 	mouse_down = (e) ->
-		options.mouse_down(e, options.data)
+		e.target = options.target
+		e.data = options.data
+		options.mouse_down(e)
 
 		$(window).mousemove(mouse_move)
 		$(window).mouseup(mouse_up)
 
 	mouse_move = (e) ->
-		options.mouse_move(e, options.data)
+		e.target = options.target
+		e.data = options.data
+		options.mouse_move(e)
 
 	mouse_up = (e)->
-		options.mouse_up(e, options.data)
+		e.target = options.target
+		e.data = options.data
+		options.mouse_up(e)
 
 		# Release event resource.
 		$(window).off('mousemove', mouse_move)
