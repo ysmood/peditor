@@ -74,6 +74,7 @@ $.fn.msg_box = (options) ->
 	# options: object
 	#	title: html
 	#	body: html
+	#	closed: function
 
 	html = _.template('
 		<div class="modal fade">
@@ -86,7 +87,7 @@ $.fn.msg_box = (options) ->
 						<%= body %>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
 					</div>
 				</div>
 			</div>
@@ -95,6 +96,8 @@ $.fn.msg_box = (options) ->
 	)
 
 	$modal = $(html)
+
+	$modal.on('hide.bs.modal', options.closed)
 
 	$modal.on('hidden.bs.modal', ->
 		$modal.remove()
