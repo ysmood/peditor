@@ -79,10 +79,10 @@ $.fn.msg_box = (options) ->
 		<div class="modal fade">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div class="modal-header">
+					<div class="modal-header font-l font-26">
 						<%= title %>
 					</div>
-					<div class="modal-body">
+					<div class="modal-body font-n font-16">
 						<%= body %>
 					</div>
 					<div class="modal-footer">
