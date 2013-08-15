@@ -12,17 +12,16 @@ $.fn.report_compatibility = ->
 	if not Modernizr.boxsizing
 		report += "CSS box-sizing not supported.<br>"
 
-	report = ''
 	if not Modernizr.css_calc
 		report += "CSS calc not supported.<br>"
 
 	if report
-		ys.msg_box(
-			'<div class="alert alert-danger">Compatibility Report</div>',
-			report
-		)
+		$.fn.msg_box({
+			title: '<div class="alert alert-danger">Compatibility issue</div>',
+			body: report		
+		})
 	else
-		console.log "Compatibility: support all."
+		console.log "Compatibility: all supported."
 
 Modernizr.addTest("boxsizing", ->
     return Modernizr.testAllProps("boxSizing") and
