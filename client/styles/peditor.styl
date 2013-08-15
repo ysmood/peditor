@@ -62,7 +62,7 @@ $workpanel_width = 300px
 		.r
 			border 3px solid #6D63FF
 			clearfix()
-			insertion_guide()
+			insertion_guide('row')
 
 		[class|="c"]
 			float left
@@ -73,7 +73,7 @@ $workpanel_width = 300px
 
 		// Column insertion guide
 		[class|="c"]
-			insertion_guide()
+			insertion_guide('column')
 
 		for i in (1 .. 12)
 			.c-{i}

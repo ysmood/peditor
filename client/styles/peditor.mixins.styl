@@ -36,8 +36,14 @@ animation(args...)
 	100%
 		border-right-color red
 
-insertion_guide()
-	&.before
-		animation row_before 0.5s ease 0s infinite alternate
-	&.after
-		animation row_after 0.5s ease 0s infinite alternate
+insertion_guide(type)
+	if type == "row"
+		&.before
+			animation row_before 0.5s ease 0s infinite alternate
+		&.after
+			animation row_after 0.5s ease 0s infinite alternate
+	else
+		&.before
+			animation col_before 0.5s ease 0s infinite alternate
+		&.after
+			animation col_after 0.5s ease 0s infinite alternate
