@@ -8,3 +8,11 @@ width_calc(args...)
 	width calc(args)
 	width -webkit-calc(args)
 	width -moz-calc(args)
+
+// Clearfix from bootstrap.
+clearfix()
+	&:before, &:after
+		content: " ";
+		display: table;
+	&:after
+		clear: both;
