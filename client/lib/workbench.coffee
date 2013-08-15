@@ -45,7 +45,7 @@ class Workbench
 
 		@init_container($row)
 
-	add_column: ->
+	add_column: (width = 3) ->
 		# Add a column to another column's left or right side.
 		
 		if @container_stack.length == 0
@@ -54,14 +54,11 @@ class Workbench
 		# Current container
 		$con = _.last(@container_stack)
 
-		$col = @new_column()
+		$col = @new_column(width)
 
-		# A column can't hold another column.
-		# Therefore, a column should be directly insdie a row.
 		# In one row the sum of all columns' width must less than the grid size.
 		# The default grid size is 12.
 		type = $con.attr('peditor-type')
-
 		sum = @get_col_size($col)
 		if type == 'row'
 			sum = _.reduce(
@@ -89,6 +86,9 @@ class Workbench
 			})
 			return		
 
+		# A column can't hold another column.
+		# Therefore, a column should be directly insdie a row.
+		# The root can't directly hold a column.
 		if type == 'row'
 			$con.append($col)
 		else if type == 'column' and $con.hasClass('before')
@@ -190,7 +190,7 @@ class Workbench
 			.addClass('r')
 		return $row
 
-	new_column: (width = 3) ->
+	new_column: (width) ->
 		$col = $('<div>')
 			.attr('peditor-type', 'column')
 			.addClass("c-#{width}")

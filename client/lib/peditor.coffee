@@ -14,6 +14,8 @@ class Peditor
 	constructor: ->
 		@$cur_decoration = $('#cur_decoration')
 
+		@init_ui_component()
+		
 		@init_container_tools()
 
 		console.log 'Peditor loaded.'
@@ -23,7 +25,11 @@ class Peditor
 			@init_container_btn($(btn))
 
 
-	# ********** Private **********	
+	# ********** Private **********
+	
+	init_ui_component: ->
+		# Init all bootstrap tooltips.
+		$('[title]').tooltip()
 
 	init_container_btn: ($btn) ->
 		type = $btn.attr('peditor-type')
@@ -59,7 +65,9 @@ class Peditor
 						workbench.add_row()
 
 					when 'column'
-						workbench.add_column()
+						workbench.add_column(
+							$('.column-width').val()
+						)
 
 				@$cur_decoration.removeAttr('style').hide()
 		})
