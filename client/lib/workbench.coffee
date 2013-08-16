@@ -191,11 +191,19 @@ class Workbench
 		$elem.mouseover(mouse_over).mouseout(mouse_out)
 
 	new_row: (width) ->
-		$row = $('<div>').addClass('r')
+		$row = $('<div>').addClass('r add_animate').one(
+			'animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd',
+			->
+				$row.removeClass('add_animate')
+		)
 		return $row
 
 	new_column: (width) ->
-		$col = $('<div>').addClass("c w-#{width}")
+		$col = $('<div>').addClass("c w-#{width} add_animate").one(
+			'animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd',
+			->
+				$col.removeClass('add_animate')
+		)
 		return $col
 
 	get_col_size: ($col) ->
