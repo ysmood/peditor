@@ -56,7 +56,7 @@ class Workbench
 
 		# In one row the sum of all columns' width must less than the grid size.
 		# The default grid size is 12.
-		type = $con.attr('peditor-type')
+		type = @container_type($con)
 		sum = @get_col_size($col)
 		if type == 'row'
 			sum = _.reduce(
@@ -119,7 +119,7 @@ class Workbench
 		$con = @$current_container
 
 		# Only the same type will trigger the display of the guide.
-		if $con.attr('peditor-type') != type
+		if @container_type($con) != type
 			return
 
 		pos = $con.offset()
@@ -182,15 +182,11 @@ class Workbench
 		$elem.mouseover(mouse_over).mouseout(mouse_out)
 
 	new_row: (width) ->
-		$row = $('<div>')
-			.attr('peditor-type', 'row')
-			.addClass('r')
+		$row = $('<div>').addClass('r')
 		return $row
 
 	new_column: (width) ->
-		$col = $('<div>')
-			.attr('peditor-type', 'column')
-			.addClass("c w-#{width}")
+		$col = $('<div>').addClass("c w-#{width}")
 		return $col
 
 	get_col_size: ($col) ->
@@ -198,5 +194,17 @@ class Workbench
 			$col.attr('class').match(/w-(\d+)/)[1]
 		)
 
+	container_type: ($con) ->
+		list = $con.attr('class').split(/\s+/)
+
+		for i in list
+			switch i
+				when 'r'
+					return 'row'
+				when 'c'
+					return 'column'
+
+		return null
+				
 
 workbench = new Workbench
