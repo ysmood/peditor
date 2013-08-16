@@ -8,7 +8,10 @@ class Workbench
 
 	# ********** Public **********
 
-	constructor: (@grid_size = 12) ->
+	constructor: (
+		@grid_size = 12
+		@guide_threshold = 20
+	) ->
 		@$outline = $('#outline')
 
 		@init_grid_hover()
@@ -139,15 +142,15 @@ class Workbench
 		$con.removeClass('before after')
 		switch type
 			when 'row'
-				if delta.y < con_height / 4
+				if delta.y < @guide_threshold
 					$con.addClass('before')
-				else if delta.y > con_height * 3 / 4
+				else if delta.y > con_height - @guide_threshold
 					$con.addClass('after')
 
 			when 'column'
-				if delta.x < con_width / 4
+				if delta.x < @guide_threshold
 					$con.addClass('before')
-				else if delta.x > con_width * 3 / 4
+				else if delta.x > con_width - @guide_threshold
 					$con.addClass('after')
 
 	update_col_height: ($col) ->
