@@ -111,6 +111,12 @@ class Workbench
 
 	add_widgete: ($col) ->
 
+	del_container: ->
+		if not @$current_container
+			return
+
+		@$current_container.remove()
+
 	update_pos_guide: (e, type) ->
 		if not @$current_container
 			return
