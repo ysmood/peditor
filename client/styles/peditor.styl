@@ -13,16 +13,35 @@ html, body, #main
 
 // Normalization End
 
+$button_highlight = #1fa1e6
 
-// Topbar
+// Navbar
 
-$topbar_height = 36px
-#topbar
-	height $topbar_height
-	border-bottom 1px solid #333
+$navbar_height = 40px
+#navbar
+	height $navbar_height
+	line-height $navbar_height
+	background #eee
 
+	.button
+		float left
+		padding 0 15px
+		cursor pointer
+		&:hover
+			background #fff
+			color $button_highlight
 
-// Topbar End
+	.view_mode
+		float right
+		line-height normal
+
+		label
+			height 40px
+			border none
+			padding-top 10px
+			border-radius 0
+
+// Navbar End
 
 
 // Workspace
@@ -30,13 +49,13 @@ $topbar_height = 36px
 $workpanel_width = 300px
 
 #workspace
-	height_calc 100% \- $topbar_height
+	height_calc 100% \- $navbar_height
 	border 1px solid #333
 
 	.group
-		margin: 5px 0
-		padding: 5px
-		border 1px dashed #777
+		margin: 3px 0
+		padding: 3px
+		border 1px dashed #ccc
 		border-radius 3px
 		display: inline-block
 

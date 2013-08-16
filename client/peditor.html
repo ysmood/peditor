@@ -1,7 +1,22 @@
 <div id="main">
 
-	<div id="topbar">	
-		<div class="font-l font-26 text-center">Peditor</div>
+	<div id="navbar"class="font-n">	
+		<div class="font-l font-24 button" title="About window">Peditor</div>
+		<div class="button" title="This will create a unique link">
+			Save
+		</div>
+		<div class="view_mode" title="Choose a display mode">
+			<div class="btn-group" data-toggle="buttons">
+				<label class="btn btn-info active">
+					<input type="radio" name="mode" checked="checked">
+					Outline
+				</label>
+				<label class="btn btn-info">
+					<input type="radio" name="mode">
+					Preview
+				</label>
+			</div>
+		</div>
 	</div>
 
 	<div id="workspace" class="font-n">
@@ -11,22 +26,11 @@
 		</div>
 
 		<div id="workpanel">
-			<h1 class="font-l font-26 text-center">Work Panel</h1>
-			<hr>
-
-			<h2 class="font-l font-20">Display Mode</h2>
-			<div class="btn-group" data-toggle="buttons">
-				<label class="btn btn-info active">
-					<input type="radio" name="mode" checked="checked"> Outline
-				</label>
-				<label class="btn btn-info" disabled>
-					<input type="radio" name="mode"> Preview
-				</label>
-			</div>
+			<h1 class="font-l font-24 text-center">Work Panel</h1>
+			<p class="text-muted text-center">All drag and drop operations.</p>
 			<hr>
 
 			<h2 class="font-l font-20">Containers</h2>
-			<p class="text-muted">Drag and drop to add a container</p>
 			<div>
 				<div class="group">
 					<button
@@ -69,6 +73,7 @@
 			<hr>
 
 			<h2 class="font-l font-20">Widgets</h2>
+
 			<hr>
 		</div>
 
