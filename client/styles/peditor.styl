@@ -54,17 +54,16 @@ $workpanel_width = 300px
 	margin-right - $workpanel_width
 	padding-right $workpanel_width
 
-	$ruler_height = 5px
-
+	$container_margin = 10px
 	#outline
 		width 100%
 		height 100%
-		position relative
+		padding 0 $container_margin $container_margin 0
 		overflow auto
 
-		.r, [class|="c"]
-			position relative
-			margin 15px
+		.r, .c
+			margin $container_margin 0 0 $container_margin
+			padding 0 $container_margin $container_margin 0
 			min-height 200px
 			background: #fff
 
@@ -76,20 +75,20 @@ $workpanel_width = 300px
 			clearfix()
 			insertion_guide('row')
 
-		[class|="c"]
+		.c
 			float left
 			border 3px solid #00BEFF
 
-		[class|="c"].hover
+		.c.hover
 			background: #ecf0ff
 
 		// Column insertion guide
-		[class|="c"]
+		.c
 			insertion_guide('column')
 
 		for i in (1 .. 12)
-			.c-{i}
-				width_calc (100 / 12 * i)% \- 30px
+			.w-{i}
+				width_calc (100 / 12 * i)% \- $container_margin
 
 #workpanel
 	padding 0 10px

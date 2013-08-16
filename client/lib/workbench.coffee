@@ -25,8 +25,8 @@ class Workbench
 		$row = @new_row()
 
 		# Check the container or its parent has no column inside.
-		no_column = $con.find('>[class|="c"]').length == 0
-		p_no_column = $con.parent().find('>[class|="c"]').length == 0
+		no_column = $con.find('>.c').length == 0
+		p_no_column = $con.parent().find('>.c').length == 0
 
 		if $con.hasClass('before') and p_no_column
 			$con.before($row)
@@ -60,14 +60,14 @@ class Workbench
 		sum = @get_col_size($col)
 		if type == 'row'
 			sum = _.reduce(
-				$con.find('>[class|="c"]'),
+				$con.find('>.c'),
 				(sum, e) =>
 					return sum + @get_col_size($(e))
 				,sum
 			)
 		else if type == 'column'
 			sum = _.reduce(
-				$con.parent().find('>[class|="c"]'),
+				$con.parent().find('>.c'),
 				(sum, e) =>
 					return sum + @get_col_size($(e))
 				,sum
@@ -144,11 +144,17 @@ class Workbench
 				else if delta.x > con_width * 3 / 4
 					$con.addClass('after')
 
+	update_col_height: ($col) ->
+		# To make the columns that in the same tree depth
+		# have the same height.
+		
+		$col.parent().find()
+
 
 	# ********** Private **********
 
 	init_grid_hover: ->
-		$containers = @$outline.find('.r, [class|="c"]')
+		$containers = @$outline.find('.r, .c')
 		$containers.push @$outline[0]
 
 		for elem in $containers
@@ -184,12 +190,13 @@ class Workbench
 	new_column: (width) ->
 		$col = $('<div>')
 			.attr('peditor-type', 'column')
-			.addClass("c-#{width}")
+			.addClass("c w-#{width}")
 		return $col
 
 	get_col_size: ($col) ->
 		return parseInt(
-			$col.attr('class').match(/c-(\d+)/)[1]
+			$col.attr('class').match(/w-(\d+)/)[1]
 		)
+
 
 workbench = new Workbench
