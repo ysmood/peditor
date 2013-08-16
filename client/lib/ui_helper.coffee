@@ -15,6 +15,9 @@ $.fn.report_compatibility = ->
 	if not Modernizr.css_calc
 		report += "CSS calc not supported.<br>"
 
+	if not Modernizr.cssanimations
+		report += "CSS animation not supported.<br>"
+
 	if report
 		$.fn.msg_box({
 			title: '<div class="alert alert-danger">Compatibility issue</div>',
