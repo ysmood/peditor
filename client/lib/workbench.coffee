@@ -11,18 +11,16 @@ class Workbench
 	constructor: (@grid_size = 12) ->
 		@$outline = $('#outline')
 
-		@container_stack = []
-
 		@init_grid_hover()
 
 		console.log 'Workbench Loaded.'
 
 	add_row: ->
-		if @container_stack.length == 0
+		if not @$current_container
 			return
 
 		# Current container
-		$con = _.last(@container_stack)
+		$con = @$current_container
 
 		$row = @new_row()
 
@@ -48,11 +46,11 @@ class Workbench
 	add_column: (width = 3) ->
 		# Add a column to another column's left or right side.
 		
-		if @container_stack.length == 0
+		if not @$current_container
 			return
 
 		# Current container
-		$con = _.last(@container_stack)
+		$con = @$current_container
 
 		$col = @new_column(width)
 
@@ -114,37 +112,37 @@ class Workbench
 	add_widgete: ($col) ->
 
 	update_pos_guide: (e, type) ->
-		if @container_stack.length == 0
+		if not @$current_container
 			return
 
 		# Get current container
-		$cur_con = _.last(@container_stack)
+		$con = @$current_container
 
 		# Only the same type will trigger the display of the guide.
-		if $cur_con.attr('peditor-type') != type
+		if $con.attr('peditor-type') != type
 			return
 
-		pos = $cur_con.offset()
+		pos = $con.offset()
 		delta = {
 			x: e.pageX - pos.left
 			y: e.pageY - pos.top
 		}
-		con_height = $cur_con.height()
-		con_width = $cur_con.width()
+		con_height = $con.height()
+		con_width = $con.width()
 
-		$cur_con.removeClass('before after')
+		$con.removeClass('before after')
 		switch type
 			when 'row'
 				if delta.y < con_height / 4
-					$cur_con.addClass('before')
+					$con.addClass('before')
 				else if delta.y > con_height * 3 / 4
-					$cur_con.addClass('after')
+					$con.addClass('after')
 
 			when 'column'
 				if delta.x < con_width / 4
-					$cur_con.addClass('before')
+					$con.addClass('before')
 				else if delta.x > con_width * 3 / 4
-					$cur_con.addClass('after')
+					$con.addClass('after')
 
 
 	# ********** Private **********
@@ -162,27 +160,20 @@ class Workbench
 		# In this situation a stack is used to trace the behavior.
 		
 		$elem = if elem instanceof $ then elem else $(elem)
-		stack = @container_stack
 
-		mouse_enter = ->
-			stack.push $elem
-
-			if stack.length > 1
-				stack[stack.length - 2]
-					.removeClass('hover')
-					.removeClass('before after')
-
+		mouse_over = (e) =>
 			$elem.addClass('hover')
+			@$current_container = $elem
 
-		mouse_leave = ->
-			if stack.length > 1
-				stack[stack.length - 2].addClass('hover')
+			e.stopPropagation()
 
-			$e = stack.pop()
-			if $e
-				$e.removeClass('hover').removeClass('before after')
+		mouse_out = (e) =>
+			$elem.removeClass('hover').removeClass('before after')
+			@$current_container = null
 
-		$elem.hover(mouse_enter, mouse_leave)
+			e.stopPropagation()
+
+		$elem.mouseover(mouse_over).mouseout(mouse_out)
 
 	new_row: (width) ->
 		$row = $('<div>')
