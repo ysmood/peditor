@@ -29,7 +29,9 @@ class Peditor
 	
 	init_ui_components: ->
 		# Init all bootstrap tooltips.
-		$('[title]').tooltip()
+		$('[title]').tooltip({
+			placement: "auto"
+		})
 
 	init_container_btn: ($btn) ->
 		type = $btn.attr('peditor-type')
