@@ -21,7 +21,7 @@ class Peditor
 		console.log 'Peditor loaded.'
 
 	init_container_tools: ->
-		for btn in $('.btn_container')
+		for btn in $('.btn_container, .btn_widget')
 			@init_container_btn($(btn))
 
 
@@ -79,14 +79,16 @@ class Peditor
 
 		switch type
 			when 'row'
-				@$cur_decoration.html('<i class="icon-align-justify font-20"></i>')
+				@$cur_decoration.html('<i class="icon-align-justify font-24"></i>')
 
 			when 'column'
-				@$cur_decoration.html('<i class="icon-columns font-20"></i>')
+				@$cur_decoration.html('<i class="icon-columns font-24"></i>')
 
 			when 'delete'
-				@$cur_decoration.html('<i class="icon-trash font-20"></i>')
+				@$cur_decoration.html('<i class="icon-trash font-24"></i>')
 
+			when 'widget'
+				@$cur_decoration.html('<i class="icon-gear font-24"></i>')
 
 	hide_cur_decoration: ->
 		@$cur_decoration.removeAttr('style').hide()

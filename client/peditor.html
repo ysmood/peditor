@@ -1,7 +1,7 @@
 <div id="main">
 
 	<div id="navbar"class="font-n">	
-		<div class="font-l font-24 button" title="About window">Peditor</div>
+		<div class="font-l font-24 button" title="About Peditor">Peditor</div>
 		<div class="button" title="This will create a unique link">
 			Save
 		</div>
@@ -37,49 +37,48 @@
 			<hr>
 
 			<h2 class="font-l font-20">Containers</h2>
-			<div>
-				<div class="group">
-					<button
-						peditor-type="row"
-						class="btn_container btn btn-primary btn-small"
-						title="Drag to the left pannel"
-					>
-						Row
-					</button>
-				</div>
-				<br>
-				<div class="group">
-					<button
-						peditor-type="column"
-						class="btn_container btn btn-primary btn-small"
-						title="Drag to the left pannel"
-					>
-						Column
-					</button>
-					Size:
-					<select class="column-width form-control" title="The n-twelfth width of a row">
-						<% for(var i = 1; i < 13; i++) { %>
-						
-						<option value="<%= i %>" <% if(i == 3) print('selected') %> ><%= i %></option>
+			<div class="group">
+				<button
+					peditor-type="row"
+					class="btn_container btn btn-primary btn-small"
+					title="Drag to the left pannel"
+				>
+					Row
+				</button>
+			</div>
+			<br>
+			<div class="group">
+				<button
+					peditor-type="column"
+					class="btn_container btn btn-primary btn-small"
+					title="Drag to the left pannel"
+				>
+					Column
+				</button>
+				Size:
+				<select class="column-width form-control" title="The n-twelfth width of a row">
+					<% for(var i = 1; i < 13; i++) { %>
 					
-						<% } %>
-					</select>
-				</div>
-				<br>
-				<div class="group">
-					<button
-						peditor-type="delete"
-						class="btn_container btn btn-primary btn-small"
-						title="Drag onto the container that you want to delete"
-					>
-						Delete
-					</button>
-				</div>
+					<option value="<%= i %>" <% if(i == 3) print('selected') %> ><%= i %></option>
+				
+					<% } %>
+				</select>
+			</div>
+			<br>
+			<div class="group">
+				<button
+					peditor-type="delete"
+					class="btn_container btn btn-primary btn-small"
+					title="Drag onto the container that you want to delete"
+				>
+					Delete
+				</button>
 			</div>
 			<hr>
 
 			<h2 class="font-l font-20">Widgets</h2>
-
+			<div peditor-type="widget" class="btn_widget"><i class="icon-music font-36"></i></div>
+			<div peditor-type="widget" class="btn_widget"><i class="icon-rocket font-36"></i></div>
 			<hr>
 		</div>
 

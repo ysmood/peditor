@@ -112,7 +112,7 @@ class Workbench
 
 		@init_container($col)
 
-	add_widgete: ($col) ->
+	add_widgete: ->
 
 	del_container: ->
 		if not @$current_container
