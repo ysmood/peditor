@@ -278,7 +278,7 @@ class Workbench
 					return 'column'
 				when 'widget'
 					return 'widget'
-				when 'outline'
+				when 'root'
 					return 'root'
 
 		return null
