@@ -40,7 +40,7 @@ class Workbench
 		else
 			$.fn.msg_box({
 				title: '<div class="alert">Warning</div>'
-				body: 'A container that has columns inside can\'t hold another row.' 
+				body: 'A container that has column inside can\'t hold another row.' 
 			})
 			return		
 
@@ -88,10 +88,18 @@ class Workbench
 			return		
 
 		# A column can't hold another column.
+		# A column and a row can't be sibling nodes.
 		# Therefore, a column should be directly insdie a row.
 		# The root can't directly hold a column.
 		if type == 'row'
-			$con.append($col)
+			if $con.find('.r').length > 0
+				$.fn.msg_box({
+					title: '<div class="alert">Warning</div>'
+					body: 'A container that has row inside can\'t hold another column.'
+				})
+				return
+			else
+				$con.append($col)
 		else if type == 'column' and $con.hasClass('before')
 			$con.before($col)
 		else if type == 'column' and $con.hasClass('after')
@@ -222,6 +230,6 @@ class Workbench
 					return 'column'
 
 		return null
-				
+
 
 workbench = new Workbench
