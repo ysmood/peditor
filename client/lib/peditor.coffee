@@ -34,15 +34,17 @@ class Peditor
 		})
 
 	init_container_btn: ($btn) ->
-		type = $btn.attr('peditor-type')
 		$.fn.dragging({
 			$target: $btn
+			data: {
+				type: $btn.attr('peditor-type')
+			}
 			mouse_down: (e) =>
-				@show_cur_decoration(type)
+				@show_cur_decoration(e)
 
 				# Prevent the default text selection area.
 				e.preventDefault()
-			,
+
 			mouse_move: (e) =>
 				@$cur_decoration.css({
 					left: e.pageX,
@@ -51,33 +53,36 @@ class Peditor
 
 				# The positioning guide will help indicate which side to 
 				# insert the new container.
-				workbench.update_pos_guide(e, type)
-			,
+				workbench.update_pos_guide(e)
+
 			mouse_up: (e) =>
-				@exe_command(type)
+				@exe_command(e)
 
 				@hide_cur_decoration()
-		})
+		})		
 
-	exe_command: (type) ->
-		switch type
+	exe_command: (e) ->
+		switch e.data.type
 			when 'row'
-				workbench.add_row()
+				workbench.add_row(e)
 
 			when 'column'
-				workbench.add_column(
+				workbench.add_column(e,
 					$('.column-width').val()
 				)
 
 			when 'delete'
-				workbench.del_container()
+				workbench.del_container(e)
 
-	show_cur_decoration: (type) ->
+			when 'widget'
+				workbench.add_widget(e)
+
+	show_cur_decoration: (e) ->
 		# Choose the corresponding dragging icon.
 		
 		@$cur_decoration.show()
 
-		switch type
+		switch e.data.type
 			when 'row'
 				@$cur_decoration.html('<i class="icon-align-justify font-24"></i>')
 

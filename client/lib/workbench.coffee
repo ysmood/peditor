@@ -18,7 +18,7 @@ class Workbench
 
 		console.log 'Workbench Loaded.'
 
-	add_row: ->
+	add_row: (e) ->
 		if not @$current_container
 			return
 
@@ -46,7 +46,7 @@ class Workbench
 
 		@init_container($row)
 
-	add_column: (width = 3) ->
+	add_column: (e, width = 3) ->
 		# Add a column to another column's left or right side.
 		
 		if not @$current_container
@@ -64,15 +64,15 @@ class Workbench
 		if type == 'row'
 			sum = _.reduce(
 				$con.find('>.c'),
-				(sum, e) =>
-					return sum + @get_col_size($(e))
+				(sum, elem) =>
+					return sum + @get_col_size($(elem))
 				,sum
 			)
 		else if type == 'column'
 			sum = _.reduce(
 				$con.parent().find('>.c'),
-				(sum, e) =>
-					return sum + @get_col_size($(e))
+				(sum, elem) =>
+					return sum + @get_col_size($(elem))
 				,sum
 			)
 
@@ -91,49 +91,78 @@ class Workbench
 		# A column and a row can't be sibling nodes.
 		# Therefore, a column should be directly insdie a row.
 		# The root can't directly hold a column.
-		if type == 'row'
-			if $con.find('.r').length > 0
+		switch type
+			when 'row'
+				if $con.find('.r').length > 0
+					$.fn.msg_box({
+						title: '<div class="alert">Warning</div>'
+						body: 'A container that has row inside can\'t hold another column.'
+					})
+					return
+				else
+					$con.append($col)
+
+			when 'column'
+				if $con.hasClass('before')
+					$con.before($col)
+				else
+					$con.after($col)			
+
+			when 'root'
 				$.fn.msg_box({
 					title: '<div class="alert">Warning</div>'
-					body: 'A container that has row inside can\'t hold another column.'
+					body: 'The root can\'t directly hold a column.'
 				})
-				return
+			
 			else
-				$con.append($col)
-		else if type == 'column' and $con.hasClass('before')
-			$con.before($col)
-		else if type == 'column' and $con.hasClass('after')
-			$con.after($col)
-		else if type == 'column'
-			$.fn.msg_box({
-				title: '<div class="alert">Warning</div>'
-				body: 'A column can\'t hold another column'
-			})
-			return
-		else
-			$.fn.msg_box({
-				title: '<div class="alert">Warning</div>'
-				body: 'The root can\'t directly hold a column.'
-			})
-			return
-
+				return
 
 		@init_container($col)
 
-	add_widgete: ->
-
-	del_container: ->
+	add_widget: (e) ->
 		if not @$current_container
+			return
+		
+		$widget = @new_widget(e.$target)
+
+		$con = @$current_container
+
+		switch @container_type($con)
+			when 'widget'
+				if $con.hasClass('before')
+					$con.before($widget)
+				else
+					$con.after($widget)
+
+			when 'column'
+				# Copy all content of widget into the column.
+				$con.append($widget)
+
+			else
+				$.fn.msg_box({
+					title: '<div class="alert">Warning</div>'
+					body: 'Only column can contain widget.' 
+				})
+				return
+
+		@init_container($widget)
+
+	del_container: (e) ->
+		if not @$current_container
+			return
+		if @container_type(@$current_container) == 'root'
 			return
 
 		@$current_container.remove()
 
-	update_pos_guide: (e, type) ->
+	update_pos_guide: (e) ->
 		if not @$current_container
 			return
 
 		# Get current container
 		$con = @$current_container
+
+		type = e.data.type
 
 		# Only the same type will trigger the display of the guide.
 		if @container_type($con) != type
@@ -148,6 +177,7 @@ class Workbench
 		con_width = $con.width()
 
 		$con.removeClass('before after')
+
 		switch type
 			when 'row'
 				if delta.y < @guide_threshold
@@ -161,17 +191,22 @@ class Workbench
 				else if delta.x > con_width - @guide_threshold
 					$con.addClass('after')
 
+			when 'widget'
+				if delta.y < @guide_threshold
+					$con.addClass('before')
+				else if delta.y > con_height - @guide_threshold
+					$con.addClass('after')
+
+
 	update_col_height: ($col) ->
 		# To make the columns that in the same tree depth
 		# have the same height.
 		
-		$col.parent().find()
-
 
 	# ********** Private **********
 
 	init_grid_hover: ->
-		$containers = @$outline.find('.r, .c')
+		$containers = @$outline.find('.r, .c, .widget')
 		$containers.push @$outline[0]
 
 		for elem in $containers
@@ -214,6 +249,19 @@ class Workbench
 		)
 		return $col
 
+	new_widget: ($target) ->
+		$widget = $('<div>').addClass('widget')
+
+		# TODO: Get the widgets from the database.
+		switch $target.attr('peditor-widget')
+			when 'music'
+				$widget.html('<div style="height: 300px; background: #d0ffa8">music</div>')
+				
+			when 'rocket'
+				$widget.html('<div style="height: 200px; background: #aeffc1">rocket</div>')
+
+		return $widget
+
 	get_col_size: ($col) ->
 		return parseInt(
 			$col.attr('class').match(/w-(\d+)/)[1]
@@ -228,6 +276,10 @@ class Workbench
 					return 'row'
 				when 'c'
 					return 'column'
+				when 'widget'
+					return 'widget'
+				when 'outline'
+					return 'root'
 
 		return null
 

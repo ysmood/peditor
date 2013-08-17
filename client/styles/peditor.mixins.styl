@@ -23,21 +23,32 @@ animation(args...)
 	-o-animation args
 	animation 
 
-@keyframes row_before
-	100%
-		border-top-color red
-@keyframes row_after
-	100%
-		border-bottom-color red
-@keyframes col_before
-	100%
-		border-left-color red
-@keyframes col_after
-	100%
-		border-right-color red
+$flash_begin = #fcbec2
+$flash_end = red
 
-insertion_guide(type)
-	if type == "row"
+@keyframes row_before
+	0%
+		border-top-color $flash_begin
+	100%
+		border-top-color $flash_end
+@keyframes row_after
+	0%
+		border-bottom-color $flash_begin
+	100%
+		border-bottom-color $flash_end
+@keyframes col_before
+	0%
+		border-left-color $flash_begin
+	100%
+		border-left-color $flash_end
+@keyframes col_after
+	0%
+		border-right-color $flash_begin
+	100%
+		border-right-color $flash_end
+
+insertion_guide(type = '')
+	if type == 'row'
 		&.before
 			animation row_before 0.5s ease 0s infinite alternate
 		&.after

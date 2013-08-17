@@ -50,7 +50,7 @@ $.fn.dragging = (options) ->
 	# 	mouse_up:  (e, data) ->
 
 	mouse_down = (e) ->
-		e.target = options.target
+		e.$target = options.$target
 		e.data = options.data
 		options.mouse_down(e)
 
@@ -58,12 +58,12 @@ $.fn.dragging = (options) ->
 		$(window).mouseup(mouse_up)
 
 	mouse_move = (e) ->
-		e.target = options.target
+		e.$target = options.$target
 		e.data = options.data
 		options.mouse_move(e)
 
 	mouse_up = (e)->
-		e.target = options.target
+		e.$target = options.$target
 		e.data = options.data
 		options.mouse_up(e)
 

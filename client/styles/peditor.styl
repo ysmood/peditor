@@ -89,24 +89,31 @@ $workpanel_width = 300px
 			background: #fff2f8
 		
 		.r
-			border 3px solid #f986fb
+			border 2px solid #f986fb
 			clearfix()
 			insertion_guide('row')
 
 		.c
 			float left
-			border 3px solid #00BEFF
+			border 2px solid #00BEFF
+			insertion_guide()
 
-		.c.hover
-			background: #ecf0ff
-
-		// Column insertion guide
-		.c
-			insertion_guide('column')
+			&.hover
+				background: #ecf0ff
 
 		for i in (1 .. 12)
 			.w-{i}
 				width_calc (100 / 12 * i)% \- $container_margin
+
+		.widget
+			margin $container_margin 0 0 $container_margin
+			border 2px solid #777
+			insertion_guide('row')
+
+			&.hover
+				background #eee
+				border-color #ff7f00
+
 
 #workpanel
 	padding 0 10px
