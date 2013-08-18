@@ -241,7 +241,11 @@ class Workbench
 			
 			if $elem.hasClass('selected')
 				@$selected_con = $elem
+
+				# Active properties editing.
+				workpannel.properties_active($elem)
 			else
+				workpannel.properties_deactive($elem)
 				@$selected_con = null
 
 			e.stopPropagation()
@@ -272,11 +276,11 @@ class Workbench
 
 		# TODO: Get the widgets from the database.
 		switch $target.attr('peditor-widget')
-			when 'music'
-				$widget.html('<div style="height: 300px; background: #d0ffa8">music</div>')
-				
 			when 'rocket'
 				$widget.html('<div style="height: 200px; background: #aeffc1">rocket</div>')
+				
+			when 'music'
+				$widget.html('<div style="height: 300px; background: #d0ffa8">music</div>')
 
 		return $widget
 
