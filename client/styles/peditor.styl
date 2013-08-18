@@ -73,7 +73,7 @@ $workpanel_width = 300px
 	padding-right $workpanel_width
 
 	$container_margin = 15px
-	#outline
+	.root
 		width 100%
 		height 100%
 		padding 0 $container_margin $container_margin 0
@@ -92,6 +92,7 @@ $workpanel_width = 300px
 			border 2px solid #f986fb
 			clearfix()
 			insertion_guide('row')
+			container_selected()
 
 		.c
 			float left
@@ -113,7 +114,9 @@ $workpanel_width = 300px
 			&.hover
 				background #eee
 				border-color #ff7f00
-
+	
+	.root, .r, .c, .widget
+		container_selected()
 
 #workpanel
 	padding 0 10px

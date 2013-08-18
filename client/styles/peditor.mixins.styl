@@ -26,38 +26,44 @@ animation(args...)
 $flash_begin = #fcbec2
 $flash_end = red
 
-@keyframes row_before
+@keyframes f_row_before
 	0%
 		border-top-color $flash_begin
 	100%
 		border-top-color $flash_end
-@keyframes row_after
+@keyframes f_row_after
 	0%
 		border-bottom-color $flash_begin
 	100%
 		border-bottom-color $flash_end
-@keyframes col_before
+@keyframes f_col_before
 	0%
 		border-left-color $flash_begin
 	100%
 		border-left-color $flash_end
-@keyframes col_after
+@keyframes f_col_after
 	0%
 		border-right-color $flash_begin
 	100%
 		border-right-color $flash_end
 
+@keyframes f_selected
+	0%
+		box-shadow 0 0 12px #555
+	100%
+		box-shadow 0 0 2px #555
+
 insertion_guide(type = '')
 	if type == 'row'
 		&.before
-			animation row_before 0.5s ease 0s infinite alternate
+			animation f_row_before 0.5s linear 0s infinite alternate
 		&.after
-			animation row_after 0.5s ease 0s infinite alternate
+			animation f_row_after 0.5s linear 0s infinite alternate
 	else
 		&.before
-			animation col_before 0.5s ease 0s infinite alternate
+			animation f_col_before 0.5s linear 0s infinite alternate
 		&.after
-			animation col_after 0.5s ease 0s infinite alternate
+			animation f_col_after 0.5s linear 0s infinite alternate
 
 @keyframes add_container
 	0%
@@ -67,3 +73,8 @@ insertion_guide(type = '')
 
 .add_animate
 	animation add_container 0.3s ease 0s 1
+
+container_selected()
+	&.selected
+		box-shadow 0 0 5px #555
+		animation f_selected 0.5s linear 0s infinite alternate

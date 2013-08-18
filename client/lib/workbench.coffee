@@ -12,9 +12,9 @@ class Workbench
 		@grid_size = 12
 		@guide_threshold = 20
 	) ->
-		@$outline = $('#outline')
+		@$root = $('#outline')
 
-		@init_grid_hover()
+		@init_containers()
 
 		console.log 'Workbench Loaded.'
 
@@ -197,7 +197,6 @@ class Workbench
 				else if delta.y > con_height - @guide_threshold
 					$con.addClass('after')
 
-
 	update_col_height: ($col) ->
 		# To make the columns that in the same tree depth
 		# have the same height.
@@ -205,17 +204,15 @@ class Workbench
 
 	# ********** Private **********
 
-	init_grid_hover: ->
-		$containers = @$outline.find('.r, .c, .widget')
-		$containers.push @$outline[0]
+	init_containers: ->
+		$containers = @$root.find('.r, .c, .widget')
+		$containers.push @$root[0]
 
 		for elem in $containers
 			@init_container(elem)
 
 	init_container: (elem) ->
-		# When entering a child box, the parent effect will be removed,
-		# When leaving a child box, the parent effect will be recovered.
-		# In this situation a stack is used to trace the behavior.
+		# This method will init the hover and the selected effects.
 		
 		$elem = if elem instanceof $ then elem else $(elem)
 
@@ -231,7 +228,28 @@ class Workbench
 
 			e.stopPropagation()
 
-		$elem.mouseover(mouse_over).mouseout(mouse_out)
+		clicked = (e) =>
+			if $elem == @$selected_con
+				if $elem.hasClass('selected')
+					$elem.removeClass('selected')
+				else
+					$elem.addClass('selected')
+			else
+				if @$selected_con
+					@$selected_con.removeClass('selected')
+				$elem.addClass('selected')
+			
+			if $elem.hasClass('selected')
+				@$selected_con = $elem
+			else
+				@$selected_con = null
+
+			e.stopPropagation()
+
+		$elem
+			.mouseover(mouse_over)
+			.mouseout(mouse_out)
+			.click(clicked)
 
 	new_row: (width) ->
 		$row = $('<div>').addClass('r add_animate').one(

@@ -78,7 +78,11 @@ class Peditor
 				workbench.add_widget(e)
 
 	show_cur_decoration: (e) ->
+		# Hide the selected container animation.
 		# Choose the corresponding dragging icon.
+		
+		if workbench.$selected_con
+			workbench.$selected_con.removeClass('selected')
 		
 		@$cur_decoration.show()
 
@@ -96,6 +100,10 @@ class Peditor
 				@$cur_decoration.html('<i class="icon-gear font-24"></i>')
 
 	hide_cur_decoration: ->
+		# Recover the selected container animation.
+		if workbench.$selected_con
+			workbench.$selected_con.addClass('selected')
+
 		@$cur_decoration.removeAttr('style').hide()
 
 peditor = new Peditor
