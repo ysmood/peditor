@@ -19,6 +19,8 @@ class Peditor_server
 
 		@init_client()
 
+		@init_test()
+
 		@init_routes()
 
 	start: ->
@@ -55,6 +57,16 @@ class Peditor_server
 				(htmls) =>
 					_.extend(res.locals, htmls)
 					res.render('peditor')
+			)
+		)
+
+	init_test: ->
+		@app.get('/test', (req, res) =>
+			@render_sections(
+				['head', 'foot'],
+				(htmls) =>
+					_.extend(res.locals, htmls)
+					res.render('test')
 			)
 		)
 
