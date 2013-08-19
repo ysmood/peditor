@@ -1,0 +1,62 @@
+<div id="workpanel">
+	<h1 class="font-l font-24 text-center">Work Panel</h1>
+	<p class="text-muted text-center">All drag and drop operations.</p>
+	<hr>
+
+	<h2 class="font-l font-20">Properties</h2>
+	
+	<hr>
+
+	<h2 class="font-l font-20">Containers</h2>
+	<div>
+		<div class="group">
+			<button
+				peditor-type="row"
+				class="btn_container btn btn-primary"
+				title="Drag to the left pannel"
+			>
+				<i class="icon-reorder"></i> Row
+			</button>
+		</div>
+		<br>
+		<div class="group">
+			<button
+				peditor-type="column"
+				class="btn_container btn btn-primary"
+				title="Drag to the left pannel"
+			>
+				<i class="icon-trello"></i> Column
+			</button>
+			Size:
+			<select class="column-width form-control" title="The n-twelfth width of a row">
+				<% for(var i = 1; i < 13; i++) { %>
+				
+				<option value="<%= i %>" <% if(i == 3) print('selected') %> ><%= i %></option>
+			
+				<% } %>
+			</select>
+		</div>
+		<br>
+		<div class="group">
+			<button
+				peditor-type="delete"
+				class="btn_container btn btn-primary"
+				title="Drag onto the container that you want to delete"
+			>
+				<i class="icon-trash"></i> Delete
+			</button>
+		</div>
+	</div>
+	<hr>
+
+	<h2 class="font-l font-20">Widgets</h2>
+	<div>
+		<div peditor-type="widget" peditor-widget="rocket" class="btn_widget">
+			<i class="icon-rocket font-36"></i>
+		</div>
+		<div peditor-type="widget" peditor-widget="music" class="btn_widget">
+			<i class="icon-music font-36"></i>
+		</div>
+	</div>
+	<hr>
+</div>

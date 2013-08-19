@@ -1,106 +1,40 @@
-<div id="main">
+<!DOCTYPE html>
+<html>
+<head>
 
-	<div id="navbar"class="font-n">	
-		<div class="font-l font-24 button" title="About Peditor">Peditor</div>
-		<div class="button" title="This will create a unique link">
-			<i class="icon-save"></i> Save
-		</div>
-		<div class="button">
-			<i class="icon-undo"></i> Undo
-		</div>
-		<div class="button">
-			<i class="icon-repeat"></i> Redo
-		</div>
-		<div class="view_mode" title="Choose a display mode">
-			<div class="btn-group" data-toggle="buttons">
-				<label class="btn btn-info active">
-					<input type="radio" name="mode" checked="checked">
-					Outline
-				</label>
-				<label class="btn btn-info">
-					<input type="radio" name="mode">
-					Preview
-				</label>
-			</div>
-		</div>
-	</div>
+	<%= head %>
+	
+	<link rel="stylesheet" type="text/css" href="/styles/peditor.css">
 
-	<div id="workspace" class="font-n">
+</head>
+<body>
 
-		<div id="workbench">
-			<div id="outline" class="root"></div>
+	<div id="main">
+
+		<%= navbar %>
+
+		<div id="workspace" class="font-n">
+
+			<%= workbench %>
+
+			<%= workpannel %>
+
 		</div>
 
-		<div id="workpanel">
-			<h1 class="font-l font-24 text-center">Work Panel</h1>
-			<p class="text-muted text-center">All drag and drop operations.</p>
-			<hr>
-
-			<h2 class="font-l font-20">Properties</h2>
-			<p>
-				Change the selected element's properties.
-			</p>
-			<hr>
-
-			<h2 class="font-l font-20">Containers</h2>
-			<div>
-				<div class="group">
-					<button
-						peditor-type="row"
-						class="btn_container btn btn-primary"
-						title="Drag to the left pannel"
-					>
-						<i class="icon-reorder"></i> Row
-					</button>
-				</div>
-				<br>
-				<div class="group">
-					<button
-						peditor-type="column"
-						class="btn_container btn btn-primary"
-						title="Drag to the left pannel"
-					>
-						<i class="icon-trello"></i> Column
-					</button>
-					Size:
-					<select class="column-width form-control" title="The n-twelfth width of a row">
-						<% for(var i = 1; i < 13; i++) { %>
-						
-						<option value="<%= i %>" <% if(i == 3) print('selected') %> ><%= i %></option>
-					
-						<% } %>
-					</select>
-				</div>
-				<br>
-				<div class="group">
-					<button
-						peditor-type="delete"
-						class="btn_container btn btn-primary"
-						title="Drag onto the container that you want to delete"
-					>
-						<i class="icon-trash"></i> Delete
-					</button>
-				</div>
-			</div>
-			<hr>
-
-			<h2 class="font-l font-20">Widgets</h2>
-			<div>
-				<div peditor-type="widget" peditor-widget="rocket" class="btn_widget">
-					<i class="icon-rocket font-36"></i>
-				</div>
-				<div peditor-type="widget" peditor-widget="music" class="btn_widget">
-					<i class="icon-music font-36"></i>
-				</div>
-			</div>
-			<hr>
+		<div id="preview">
 		</div>
+
+		<div id="cur_decoration"></div>
 
 	</div>
 
-	<div id="preview">
-	</div>
+	<%= foot %>
 
-	<div id="cur_decoration"></div>
+	<!-- Peditor -->
+	<script type="text/javascript" src="/lib/ui_helper.js"></script>
+	<script type="text/javascript" src="/lib/workpannel.js"></script>
+	<script type="text/javascript" src="/lib/workbench.js"></script>
+	<script type="text/javascript" src="/lib/peditor.js"></script>
 
-</div>
+</body>
+</html>

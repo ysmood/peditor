@@ -23,9 +23,18 @@ class Workpannel
 			@init_container_btn($(btn))
 
 	properties_active: ($elem) ->
+		# switch workbench.container_type($elem)
+		# 	when 'root'
 
+		# 	when 'row'
+
+		# 	when 'column'
+
+		# 	when 'widget'
+		
 
 	properties_deactive: ($elem) ->
+		console.log 'properties_deactive'
 
 	# ********** Private **********
 

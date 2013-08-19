@@ -200,6 +200,22 @@ class Workbench
 	update_col_height: ($col) ->
 		# To make the columns that in the same tree depth
 		# have the same height.
+
+	container_type: ($con) ->
+		list = $con.attr('class').split(/\s+/)
+
+		for i in list
+			switch i
+				when 'r'
+					return 'row'
+				when 'c'
+					return 'column'
+				when 'widget'
+					return 'widget'
+				when 'root'
+					return 'root'
+
+		return null
 		
 
 	# ********** Private **********
@@ -288,22 +304,6 @@ class Workbench
 		return parseInt(
 			$col.attr('class').match(/w-(\d+)/)[1]
 		)
-
-	container_type: ($con) ->
-		list = $con.attr('class').split(/\s+/)
-
-		for i in list
-			switch i
-				when 'r'
-					return 'row'
-				when 'c'
-					return 'column'
-				when 'widget'
-					return 'widget'
-				when 'root'
-					return 'root'
-
-		return null
 
 
 workbench = new Workbench

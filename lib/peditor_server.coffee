@@ -44,26 +44,45 @@ class Peditor_server
 		@app.use(express.static('client'))
 
 		@app.get('/', (req, res) =>
-			@render('peditor', res)
+			@render_sections(
+				[
+					'head'
+					'navbar'
+					'workbench'
+					'workpannel'
+					'foot'
+				],
+				(htmls) =>
+					_.extend(res.locals, htmls)
+					res.render('peditor')
+			)
 		)
 
 	init_routes: ->
 		@app.use((req, res) =>
 			console.warn('404: ' + req.originalUrl)
 			res.status(404)
-			@render('pages/404', res)
+			
+			@render_sections(['head'],
+				(htmls) =>
+					_.extend(res.locals, htmls)
+					res.render('404')
+			)
 		)
 
-	render: (path, res) ->
-		# Render the page inside a frame page.
+	render_sections: (pages, done, htmls = {}) ->
+		# Render pages in a sequence.
 
-		@app.render(path, (err, html) =>
-			@app.render(
-				'pages/app_frame',
-				{ body: html },
-				(err, html) ->
-					res.send(html)
-			)			
+		if _.isEmpty(pages)
+			done(htmls)
+			return
+
+		path = pages.pop()
+
+		@app.render('sections/' + path, (err, html) =>
+			htmls[path] = html
+
+			@render_sections(pages, done, htmls)
 		)
 
 
