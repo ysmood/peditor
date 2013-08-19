@@ -23,7 +23,12 @@ class Workpannel
 			@init_container_btn($(btn))
 
 	properties_active: ($elem) ->
-		# switch workbench.container_type($elem)
+		type = workbench.container_type($elem)
+
+		$indicator = $('.selected-con-i')
+		$indicator.show().text(type)
+
+		# switch type
 		# 	when 'root'
 
 		# 	when 'row'
@@ -34,7 +39,8 @@ class Workpannel
 		
 
 	properties_deactive: ($elem) ->
-		console.log 'properties_deactive'
+		$indicator = $('.selected-con-i')
+		$indicator.hide()
 
 	# ********** Private **********
 
