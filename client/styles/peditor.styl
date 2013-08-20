@@ -54,17 +54,6 @@ $workpanel_width = 300px
 	height_calc 100% \- $navbar_height
 	border 1px solid #333
 
-	.group
-		margin: 3px 0
-		padding: 3px
-		border 1px dashed #ccc
-		border-radius 3px
-		display: inline-block
-
-	.column-width
-		width: 80px;
-		display: inline-block;
-
 #workbench, #workpanel
 	float left
 	height 100%
@@ -75,9 +64,10 @@ $workpanel_width = 300px
 	padding-right $workpanel_width
 
 	$container_margin = 15px
-	.root
+	#outline
 		width 100%
 		height 100%
+		margin auto
 		padding 0 $container_margin $container_margin 0
 		overflow auto
 		background #fff
@@ -88,8 +78,11 @@ $workpanel_width = 300px
 			min-height 200px
 			background: #fff
 
+		.hover
+			border-color #ff7f00 !important
+
 		&.hover, .r.hover
-			background: #fff2f8
+			background-color: #fff2f8
 		
 		.r
 			border 2px solid #f986fb
@@ -103,10 +96,10 @@ $workpanel_width = 300px
 			insertion_guide()
 
 			&.hover
-				background: #ecf0ff
+				background-color: #ecf0ff
 
 		for i in (1 .. 12)
-			.w-{i}
+			{s('[w="%s"]', i)}
 				width_calc (100 / 12 * i)% \- $container_margin
 
 		.widget
@@ -115,8 +108,7 @@ $workpanel_width = 300px
 			insertion_guide('row')
 
 			&.hover
-				background #eee
-				border-color #ff7f00
+				background-color #eee
 	
 	.root, .r, .c, .widget
 		container_selected()
@@ -126,6 +118,19 @@ $workpanel_width = 300px
 	width $workpanel_width
 	overflow auto
 	border-left 1px solid #333
+
+	.group
+		margin: 10px 0
+		padding: 5px
+		border 1px solid #ccc
+		border-radius 3px
+
+	.properties .group
+		display none
+
+	.column-width
+		width: 80px;
+		display: inline-block;
 
 	.btn_widget
 		padding 100px
@@ -137,6 +142,9 @@ $workpanel_width = 300px
 
 		&:hover
 			background #eee
+
+	.input-group
+		margin 10px 0
 
 // Workspace End
 

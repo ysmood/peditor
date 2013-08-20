@@ -13,7 +13,7 @@ class Workpannel
 
 	constructor: ->
 		@$cur_decoration = $('#cur_decoration')
-		
+
 		@init_container_tools()
 
 		console.log 'Workpannel loaded.'
@@ -23,24 +23,74 @@ class Workpannel
 			@init_container_btn($(btn))
 
 	properties_active: ($elem) ->
+		$groups = $('.properties .group')
+
 		type = workbench.container_type($elem)
 
 		$indicator = $('.selected-con-i')
 		$indicator.show().text(type)
 
-		# switch type
-		# 	when 'root'
+		for g in $groups
+			$g = $(g)
+			if _.contains(
+				$g.attr('peditor-bind').split(/\s+/),
+				type
+			)
+				$g.show()
+				
+				@bind_property($g, $elem)
+			else
+				$g.hide()
 
-		# 	when 'row'
+	bind_property: ($g, $elem) ->
+		$ps = $g.find('[peditor-css]')
 
-		# 	when 'column'
+		# Get the value.
+		$ps.each(->
+			$p = $(@)
+			c = $p.attr('peditor-css')
 
-		# 	when 'widget'
+			switch c
+				when 'background-image'
+					v = $elem.css('backgound-image')
+					if v
+						$p.val(
+							v.match(/url\((.*)\)/)[1]
+						)
+					else
+						$p.val('')
+
+				when 'col-width'
+					$p.val($elem.attr('w'))
+
+				else
+					$p.val($elem.css(c))
+		)
+
+		# Set the value.
+		$ps.off().change(->
+			$p = $(@)
+			c = $p.attr('peditor-css')
+			v = $p.val()
+
+			switch c
+				when 'background-image'
+					v = "url(#{v})"
+					$elem.css(c, v)
+
+				when 'col-width'
+					$elem.attr('w', v)
+
+				else
+					$elem.css(c, v)
+		)
+
 		
-
 	properties_deactive: ($elem) ->
 		$indicator = $('.selected-con-i')
 		$indicator.hide()
+
+		$('.properties .group').hide()
 
 	# ********** Private **********
 
@@ -79,7 +129,7 @@ class Workpannel
 
 			when 'column'
 				workbench.add_column(e,
-					$('.column-width').val()
+					$('.containers .column-width').val()
 				)
 
 			when 'delete'

@@ -46,7 +46,7 @@ class Workbench
 
 		@init_container($row)
 
-	add_column: (e, width = 3) ->
+	add_column: (e, width = 6) ->
 		# Add a column to another column's left or right side.
 		
 		if not @$current_container
@@ -280,7 +280,7 @@ class Workbench
 		return $row
 
 	new_column: (width) ->
-		$col = $('<div>').addClass("c w-#{width} add_animate").one(
+		$col = $('<div>').addClass("c add_animate").attr('w', width).one(
 			'animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd',
 			->
 				$col.removeClass('add_animate')
@@ -302,7 +302,7 @@ class Workbench
 
 	get_col_size: ($col) ->
 		return parseInt(
-			$col.attr('class').match(/w-(\d+)/)[1]
+			$col.attr('w')
 		)
 
 
