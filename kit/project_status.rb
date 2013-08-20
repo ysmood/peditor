@@ -22,10 +22,18 @@ files = files.select { |f|
 	}
 }
 
+report = {}
+
 sum = files.reduce(0) { |sum, f|
 	count = `wc -l #{f}`.split.first.to_i
-	puts ('%6d   ' % count) + f 
+	report[f] = count
 	sum + count
+}
+
+report = report.sort_by { |k, v| -v }
+
+report.each { |k, v|
+	puts ('%6d   ' % v) + k
 }
 
 puts "\nTotal: " + sum.to_s
