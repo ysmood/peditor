@@ -76,6 +76,7 @@ $workpanel_width = 300px
 			padding 0 $container_margin $container_margin 0
 			overflow-y auto
 			background #fff
+			container_selected('root')
 
 		.r, .c
 			margin $container_margin 0 0 $container_margin
@@ -115,7 +116,7 @@ $workpanel_width = 300px
 			&.hover
 				background-color #eee
 	
-		.root, .r, .c, .widget
+		.r, .c, .widget
 			container_selected()
 
 #workpanel
@@ -156,3 +157,4 @@ $workpanel_width = 300px
 #cur_decoration
 	position absolute
 	margin 15px
+
