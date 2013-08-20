@@ -57,35 +57,8 @@ class Workbench
 
 		$col = @new_column(width)
 
-		# In one row the sum of all columns' width must less than the grid size.
-		# The default grid size is 12.
 		type = @container_type($con)
-		sum = @get_col_size($col)
-		if type == 'row'
-			sum = _.reduce(
-				$con.find('>.c'),
-				(sum, elem) =>
-					return sum + @get_col_size($(elem))
-				,sum
-			)
-		else if type == 'column'
-			sum = _.reduce(
-				$con.parent().find('>.c'),
-				(sum, elem) =>
-					return sum + @get_col_size($(elem))
-				,sum
-			)
 
-		if (
-			$con.hasClass('before') or
-			$con.hasClass('after') or
-			type == 'row'
-		) and sum > @grid_size
-			$.fn.msg_box({
-				title: '<div class="alert">Warning</div>'
-				body: 'The sum of all columns\' width must less than the grid size.'
-			})
-			return		
 
 		# A column can't hold another column.
 		# A column and a row can't be sibling nodes.
@@ -280,11 +253,13 @@ class Workbench
 		return $row
 
 	new_column: (width) ->
-		$col = $('<div>').addClass("c add_animate").attr('w', width).one(
+		$col = $('<div>').addClass("c add_animate").one(
 			'animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd',
 			->
 				$col.removeClass('add_animate')
 		)
+		# Set width.
+		$col.attr('w', width).data('column-width', width)
 		return $col
 
 	new_widget: ($target) ->

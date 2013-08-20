@@ -49,22 +49,7 @@ class Workpannel
 		$ps.each(->
 			$p = $(@)
 			c = $p.attr('peditor-css')
-
-			switch c
-				when 'background-image'
-					v = $elem.css('backgound-image')
-					if v
-						$p.val(
-							v.match(/url\((.*)\)/)[1]
-						)
-					else
-						$p.val('')
-
-				when 'col-width'
-					$p.val($elem.attr('w'))
-
-				else
-					$p.val($elem.css(c))
+			$p.val($elem.data(c))
 		)
 
 		# Set the value.
@@ -73,18 +58,18 @@ class Workpannel
 			c = $p.attr('peditor-css')
 			v = $p.val()
 
+			# Store the property data.
+			$elem.data(c, v)
 			switch c
 				when 'background-image'
-					v = "url(#{v})"
-					$elem.css(c, v)
+					$elem.css(c, "url(#{v})")
 
-				when 'col-width'
+				when 'column-width'
 					$elem.attr('w', v)
 
 				else
 					$elem.css(c, v)
 		)
-
 		
 	properties_deactive: ($elem) ->
 		$indicator = $('.selected-con-i')

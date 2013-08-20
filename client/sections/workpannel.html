@@ -1,5 +1,5 @@
 <% function select_12() { %>
-	<select class="column-width form-control" peditor-css="col-width" title="The n-twelfth width of a row">
+	<select class="column-width form-control" peditor-css="column-width" title="The n-twelfth width of a row">
 		<% for(var i = 1; i < 13; i++) { %>
 		
 		<option value="<%= i %>" <% if(i == 6) print('selected') %> ><%= i %></option>
@@ -9,15 +9,12 @@
 <% } %>
 
 <div id="workpanel">
-	<h1 class="font-l font-24 text-center">Work Panel</h1>
-	<p class="text-muted text-center">All drag and drop operations.</p>
-	<hr>
 
-	<h2 class="font-l font-20">Properties <span class="selected-con-i badge font-14"></span></h2>
+	<h2 class="font-n font-20">Properties <span class="selected-con-i badge font-14"></span></h2>
 	<div class="properties">
 		<div class="group" peditor-bind="root row">
 			<div class="font-n font-16">Background</div>
-			<div class="input-group">
+			<div class="input-group" title="Such as '/img/peditor.png'">
 				<span class="input-group-addon">URL</span>
 				<input class="form-control" type="text" peditor-css="background-image" placeholder="Image url...">
 			</div>
@@ -44,7 +41,7 @@
 	</div>
 	<hr>
 
-	<h2 class="font-l font-20">Containers</h2>
+	<h2 class="font-n font-20">Containers</h2>
 	<div class="containers">
 		<div class="group">
 			<button
@@ -80,7 +77,7 @@
 	</div>
 	<hr>
 
-	<h2 class="font-l font-20">Widgets</h2>
+	<h2 class="font-n font-20">Widgets</h2>
 	<div class="widgets">
 		<div peditor-type="widget" peditor-widget="rocket" class="btn_widget">
 			<i class="icon-rocket font-36"></i>
