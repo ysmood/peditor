@@ -12,7 +12,7 @@ class Workbench
 		@grid_size = 12
 		@guide_threshold = 20
 	) ->
-		@$root = $('#outline')
+		@$root = $('.root')
 
 		@init_containers()
 
@@ -123,10 +123,12 @@ class Workbench
 	del_container: (e) ->
 		if not @$current_container
 			return
-		if @container_type(@$current_container) == 'root'
-			return
 
-		@$current_container.remove()
+		# If current container is root, remove all children.
+		if @container_type(@$current_container) == 'root'
+			@$root.empty()
+		else
+			@$current_container.remove()
 
 	update_pos_guide: (e) ->
 		if not @$current_container
