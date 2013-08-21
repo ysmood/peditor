@@ -15,16 +15,16 @@ exec = (cmd, args) ->
 save_runtime_info = (app) ->
 	# Save the runtime info into a json file.
 	# Such as stopping the server by the PID later.
-	
+
 	info = {
 		pid: app.pid
 	}
 	fs.writeFileSync(
 		'.runtime_info',
 		JSON.stringify(info)
-	)		
+	)
 
-start_server = ->	
+start_server = ->
 	# If in production mode, output all info into log files.
 	if config.mode == 'development'
 		app = exec('node', ['--debug', 'app.js'])

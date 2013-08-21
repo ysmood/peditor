@@ -37,7 +37,7 @@ class Workpannel
 				type
 			)
 				$g.show()
-				
+
 				@bind_property($g, $elem)
 			else
 				$g.hide()
@@ -70,7 +70,7 @@ class Workpannel
 				else
 					$elem.css(c, v)
 		)
-		
+
 	properties_deactive: ($elem) ->
 		$indicator = $('.selected-con-i')
 		$indicator.hide()
@@ -97,7 +97,7 @@ class Workpannel
 					top: e.pageY
 				})
 
-				# The positioning guide will help indicate which side to 
+				# The positioning guide will help indicate which side to
 				# insert the new container.
 				workbench.update_pos_guide(e)
 
@@ -105,7 +105,7 @@ class Workpannel
 				@exe_command(e)
 
 				@hide_cur_decoration()
-		})		
+		})
 
 	exe_command: (e) ->
 		switch e.data.type
@@ -126,10 +126,10 @@ class Workpannel
 	show_cur_decoration: (e) ->
 		# Hide the selected container animation.
 		# Choose the corresponding dragging icon.
-		
+
 		if workbench.$selected_con
 			workbench.$selected_con.removeClass('selected')
-		
+
 		@$cur_decoration.show()
 
 		switch e.data.type

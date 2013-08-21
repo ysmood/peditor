@@ -40,15 +40,15 @@ class Workbench
 		else
 			$.fn.msg_box({
 				title: '<div class="alert">Warning</div>'
-				body: 'A container that has column inside can\'t hold another row.' 
+				body: 'A container that has column inside can\'t hold another row.'
 			})
-			return		
+			return
 
 		@init_container($row)
 
 	add_column: (e, width = 6) ->
 		# Add a column to another column's left or right side.
-		
+
 		if not @$current_container
 			return
 
@@ -79,14 +79,14 @@ class Workbench
 				if $con.hasClass('before')
 					$con.before($col)
 				else
-					$con.after($col)			
+					$con.after($col)
 
 			when 'root'
 				$.fn.msg_box({
 					title: '<div class="alert">Warning</div>'
 					body: 'The root can\'t directly hold a column.'
 				})
-			
+
 			else
 				return
 
@@ -95,7 +95,7 @@ class Workbench
 	add_widget: (e) ->
 		if not @$current_container
 			return
-		
+
 		$widget = @new_widget(e.$target)
 
 		$con = @$current_container
@@ -114,7 +114,7 @@ class Workbench
 			else
 				$.fn.msg_box({
 					title: '<div class="alert">Warning</div>'
-					body: 'Only column can contain widget.' 
+					body: 'Only column can contain widget.'
 				})
 				return
 
@@ -191,7 +191,7 @@ class Workbench
 					return 'root'
 
 		return null
-		
+
 
 	# ********** Private **********
 
@@ -204,7 +204,7 @@ class Workbench
 
 	init_container: (elem) ->
 		# This method will init the hover and the selected effects.
-		
+
 		$elem = if elem instanceof $ then elem else $(elem)
 
 		mouse_over = (e) =>
@@ -229,7 +229,7 @@ class Workbench
 				if @$selected_con
 					@$selected_con.removeClass('selected')
 				$elem.addClass('selected')
-			
+
 			if $elem.hasClass('selected')
 				@$selected_con = $elem
 
@@ -271,7 +271,7 @@ class Workbench
 		switch $target.attr('peditor-widget')
 			when 'rocket'
 				$widget.html('<div style="height: 200px; background: #aeffc1">rocket</div>')
-				
+
 			when 'music'
 				$widget.html('<div style="height: 300px; background: #d0ffa8">music</div>')
 

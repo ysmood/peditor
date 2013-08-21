@@ -19,6 +19,8 @@ class Peditor_server
 
 		@init_client()
 
+		@init_widget()
+
 		@init_test()
 
 		@init_routes()
@@ -34,7 +36,7 @@ class Peditor_server
 		# Expose the underscore to every view.
 		@app.locals._ = _
 
-		# For security reason, remote user shouldn't have 
+		# For security reason, remote user shouldn't have
 		# access to the page source code.
 		@app.get(/\/(.+)(\.jshtml)$/, (req, res) ->
 			console.warn('404: ' + req.originalUrl)
@@ -60,6 +62,25 @@ class Peditor_server
 			)
 		)
 
+	init_widget: ->
+		# A helper page to create new widget.
+		# New widget page should be located in the 'client/widget/'.
+
+		@app.get('/widget/:name', (req, res) =>
+			@render_sections(
+				['head', 'foot'],
+				(htmls) =>
+					_.extend(res.locals, htmls)
+
+					@app.render(
+						'widgets/' + req.params.name,
+						(err, html) =>
+							res.locals.widget = html
+							res.render('widget')
+					)
+			)
+		)
+
 	init_test: ->
 		@app.get('/test', (req, res) =>
 			@render_sections(
@@ -74,7 +95,7 @@ class Peditor_server
 		@app.use((req, res) =>
 			console.warn('404: ' + req.originalUrl)
 			res.status(404)
-			
+
 			@render_sections(['head'],
 				(htmls) =>
 					_.extend(res.locals, htmls)

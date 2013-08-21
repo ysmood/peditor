@@ -17,7 +17,7 @@ class Peditor
 		console.log 'Peditor loaded.'
 
 	# ********** Private **********
-	
+
 	init_ui_components: ->
 		# Init all bootstrap tooltips.
 		$('[title]').tooltip({

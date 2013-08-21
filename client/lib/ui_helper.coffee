@@ -21,7 +21,7 @@ $.fn.report_compatibility = ->
 	if report
 		$.fn.msg_box({
 			title: '<div class="alert alert-danger">Compatibility issue</div>',
-			body: report		
+			body: report
 		})
 	else
 		console.log "Compatibility: all supported."
