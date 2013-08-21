@@ -9,7 +9,7 @@ fs = require 'fs'
 _ = require 'underscore'
 consolidate = require 'consolidate'
 
-config = require '../config.json'
+config = require '../../config.json'
 
 class Peditor_server
 	constructor: ->

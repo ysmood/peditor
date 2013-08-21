@@ -1,16 +1,16 @@
+# Libs
+node_modules
+bower_components
+
 # Coffeescript Project
 *.js
 
 # Stylus Project
-client/styles/*.css
+*.css
 
 # App
 .runtime_info
 *.log
-
-# Libs
-node_modules
-bower_components
 
 # Sublime
 peditor.sublime-workspace

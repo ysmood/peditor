@@ -7,7 +7,7 @@ The controller of the server. Similar with apachectl.
 spawn = require('child_process').spawn
 fs = require 'fs'
 
-config = require '../config.json'
+config = require '../../config.json'
 
 exec = (cmd, args) ->
 	spawn(cmd, args, { stdio: 'inherit' })
@@ -27,9 +27,9 @@ save_runtime_info = (app) ->
 start_server = ->
 	# If in production mode, output all info into log files.
 	if config.mode == 'development'
-		app = exec('node', ['--debug', 'app.js'])
+		app = exec('node', ['--debug', 'dist/app.js'])
 	else
-		app = spawn('node', ['app.js'])
+		app = spawn('node', ['dist/app.js'])
 		app.stdout.on('data', (data) ->
 			fs.appendFile('log/std.log', data)
 		)

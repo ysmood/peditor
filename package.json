@@ -5,6 +5,8 @@
   "main": "app.js",
   "scripts": {
     "client": "node_modules/.bin/bower install",
+    "build": "node_modules/.bin/grunt",
+    "watch": "node_modules/.bin/grunt watch",
     "test": "test/test.sh",
     "start": "kit/server_ctl.sh start",
     "stop": "kit/server_ctl.sh stop",
@@ -25,13 +27,17 @@
     "url": "https://github.com/ysmood/peditor/issues"
   },
   "dependencies": {
-    "express": "3.3.4",
-    "request": "2.25.0",
-    "consolidate": "0.9.1",
-    "underscore": "1.5.1",
-    "coffee-script": "1.6.3",
-    "bower": "1.2.2",
-    "stylus": "0.36.1"
+    "bower": "~1.2.2",
+    "grunt-cli": "~0.1.9",
+    "express": "~3.3.4",
+    "request": "~2.25.0",
+    "consolidate": "~0.9.1",
+    "underscore": "~1.5.1",
+    "coffee-script": "~1.6.3",
+    "grunt-contrib-coffee": "~0.7.0",
+    "stylus": "~0.36.1",
+    "grunt-contrib-stylus": "~0.8.0",
+    "grunt-contrib-watch": "~0.5.2"
   },
   "devDependencies": {
     "node-inspector": "*"
