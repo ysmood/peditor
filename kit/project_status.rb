@@ -13,10 +13,8 @@ exclude = [
 ]
 
 files = files.select { |f|
-	ret = true
 	exclude.each { |extension|
 		if f.end_with?(extension)
-			ret = false
 			break
 		end
 	}
@@ -24,7 +22,7 @@ files = files.select { |f|
 
 report = {}
 
-sum = files.reduce(0) { |sum, f|
+sum_count = files.reduce(0) { |sum, f|
 	count = `wc -l #{f}`.split.first.to_i
 	report[f] = count
 	sum + count
@@ -33,7 +31,7 @@ sum = files.reduce(0) { |sum, f|
 report = report.sort_by { |k, v| -v }
 
 report.each { |k, v|
-	puts ('%6d   ' % v) + k
+  puts "%6d   %s" % [v, k]
 }
 
-puts "\nTotal: " + sum.to_s
+puts "\nTotal: " + sum_count.to_s
