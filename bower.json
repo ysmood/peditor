@@ -1,7 +1,7 @@
 {
 	"name": "peditor",
 	"version": "0.0.1",
-	"main": "client/lib/peditor.js",
+	"main": "dist/app.js",
 	"dependencies": {
 		"modernizr": "2.6.2",
 		"jquery": "2.0.3",
