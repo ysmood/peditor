@@ -20,6 +20,7 @@ files = files.select { |f|
 			break
 		end
 	}
+	ret
 }
 
 report = {}
