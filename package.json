@@ -1,40 +1,40 @@
 {
-	"name": "peditor",
-	"version": "0.0.1",
-	"description": "An application to abstract and visualize the edit procedure of common webpages.",
-	"main": "dist/app.js",
-	"scripts": {
-		"client": "node_modules/.bin/bower install",
-		"watch": "kit/watch.sh",
-		"test": "test/test.sh",
-		"start": "kit/server_ctl.sh start",
-		"stop": "kit/server_ctl.sh stop",
-		"launch": "nohup kit/server_ctl.sh start >/dev/null 2>&1 &"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/ysmood/peditor.git"
-	},
-	"keywords": [
-		"webpage",
-		"editor"
-	],
-	"author": "Yad Smood",
-	"license": "BSD",
-	"readmeFilename": "README.html",
-	"bugs": {
-		"url": "https://github.com/ysmood/peditor/issues"
-	},
-	"dependencies": {
-		"bower": "~1.2.2",
-		"express": "~3.3.4",
-		"request": "~2.25.0",
-		"consolidate": "~0.9.1",
-		"underscore": "~1.5.1",
-		"coffee-script": "~1.6.3",
-		"stylus": "~0.36.1"
-	},
-	"devDependencies": {
-		"node-inspector": "*"
-	}
+  "name": "peditor",
+  "version": "0.0.1",
+  "description": "An application to abstract and visualize the edit procedure of common webpages.",
+  "main": "js/app.js",
+  "scripts": {
+    "client": "node_modules/.bin/bower install",
+    "watch": "kit/watch.sh",
+    "test": "test/test.sh",
+    "start": "kit/server_ctl.sh start",
+    "stop": "kit/server_ctl.sh stop",
+    "launch": "nohup kit/server_ctl.sh start >/dev/null 2>&1 &"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ysmood/peditor.git"
+  },
+  "keywords": [
+    "webpage",
+    "editor"
+  ],
+  "author": "Yad Smood",
+  "license": "BSD",
+  "readmeFilename": "README.html",
+  "bugs": {
+    "url": "https://github.com/ysmood/peditor/issues"
+  },
+  "dependencies": {
+    "bower": "~1.2.2",
+    "express": "~3.3.4",
+    "request": "~2.25.0",
+    "consolidate": "~0.9.1",
+    "underscore": "~1.5.1",
+    "coffee-script": "~1.6.3",
+    "stylus": "~0.36.1"
+  },
+  "devDependencies": {
+    "node-inspector": "*"
+  }
 }

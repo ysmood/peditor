@@ -1,15 +1,15 @@
 {
-	"name": "peditor",
-	"version": "0.0.1",
-	"main": "dist/app.js",
-	"dependencies": {
-		"modernizr": "2.6.2",
-		"jquery": "2.0.3",
-		"underscore": "1.5.1",
-		"underscore.string": "2.3.3",
-		"normalize-css": "2.1.2",
-		"bootstrap": "3.0.0",
-		"font-awesome": "3.2.1",
-    "mousetrap": "*"
-	}
+  "name": "peditor",
+  "version": "0.0.1",
+  "main": "js/app.js",
+  "dependencies": {
+    "modernizr": "~2.6.2",
+    "jquery": "~2.0.3",
+    "underscore": "~1.5.1",
+    "underscore.string": "~2.3.3",
+    "normalize-css": "~2.1.2",
+    "bootstrap": "~3.0.0",
+    "font-awesome": "~3.2.1",
+    "mousetrap": "~1.4.4"
+  }
 }
