@@ -27,9 +27,9 @@ save_runtime_info = (app) ->
 start_server = ->
 	# If in production mode, output all info into log files.
 	if config.mode == 'development'
-		app = exec('node', ['--debug', 'dist/app.js'])
+		app = exec('node', ['--debug', 'js/app.js'])
 	else
-		app = spawn('node', ['dist/app.js'])
+		app = spawn('node', ['js/app.js'])
 		app.stdout.on('data', (data) ->
 			fs.appendFile('log/std.log', data)
 		)

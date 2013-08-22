@@ -1,2 +1,17 @@
+coffee='node_modules/.bin/coffee'
+stylus='node_modules/.bin/stylus'
+
+# Compile coffeescripts.
+$coffee -o js/kit -cb kit/
+$coffee -o js/ -cb app.coffee
+$coffee -o js/lib/ -cb lib/
+$coffee -o client/js/ -cb client/lib/
+
+# Compile stylus.
+if [ ! -d client/css/ ]; then
+	mkdir client/css/
+fi
+$stylus -o client/css/ client/styles/ > /dev/null
+
 # Run controller.
-node dist/kit/server_ctl.js $1
+node js/kit/server_ctl.js $1
