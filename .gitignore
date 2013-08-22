@@ -11,6 +11,3 @@ bower_components
 # App
 .runtime_info
 *.log
-
-# Sublime
-peditor.sublime-workspace

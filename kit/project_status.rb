@@ -25,16 +25,19 @@ files = files.select { |f|
 
 report = {}
 
-sum = files.reduce(0) { |sum, f|
-	count = `wc -l #{f}`.split.first.to_i
-	report[f] = count
-	sum + count
+sum = files.reduce(0) { |s, f|
+	# Count how many lines of code a file has.
+	c = `wc -l #{f}`.split.first.to_i
+
+	report[f] = c
+
+	s + c
 }
 
 report = report.sort_by { |k, v| -v }
 
 report.each { |k, v|
-	puts ('%6d   ' % v) + k
+	puts '%6d   %s' % [v, k]
 }
 
 puts "\nTotal: " + sum.to_s
