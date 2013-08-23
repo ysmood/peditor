@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 # Add new path to environment path
 ys-add-evn-path()
 {

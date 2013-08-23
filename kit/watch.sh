@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 coffee='node_modules/.bin/coffee'
 stylus='node_modules/.bin/stylus'
 
