@@ -16,7 +16,7 @@ class Workpannel
 
 		@init_container_tools()
 
-		console.log 'Workpannel loaded.'
+		console.log 'Workpanel loaded.'
 
 	init_container_tools: ->
 		for btn in $('.btn_container, .btn_widget')
@@ -41,6 +41,11 @@ class Workpannel
 				@bind_property($g, $elem)
 			else
 				$g.hide()
+
+		$.fn.scroll_to({
+			parent: $('#workpanel')
+			to: $('.properties')
+		})
 
 	bind_property: ($g, $elem) ->
 		$ps = $g.find('[peditor-css]')
@@ -153,4 +158,4 @@ class Workpannel
 		@$cur_decoration.removeAttr('style').hide()
 
 
-workpannel = new Workpannel
+workpanel = new Workpannel

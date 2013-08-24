@@ -234,9 +234,9 @@ class Workbench
 				@$selected_con = $elem
 
 				# Active properties editing.
-				workpannel.properties_active($elem)
+				workpanel.properties_active($elem)
 			else
-				workpannel.properties_deactive($elem)
+				workpanel.properties_deactive($elem)
 				@$selected_con = null
 
 			e.stopPropagation()

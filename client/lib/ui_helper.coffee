@@ -27,8 +27,8 @@ $.fn.report_compatibility = ->
 		console.log "Compatibility: all supported."
 
 Modernizr.addTest("boxsizing", ->
-    return Modernizr.testAllProps("boxSizing") and
-    (document.documentMode == undefined or document.documentMode > 7)
+	return Modernizr.testAllProps("boxSizing") and
+	(document.documentMode == undefined or document.documentMode > 7)
 )
 
 Modernizr.addTest('css_calc', ->
@@ -107,6 +107,20 @@ $.fn.msg_box = (options) ->
 	)
 
 	$modal.modal('show')
+
+$.fn.scroll_to = (options) ->
+	# options: object
+	# 	parent: jQuery
+	# 	to: jQuery
+
+	parent = options.parent
+	to = options.to
+
+	distance = to.offset().top - parent.offset().top + parent.scrollTop()
+
+	parent.stop(true, true).animate({
+		scrollTop: distance
+	}, 'fast');
 
 
 $.fn.report_compatibility()
