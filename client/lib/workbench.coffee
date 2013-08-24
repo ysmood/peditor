@@ -269,11 +269,8 @@ class Workbench
 
 		# TODO: Get the widgets from the database.
 		switch $target.attr('peditor-widget')
-			when 'rocket'
-				$widget.html('<div style="height: 200px; background: #aeffc1">rocket</div>')
-
-			when 'music'
-				$widget.html('<div style="height: 300px; background: #d0ffa8">music</div>')
+			when 'title'
+				$widget.html('<div style="height: 200px; background: #aeffc1">title</div>')
 
 		return $widget
 
