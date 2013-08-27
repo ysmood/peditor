@@ -273,12 +273,15 @@ class Workbench
 	load_pdoc: ->
 		m = location.pathname.match(/^(?:\/pdoc\/(.+))/)
 		if not m
-			return
+			@$root = $('.root')
+
+			@init_containers()
 		else
 			id = m[1]
 
 		$.getJSON('/get/' + id).done((data) =>
-			$('#workbench').empty().append($(data.pdoc))
+			if data.error != 'not_found'
+				$('#workbench').empty().append($(data.pdoc))
 
 			@$root = $('.root')
 
