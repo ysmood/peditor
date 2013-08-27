@@ -100,7 +100,7 @@ class Peditor_server
 	init_routes: ->
 		@app.use(@render_404)
 
-	render_404: (req, res) ->
+	render_404: (req, res) =>
 		console.warn('404: ' + req.originalUrl)
 		res.status(404)
 
