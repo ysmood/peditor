@@ -47,6 +47,11 @@ class Peditor_server
 		@app.use(express.static('bower_components'))
 		@app.use(express.static('client'))
 
+		# Auto render all the html files.
+		@app.get(/\/(.+)(?:\.html)$/, (req, res) =>
+			res.render(req.params[0])
+		)
+
 		@app.get('/', (req, res) =>
 			@render_sections(
 				[
@@ -66,7 +71,7 @@ class Peditor_server
 		# A helper page to create new widget.
 		# New widget page should be located in the 'client/widget/'.
 
-		@app.get('/widget/:name', (req, res) =>
+		@app.get('/widgets/:name', (req, res) =>
 			@render_sections(
 				['head', 'foot'],
 				(htmls) =>
@@ -82,7 +87,7 @@ class Peditor_server
 						path,
 						(err, html) =>
 							res.locals.widget = html
-							res.render('widget')
+							res.render('widgets')
 					)
 			)
 		)

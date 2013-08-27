@@ -1,4 +1,6 @@
+# A helper to generate new widget.
 
+# Simulate the async widget loading.
 setTimeout(
 	->
 		widgets.$current_widget = $('.widget')
@@ -7,8 +9,5 @@ setTimeout(
 
 for k, w of widgets
 	w.$properties = $('.properties')
-
-	w.find = (select_string) ->
-		w.$properties.find(select_string)
 
 	w.init()

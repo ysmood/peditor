@@ -1,57 +1,38 @@
-<h3>Thumb</h3>
+<div peditor>
 
-<div class="thumb">
-	<i class="icon-flag font-36"></i>
-</div>
+	<h3>Thumb</h3>
 
-<hr>
-
-<h3>Properties</h3>
-
-<div class="properties">
-	<div class="font-n font-16">Text Content</div>
-	<input class="text form-control" type="text" placeholder="your content...">
-
-	<div class="input-group">
-		<span class="input-group-addon">Size</span>
-		<select class="size form-control">
-			<% for(var i = 1; i < 7; i++) { %>
-			<option value="h<%= i %>">H<%= i %></option>
-			<% } %>
-		</select>
+	<div peditor-widget="title" class="thumb font-30 text-center">
+		<i class="icon-flag"></i> Title
 	</div>
+
+	<hr>
+
+	<h3>Properties</h3>
+
+	<div peditor-widget="title" class="properties">
+		<div class="font-n font-16">Text Content</div>
+		<input class="text form-control" type="text" placeholder="your content...">
+
+		<div class="input-group">
+			<span class="input-group-addon">Size</span>
+			<select class="size form-control">
+				<% for(var i = 1; i < 7; i++) { %>
+				<option value="h<%= i %>">H<%= i %></option>
+				<% } %>
+			</select>
+		</div>
+	</div>
+
+	<hr>
+
+	<h3>Widget</h3>
+
+	<div peditor-widget="title" class="widget">
+		<div class="text h1">Title Content...</div>
+	</div>
+
+	<link rel="stylesheet" type="text/css" href="/widgets/title/title.css">
+	<script type="text/javascript" src="/widgets/title/title.js"></script>
+
 </div>
-
-<hr>
-
-<h3>Widget</h3>
-
-<div class="widget">
-	<div class="text">Input your text</div>
-</div>
-
-<script type="text/javascript">
-
-widgets.title = {
-	init: function () {
-		var $prop_text = this.find('.text');
-		var $prop_size = this.find('.size');
-
-		$prop_text.change(function () {
-			var $text = widgets.$current_widget.find('.text');
-
-			$text.text($prop_text.val());
-		});
-
-		$prop_size.change(function () {
-			var $text = widgets.$current_widget.find('.text');
-
-			$text.removeClass().addClass('text ' + $prop_size.val())
-		});
-	},
-	active: function (e) {
-
-	}
-}
-
-</script>

@@ -10,7 +10,7 @@
 
 <div id="workpanel">
 
-	<div class="properties">
+	<div id="properties">
 		<h2 class="font-n font-20">Properties <span class="selected-con-i badge font-14"></span></h2>
 
 		<div class="group" peditor-bind="root row column">
@@ -83,12 +83,10 @@
 		<h2 class="font-n font-20">Widgets</h2>
 
 		<div class="group">
-			<a href="widget" class="btn btn-primary" title="Custom a new widget.">Create Widget</a>
+			<a href="widgets" class="btn btn-primary" title="Custom a new widget.">Create Widget</a>
 		</div>
 
-		<a href="/widget/title" target="_blank" peditor-type="widget" peditor-widget="title" class="btn_widget">
-			<i class="icon-flag font-36"></i>
-		</a>
+		<div peditor-widget-btn="title" peditor-type="widget" class="btn_widget"></div>
 	</div>
 	<hr>
 </div>

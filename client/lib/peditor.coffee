@@ -14,6 +14,7 @@ class Peditor
 	constructor: ->
 		@init_ui_components()
 
+
 		console.log 'Peditor loaded.'
 
 	# ********** Private **********
@@ -23,5 +24,6 @@ class Peditor
 		$('[title]').tooltip({
 			placement: "auto"
 		})
+
 
 peditor = new Peditor

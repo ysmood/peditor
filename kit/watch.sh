@@ -11,5 +11,5 @@ $coffee -wcb client/widgets/ &
 if [ ! -d client/css/ ]; then
 	mkdir client/css/
 fi
-$stylus -o client/css/ -w client/styles/
-$stylus client/widgets/
+$stylus -o client/css/ -w client/styles/ &
+$stylus -w client/widgets/*

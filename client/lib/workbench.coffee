@@ -265,14 +265,7 @@ class Workbench
 		return $col
 
 	new_widget: ($target) ->
-		$widget = $('<div>').addClass('widget')
-
-		# TODO: Get the widgets from the database.
-		switch $target.attr('peditor-widget')
-			when 'title'
-				$widget.html('<div style="height: 200px; background: #aeffc1">title</div>')
-
-		return $widget
+		$target.data('widget').clone()
 
 	get_col_size: ($col) ->
 		return parseInt(

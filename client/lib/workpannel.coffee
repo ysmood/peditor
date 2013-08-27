@@ -12,6 +12,8 @@ class Workpannel
 	# ********** Public **********
 
 	constructor: ->
+		@load_widgets()
+
 		@$cur_decoration = $('#cur_decoration')
 
 		@init_container_tools()
@@ -23,7 +25,7 @@ class Workpannel
 			@init_container_btn($(btn))
 
 	properties_active: ($elem) ->
-		$groups = $('.properties .group')
+		$groups = $('#properties .group')
 
 		type = workbench.container_type($elem)
 
@@ -42,9 +44,15 @@ class Workpannel
 			else
 				$g.hide()
 
+		if type == 'widget'
+			widgets.$current_widget = workbench.$selected_con
+			name = widgets.$current_widget.attr('peditor-widget')
+			widgets[name].$properties.show()
+
+
 		$.fn.scroll_to({
 			parent: $('#workpanel')
-			to: $('.properties')
+			to: $('#properties')
 		})
 
 	bind_property: ($g, $elem) ->
@@ -80,7 +88,7 @@ class Workpannel
 		$indicator = $('.selected-con-i')
 		$indicator.hide()
 
-		$('.properties .group').hide()
+		$('#properties .group, .properties').hide()
 
 	# ********** Private **********
 
@@ -157,5 +165,46 @@ class Workpannel
 
 		@$cur_decoration.removeAttr('style').hide()
 
+	load_widgets: ->
+		window.widgets = {}
+
+		$('[peditor-widget-btn]').each(->
+			$this = $(this)
+			name = $this.attr('peditor-widget-btn')
+
+			url = 'widgets/' + name + '/index.html'
+
+			$.ajax(url).done((html) ->
+				$html = $(html)
+
+				# Extract each part of a editable widget.
+				$thumb = $html.find('.thumb')
+				$props = $html.find('.properties')
+				$widget = $html.find('.widget')
+				$css = $html.find('link')
+				$js = $html.find('script')
+
+				# Hide the properties
+				$props.hide()
+
+				# Inject all the parts into the app.
+				$this.append($thumb)
+				$('#properties').append($props)
+				$('body').append($widget)
+				$('head').append($css)
+
+				# We need to use the native way to create the script element,
+				# or the browser will not excute the script.
+				js = document.createElement("script")
+				js.type = "text/javascript"
+				js.src = $js[0].src
+				document.body.appendChild(js)
+				js.onload = ->
+					widgets[name].$properties = $props
+					widgets[name].init()
+
+				$this.data('widget', $widget)
+			)
+		)
 
 workpanel = new Workpannel
