@@ -122,5 +122,15 @@ $.fn.scroll_to = (options) ->
 		scrollTop: distance
 	}, 'fast');
 
+$.fn.pushState = (options) ->
+	options.obj ?= null
+	options.title ?= null
+
+	history.pushState(
+		options.obj,
+		options.title,
+		options.url,
+	)
+
 
 $.fn.report_compatibility()
