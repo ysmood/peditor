@@ -5,6 +5,7 @@
   "main": "js/app.js",
   "scripts": {
     "client": "node_modules/.bin/bower install",
+    "db": "node_modules/.bin/coffee kit/init_database.coffee",
     "watch": "kit/watch.sh",
     "test": "test/test.sh",
     "start": "kit/server_ctl.sh start",
