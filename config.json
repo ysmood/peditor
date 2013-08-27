@@ -1,5 +1,6 @@
 {
 	"port": 7017,
 	"debug_port": 7018,
+	"db_port": 5984,
 	"mode": "development"
 }
