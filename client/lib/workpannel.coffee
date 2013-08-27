@@ -191,14 +191,14 @@ class Workpannel
 				$this.append($thumb)
 				$('#properties').append($props)
 				$('body').append($widget)
-				$('head').append($css)
+				$('#workbench').append($css)
 
 				# We need to use the native way to create the script element,
 				# or the browser will not excute the script.
 				js = document.createElement("script")
 				js.type = "text/javascript"
 				js.src = $js[0].src
-				document.body.appendChild(js)
+				$('#workbench')[0].appendChild(js)
 				js.onload = ->
 					widgets[name].$properties = $props
 					widgets[name].init()
