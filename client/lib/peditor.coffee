@@ -14,7 +14,6 @@ class Peditor
 	constructor: ->
 		@init_ui_components()
 
-
 		console.log 'Peditor loaded.'
 
 	# ********** Private **********
