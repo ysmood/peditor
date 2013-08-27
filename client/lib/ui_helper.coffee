@@ -122,7 +122,7 @@ $.fn.scroll_to = (options) ->
 		scrollTop: distance
 	}, 'fast');
 
-$.fn.pushState = (options) ->
+$.fn.push_state = (options) ->
 	options.obj ?= null
 	options.title ?= null
 

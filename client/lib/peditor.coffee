@@ -24,5 +24,21 @@ class Peditor
 			placement: "auto"
 		})
 
+	btn_save_clicked: (btn) ->
+		$.ajax({
+			type: "POST"
+			url: '/save'
+			data: {
+				pdoc: $('#workbench').html()
+			}
+			dataType: "json"
+		}).done((data) ->
+			if data.ok
+				$.fn.push_state({
+					obj: 'pdoc'
+					url: '/pdoc/' + data.id
+				})
+		)
+
 
 peditor = new Peditor

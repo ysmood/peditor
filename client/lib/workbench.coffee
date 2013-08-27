@@ -12,9 +12,7 @@ class Workbench
 		@grid_size = 12
 		@guide_threshold = 20
 	) ->
-		@$root = $('.root')
-
-		@init_containers()
+		@load_pdoc()
 
 		console.log 'Workbench Loaded.'
 
@@ -270,6 +268,21 @@ class Workbench
 	get_col_size: ($col) ->
 		return parseInt(
 			$col.attr('w')
+		)
+
+	load_pdoc: ->
+		m = location.pathname.match(/^(?:\/pdoc\/(.+))/)
+		if not m
+			return
+		else
+			id = m[1]
+
+		$.getJSON('/get/' + id).done((data) =>
+			$('#workbench').empty().append($(data.pdoc))
+
+			@$root = $('.root')
+
+			@init_containers()
 		)
 
 
