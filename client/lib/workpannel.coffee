@@ -172,7 +172,7 @@ class Workpannel
 			$this = $(this)
 			name = $this.attr('peditor-widget-btn')
 
-			url = 'widgets/' + name + '/index.html'
+			url = '/widgets/' + name + '/index.html'
 
 			$.ajax(url).done((html) ->
 				$html = $(html)
