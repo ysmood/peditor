@@ -72,8 +72,14 @@ class Peditor_server
 				(htmls) =>
 					_.extend(res.locals, htmls)
 
+					path = 'widgets/' + req.params.name + '/index.html'
+
+					if not fs.existsSync('client/' + path)
+						@render_404(req, res)
+						return
+
 					@app.render(
-						'widgets/' + req.params.name,
+						path,
 						(err, html) =>
 							res.locals.widget = html
 							res.render('widget')
@@ -92,15 +98,16 @@ class Peditor_server
 		)
 
 	init_routes: ->
-		@app.use((req, res) =>
-			console.warn('404: ' + req.originalUrl)
-			res.status(404)
+		@app.use(@render_404)
 
-			@render_sections(['head'],
-				(htmls) =>
-					_.extend(res.locals, htmls)
-					res.render('404')
-			)
+	render_404: (req, res) ->
+		console.warn('404: ' + req.originalUrl)
+		res.status(404)
+
+		@render_sections(['head'],
+			(htmls) =>
+				_.extend(res.locals, htmls)
+				res.render('404')
 		)
 
 	render_sections: (pages, done, htmls = {}) ->
