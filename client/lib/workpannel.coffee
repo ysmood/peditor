@@ -190,7 +190,6 @@ class Workpannel
 				# Inject all the parts into the app.
 				$this.append($thumb)
 				$('#properties').append($props)
-				$('body').append($widget)
 				$('#workbench').append($css)
 
 				# We need to use the native way to create the script element,
