@@ -9,5 +9,5 @@ bower_components
 *.css
 
 # App
-.runtime_info
-*.log
+log
+!log/.gitkeep

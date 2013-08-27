@@ -8,6 +8,7 @@ spawn = require('child_process').spawn
 fs = require 'fs'
 
 config = require '../../config.json'
+runtime_info = 'log/runtime.json'
 
 exec = (cmd, args) ->
 	spawn(cmd, args, { stdio: 'inherit' })
@@ -20,14 +21,20 @@ save_runtime_info = (app) ->
 		pid: app.pid
 	}
 	fs.writeFileSync(
-		'.runtime_info',
+		runtime_info,
 		JSON.stringify(info)
 	)
 
 start_server = ->
 	# If in production mode, output all info into log files.
 	if config.mode == 'development'
-		app = exec('node', ['--debug', 'js/app.js'])
+		app = exec(
+			'node',
+			[
+				'--debug=' + config.debug_port
+				'js/app.js'
+			]
+		)
 	else
 		app = spawn('node', ['js/app.js'])
 		app.stdout.on('data', (data) ->
@@ -42,7 +49,7 @@ start_server = ->
 	console.log "Peditor start on " + config.port
 
 stop_server = ->
-	data = fs.readFileSync('.runtime_info')
+	data = fs.readFileSync(runtime_info)
 	info = JSON.parse(data)
 
 	exec('kill', [info.pid])
