@@ -73,15 +73,33 @@
 		<li>
 			<h3>Configuration</h3>
 			<span class="al">config.json</span> file. The global configuration.
-			<p>
-				The default mode is <b>development</b> mode.
-			</p>
+			<ul>
+				<li>
+					<h4>port</h4>
+					The server port.
+				</li>
+				<li>
+					<h4>debug_port</h4>
+					Debuger listener port
+				</li>
+				<li>
+					<h4>db_port</h4>
+					Database port
+				</li>
+				<li>
+					<h4>mode</h4>
+					The default mode is <b>development</b> mode.
+				</li>
+			</ul>
 		</li>
 		<li>
 			<h3>Build</h3>
 			<ol>
 				<li>
 					Install node dependencies: <pre>npm install --production</pre>
+				</li>
+				<li>
+					Init the database: <pre>npm run-script db</pre>
 				</li>
 				<li>
 					Install client app dependencies: <pre>npm run-script client</pre>
