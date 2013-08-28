@@ -84,7 +84,7 @@ class Workpannel
 					$elem.css(c, v)
 		)
 
-	properties_deactive: ($elem) =>
+	properties_deactive: ($elem) ->
 		$indicator = $('.selected-con-i')
 		$indicator.hide()
 

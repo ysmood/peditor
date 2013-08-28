@@ -14,6 +14,8 @@ class Peditor
 	constructor: ->
 		@init_ui_components()
 
+		@init_key_control()
+
 		console.log 'Peditor loaded.'
 
 	# ********** Private **********
@@ -40,5 +42,10 @@ class Peditor
 				})
 		)
 
+	init_key_control: ->
+		Mousetrap.bind('esc', ->
+			if workbench.$selected_con
+				workpanel.properties_deactive()
+		)
 
 peditor = new Peditor
