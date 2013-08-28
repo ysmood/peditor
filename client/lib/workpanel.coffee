@@ -45,9 +45,10 @@ class Workpanel
 				$g.hide()
 
 		if type == 'widget'
-			widgets.$current_widget = workbench.$selected_con
-			name = widgets.$current_widget.attr('peditor-widget')
+			widgets.$selected = workbench.$selected_con
+			name = widgets.$selected.attr('peditor-widget')
 			widgets[name].$properties.show()
+			widgets[name].selected(widgets.$selected)
 
 
 		$.fn.scroll_to({
@@ -186,7 +187,7 @@ class Workpanel
 				# Extract each part of a editable widget.
 				$thumb = $html.find('.thumb')
 				$props = $html.find('.properties')
-				$widget = $html.find('.widget')
+				$widget = $html.find('.widget:first')
 				$css = $html.find('link')
 				$js = $html.find('script')
 
