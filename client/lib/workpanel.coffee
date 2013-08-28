@@ -7,7 +7,7 @@ Aug 2013, ys
 ###
 
 
-class Workpannel
+class Workpanel
 
 	# ********** Public **********
 
@@ -210,4 +210,4 @@ class Workpannel
 			)
 		)
 
-workpanel = new Workpannel
+workpanel = new Workpanel
