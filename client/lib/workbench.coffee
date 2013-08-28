@@ -190,15 +190,21 @@ class Workbench
 
 		return null
 
-
-	# ********** Private **********
-
 	init_containers: ->
+		@$root = $('.root')
 		$containers = @$root.find('.r, .c, .widget')
 		$containers.push @$root[0]
 
 		for elem in $containers
 			@init_container(elem)
+
+	get_pdoc: ->
+		$wb = $('#workbench').clone()
+		$wb.find('.r, .c, .widget')
+			.removeClass('selected add_animate hover')
+		return $wb.html()
+
+	# ********** Private **********
 
 	init_container: (elem) ->
 		# This method will init the hover and the selected effects.
@@ -266,8 +272,6 @@ class Workbench
 	load_pdoc: ->
 		m = location.pathname.match(/^(?:\/pdoc\/(.+))/)
 		if not m
-			@$root = $('.root')
-
 			@init_containers()
 		else
 			id = m[1]
@@ -276,9 +280,10 @@ class Workbench
 			if data.error != 'not_found'
 				$('#workbench').empty().append($(data.pdoc))
 
-			@$root = $('.root')
-
 			@init_containers()
+
+			# This is a new doc, we need to reset the history.
+			peditor.init_history()
 		)
 
 

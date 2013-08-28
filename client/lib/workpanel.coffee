@@ -140,6 +140,8 @@ class Workpanel
 			when 'widget'
 				workbench.add_widget(e)
 
+		peditor.rec('container')
+
 	show_cur_decoration: (e) ->
 		# Hide the selected container animation.
 		# Choose the corresponding dragging icon.
@@ -194,14 +196,14 @@ class Workpanel
 				# Inject all the parts into the app.
 				$this.append($thumb)
 				$('#properties').append($props)
-				$('#workbench').append($css)
+				$('body').append($css)
 
 				# We need to use the native way to create the script element,
 				# or the browser will not excute the script.
 				js = document.createElement("script")
 				js.type = "text/javascript"
 				js.src = $js[0].src
-				$('#workbench')[0].appendChild(js)
+				$('body')[0].appendChild(js)
 				js.onload = ->
 					widgets[name].$properties = $props
 					widgets[name].init()

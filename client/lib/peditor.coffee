@@ -12,6 +12,8 @@ class Peditor
 	# ********** Public **********
 
 	constructor: ->
+		@config = {}
+
 		@init_ui_components()
 
 		@init_key_control()
@@ -19,6 +21,25 @@ class Peditor
 		@init_history()
 
 		console.log 'Peditor loaded.'
+
+	rec: (title = '') ->
+		# The last two history are the same,
+		# return directly.
+		if @history.length > 1 and
+		_.last(@history).html == _.first(_.last(@history, 2)).html
+			return
+
+		if @history.length == @config.max_history
+			@history = _.rest(@history)
+		else
+			@history_index++
+
+		@history.push({
+			title: title
+			html: workbench.get_pdoc()
+		})
+
+		@update_history_btns()
 
 	# ********** Private **********
 
@@ -31,13 +52,17 @@ class Peditor
 	init_history: ->
 		# The edit history stack.
 		@history = []
+		@history_index = -1
+		@config.max_history = 30
+
+		@rec('origin')
 
 	btn_save_clicked: (btn) ->
 		$.ajax({
 			type: "POST"
 			url: '/save'
 			data: {
-				pdoc: $('#workbench').html()
+				pdoc: workbench.get_pdoc()
 			}
 			dataType: "json"
 		}).done((data) ->
@@ -49,9 +74,59 @@ class Peditor
 		)
 
 	btn_undo_clicked: (btn) ->
+		if $(btn).attr('disabled')
+			return
 
+		@history_index--
+
+		workpanel.properties_deactive()
+
+		$('#workbench').empty().append(
+			@history[@history_index].html
+		)
+		workbench.init_containers()
+
+		@update_history_btns()
 
 	btn_redo_clicked: (btn) ->
+		if $(btn).attr('disabled')
+			return
+
+		@history_index++
+
+		workpanel.properties_deactive()
+
+		$('#workbench').empty().append(
+			@history[@history_index].html
+		)
+		workbench.init_containers()
+
+		@update_history_btns()
+
+	update_history_btns: ->
+		undo = false
+		redo = false
+
+		if @history.length == 1
+			undo = redo = false
+			return
+
+		if @history_index == @history.length - 1
+			undo = true
+		else if @history_index < @history.length - 1 and @history_index > 0
+			undo = redo = true
+		else
+			redo = true
+
+		if undo
+			$('#navbar .undo').removeAttr('disabled')
+		else
+			$('#navbar .undo').attr('disabled', true)
+
+		if redo
+			$('#navbar .redo').removeAttr('disabled')
+		else
+			$('#navbar .redo').attr('disabled', true)
 
 	btn_help_clicked: (btn) ->
 		$.fn.msg_box({
