@@ -128,6 +128,7 @@ class Peditor_server
 				'navbar'
 				'workbench'
 				'workpannel'
+				'help'
 				'foot'
 			],
 			(htmls) =>

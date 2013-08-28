@@ -1,13 +1,16 @@
-<div id="navbar"class="font-n">	
+<div id="navbar"class="font-n">
 	<div class="font-l font-24 button" title="About Peditor">Peditor</div>
 	<div class="button" onclick="peditor.btn_save_clicked(this)" title="This will create a unique link">
 		<i class="icon-save"></i> Save
 	</div>
-	<div class="button">
+	<div class="button" onclick="peditor.btn_undo_clicked(this)">
 		<i class="icon-undo"></i> Undo
 	</div>
-	<div class="button">
+	<div class="button" onclick="peditor.btn_redo_clicked(this)">
 		<i class="icon-repeat"></i> Redo
+	</div>
+	<div class="button" onclick="peditor.btn_help_clicked(this)">
+		<i class="icon-question"></i> Help
 	</div>
 	<div class="view_mode" title="Choose a display mode">
 		<div class="btn-group" data-toggle="buttons">

@@ -16,6 +16,8 @@ class Peditor
 
 		@init_key_control()
 
+		@init_history()
+
 		console.log 'Peditor loaded.'
 
 	# ********** Private **********
@@ -25,6 +27,10 @@ class Peditor
 		$('[title]').tooltip({
 			placement: "auto"
 		})
+
+	init_history: ->
+		# The edit history stack.
+		@history = []
 
 	btn_save_clicked: (btn) ->
 		$.ajax({
@@ -42,8 +48,19 @@ class Peditor
 				})
 		)
 
+	btn_undo_clicked: (btn) ->
+
+
+	btn_redo_clicked: (btn) ->
+
+	btn_help_clicked: (btn) ->
+		$.fn.msg_box({
+			title: 'Help'
+			body: $('#help').html()
+		})
+
 	init_key_control: ->
-		Mousetrap.bind('esc', ->
+		Mousetrap.bind('ctrl+d', ->
 			if workbench.$selected_con
 				workpanel.properties_deactive()
 		)
