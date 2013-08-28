@@ -209,6 +209,10 @@ class Workpanel
 					widgets[name].$properties = $props
 					widgets[name].init()
 
+					$('#workbench [peditor-widget="title"]').each(->
+						widgets[name].added($(this))
+					)
+
 				$this.data('widget', $widget)
 			)
 		)

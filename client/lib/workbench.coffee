@@ -118,6 +118,9 @@ class Workbench
 
 		@init_container($widget)
 
+		name = $widget.attr('peditor-widget')
+		widgets[name].added($widget)
+
 	del_container: (e) ->
 		if not @$current_container
 			return
