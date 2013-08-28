@@ -24,7 +24,7 @@ class Workpannel
 		for btn in $('.btn_container, .btn_widget')
 			@init_container_btn($(btn))
 
-	properties_active: ($elem) ->
+	properties_active: ($elem) =>
 		$groups = $('#properties .group')
 
 		type = workbench.container_type($elem)
@@ -84,9 +84,13 @@ class Workpannel
 					$elem.css(c, v)
 		)
 
-	properties_deactive: ($elem) ->
+	properties_deactive: ($elem) =>
 		$indicator = $('.selected-con-i')
 		$indicator.hide()
+
+		if workbench.$selected_con
+			workbench.$selected_con.removeClass('selected')
+			workbench.$selected_con = null
 
 		$('#properties .group, .properties').hide()
 

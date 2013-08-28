@@ -14,6 +14,9 @@ class Workbench
 	) ->
 		@load_pdoc()
 
+		# Deactive the edit mode if the workbench lost focus.
+		$('#outline').blur(workpanel.properties_deactive)
+
 		console.log 'Workbench Loaded.'
 
 	add_row: (e) ->
@@ -219,23 +222,16 @@ class Workbench
 
 		clicked = (e) =>
 			if $elem == @$selected_con
-				if $elem.hasClass('selected')
-					$elem.removeClass('selected')
-				else
-					$elem.addClass('selected')
+				return
 			else
 				if @$selected_con
 					@$selected_con.removeClass('selected')
-				$elem.addClass('selected')
 
-			if $elem.hasClass('selected')
+				$elem.addClass('selected')
 				@$selected_con = $elem
 
 				# Active properties editing.
 				workpanel.properties_active($elem)
-			else
-				workpanel.properties_deactive($elem)
-				@$selected_con = null
 
 			e.stopPropagation()
 
