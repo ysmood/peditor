@@ -14,9 +14,6 @@ class Workbench
 	) ->
 		@load_pdoc()
 
-		# Deactive the edit mode if the workbench lost focus.
-		$('#outline').blur(workpanel.properties_deactive)
-
 		console.log 'Workbench Loaded.'
 
 	add_row: (e) ->
@@ -202,6 +199,9 @@ class Workbench
 
 		for elem in $containers
 			@init_container(elem)
+
+		# Deactive the edit mode if the workbench lost focus.
+		$('#outline').blur(workpanel.properties_deactive)
 
 	init_container: (elem) ->
 		# This method will init the hover and the selected effects.
