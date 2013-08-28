@@ -221,9 +221,7 @@ class Workbench
 			e.stopPropagation()
 
 		clicked = (e) =>
-			if $elem == @$selected_con
-				return
-			else
+			if $elem != @$selected_con
 				if @$selected_con
 					@$selected_con.removeClass('selected')
 
