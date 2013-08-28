@@ -18,6 +18,9 @@ $.fn.report_compatibility = ->
 	if not Modernizr.cssanimations
 		report += "CSS animation not supported.<br>"
 
+	if not MutationObserver
+		report += "MutationObserver not supported.<br>"
+
 	if report
 		$.fn.msg_box({
 			title: '<div class="alert alert-danger">Compatibility issue</div>',
@@ -131,6 +134,19 @@ $.fn.push_state = (options) ->
 		options.title,
 		options.url,
 	)
+
+$.fn.mutation = (options) ->
+	observer = new MutationObserver(
+		options.mutate
+	)
+
+	config = {
+		childList: true,
+		attributes: true,
+		subtree: true
+	}
+
+	observer.observe(options.$target[0], config)
 
 
 $.fn.report_compatibility()

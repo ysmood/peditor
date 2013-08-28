@@ -32,6 +32,13 @@ class Peditor
 		# The edit history stack.
 		@history = []
 
+		$.fn.mutation({
+			$target: $('#workbench')
+			mutate: (mutations) ->
+				for m in mutations
+					console.log m.type
+		})
+
 	btn_save_clicked: (btn) ->
 		$.ajax({
 			type: "POST"
