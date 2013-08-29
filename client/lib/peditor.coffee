@@ -25,8 +25,11 @@ class PDT.Peditor
 	rec: (title = '') =>
 		# The last two history are the same,
 		# return directly.
-		if @history.length > 1 and
-		_.last(@history).html == _.first(_.last(@history, 2)).html
+		if @history.length == 1 and
+		@history[0].pdoc == PDT.workbench.get_pdoc()
+			return
+		else if @history.length > 1 and
+		_.last(@history).pdoc == _.first(_.last(@history, 2)).pdoc
 			return
 
 		if @history.length == @config.max_history
@@ -36,7 +39,7 @@ class PDT.Peditor
 
 		@history.push({
 			title: title
-			html: PDT.workbench.get_pdoc()
+			pdoc: PDT.workbench.get_pdoc()
 		})
 
 		@update_history_btns()
@@ -82,7 +85,7 @@ class PDT.Peditor
 		PDT.workpanel.properties_deactive()
 
 		$('#workbench').empty().append(
-			@history[@history_index].html
+			@history[@history_index].pdoc
 		)
 		PDT.workbench.init_containers()
 
@@ -97,7 +100,7 @@ class PDT.Peditor
 		PDT.workpanel.properties_deactive()
 
 		$('#workbench').empty().append(
-			@history[@history_index].html
+			@history[@history_index].pdoc
 		)
 		PDT.workbench.init_containers()
 
@@ -131,7 +134,7 @@ class PDT.Peditor
 	btn_help_clicked: (btn) ->
 		$.fn.msg_box({
 			title: 'Help'
-			body: $('#help').html()
+			body: $('#help').pdoc()
 		})
 
 	init_key_control: ->

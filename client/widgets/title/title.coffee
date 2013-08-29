@@ -44,9 +44,13 @@ class PDT.widgets.Title extends PDT.Widget
 
 		align = $text.css('text-align')
 		if align == 'start'
-			@$prop_align.find('.btn:first').click()
+			@$prop_align.find('.btn')
+				.removeClass('active')
+				.first().addClass('active')
 		else
-			@$prop_align.find("[value='#{align}']").parent().click()
+			@$prop_align.find('.btn').removeClass('active')
+			@$prop_align.find("[value='#{align}']")
+				.parent().addClass('active')
 
 	text_changed: =>
 		$span = @$get_selected().find('.text span')
