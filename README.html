@@ -21,7 +21,8 @@
 		.code { font-family:  monospace, Courier; }
 		.center { text-align: center; }
 		img {
-			max-width: 800px
+			box-shadow: 0 1px 5px #aaa;
+			max-width: 800px;
 		}
 		table {
 			margin: 10px 0;
@@ -59,7 +60,7 @@
 <hr />
 
 <div class="section">
-	<h1>Build & Control</h1>
+	<h1>Build &amp; Control</h1>
 	<ul>
 		<li>
 			<h3>Requirement</h3>
@@ -192,54 +193,79 @@
 <hr />
 
 <div class="section">
-	<h1>Client System</h1>
+	<h1>Client App</h1>
 	<ol>
 		<li>
+			<h3>Peditor Layout Mode</h3>
 			<p>
-				<h3>Flexible Height Grid System</h3>
-				<p>
-					All containers are created by 'drag and drop'.
-					Now there're four types of containers:
-					<ul>
-						<li><b>root</b></li>
-						<li>
-							<b style="color: #6D63FF">row</b>
-						</li>
-						<li>
-							<b style="color: #00BEFF">column</b>
-						</li>
-						<li>
-							<b style="color: #FF73FF">widget</b>
-						</li>
-					</ul>
-				</p>
-				<img src="docs/img/peditor_grid_system.png" alt="height_responsive_design" />
+				There are two types of layout mode, Outlone and Preview.
+			</p>
+			<h4>Outline Mode</h4>
+			<p>
+				To make it easy to see the relationship between containers.
+			</p>
+			<img src="docs/img/peditor_outline_mode.png" alt="peditor_outline_mode">
+		</li>
+		<li>
+			<h3>Flexible Height Grid System</h3>
+			<p>
+				All containers are created by 'drag and drop'.
+				Now there're four types of containers:
 				<ul>
-					<li>The root can't directly hold a column.</li>
+					<li><b>root</b></li>
 					<li>
-						A row and a column can't become sibling nodes.
+						<b style="color: #6D63FF">row</b>
 					</li>
 					<li>
-						All containers except the widget can has height constraint.
+						<b style="color: #00BEFF">column</b>
 					</li>
 					<li>
-						Only column can contain widget.
-						A column can remain empty, or has several widgets inside, which behaves like a Stack List.
-					</li>
-					<li>
-						A row's width can be an absolute value,
-						but a column's width is always a relate value of its parent node.
+						<b style="color: #FF73FF">widget</b>
 					</li>
 				</ul>
 			</p>
+			<img src="docs/img/peditor_grid_system.png" alt="height_responsive_design" />
+			<ul>
+				<li>The root can't directly hold a column.</li>
+				<li>
+					A row and a column can't become sibling nodes.
+				</li>
+				<li>
+					All containers except the widget can has height constraint.
+				</li>
+				<li>
+					Only column can contain widget.
+					A column can remain empty, or has several widgets inside, which behaves like a Stack List.
+				</li>
+				<li>
+					A row's width can be an absolute value,
+					but a column's width is always a relate value of its parent node.
+				</li>
+			</ul>
 		</li>
 		<li>
-			<h3>Common Widgets</h3>
+			<h3>Widget API</h3>
+			<p>Here a simple overview of the widget api.</p>
 			<ul>
-				<li>slider</li>
-				<li>music list</li>
-				<li>custom</li>
-				<li>etc</li>
+				<li>
+					Every widget should be placed into the <span class="al">client/widgets/</span>
+					folder.
+				</li>
+				<li>
+					All assets of a widget should be placed into a folder,
+					and the folder's name should be the widget's name.
+				</li>
+				<li>
+					The entrance file of a widget should be <span class="al">index.html</span>,
+					and it should be directly under the widget's root folder.
+				</li>
+				<li>
+					There's a <span class="al">/client/widgets/template/index.html</span> you should read for
+					more details information about the api.
+				</li>
+				<li>
+					There's a <span class="al">/client/widgets/title/</span>. It is a basic example of how to use the api.
+				</li>
 			</ul>
 		</li>
 		<li>
@@ -262,16 +288,17 @@
 				</tr>
 				<tr>
 					<td>Widget</td>
-					<td>width, height, margin.</td>
+					<td>Implemented by widget itself.</td>
 				</tr>
 			</table>
 		</li>
 		<li>
-			<h3>TODO: Save & Load Manager.</h3>
+			<h3>Save &amp; Load Manager.</h3>
+			This will create a unique link of current pdoc.
 		</li>
 		<li>
-			<h3>TODO: History control</h3>
-			<p>this will be implement in future.</p>
+			<h3>History control</h3>
+			<p>Works the same as a common editor.</p>
 		</li>
 	</ol>
 </div>
@@ -302,13 +329,13 @@
 <hr />
 
 <div class="section">
-	<h1>Server System</h1>
+	<h1>Server App</h1>
 
 	<p>The CouchDB is good enough, it has already covered most the requirements with its build-in functions.</p>
 
-		<ol>
-			<li>Page documents manager, CRUD.</li>
-		</ol>
+	<ol>
+		<li>Page documents manager, CRUD.</li>
+	</ol>
 </div>
 
 </body>
