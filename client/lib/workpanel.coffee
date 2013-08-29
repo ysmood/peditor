@@ -37,9 +37,10 @@ class PDT.Workpanel
 			.hide()
 			.filter("[peditor-bind~='#{type}']")
 			.show()
+		$('#workpanel .properties').hide()
 
 		for g in $groups
-			@bind_property($(g), $elem)
+			@edit_bind($(g), $elem)
 
 		if type == 'widget'
 			PDT.widgets.$selected = PDT.workbench.$selected_con
@@ -65,7 +66,7 @@ class PDT.Workpanel
 
 	# ********** Private **********
 
-	bind_property: ($g, $elem) ->
+	edit_bind: ($g, $elem) ->
 		$ps = $g.find('[peditor-bind-prop]')
 
 		# Display the current value.
