@@ -22,7 +22,7 @@ class Peditor
 
 		console.log 'Peditor loaded.'
 
-	rec: (title = '') ->
+	rec: (title = '') =>
 		# The last two history are the same,
 		# return directly.
 		if @history.length > 1 and

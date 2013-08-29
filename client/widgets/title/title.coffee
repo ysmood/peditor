@@ -11,7 +11,7 @@ widgets.title = {
 			$span.text(@$prop_text.val())
 
 			# Record the history for the 'undo & redo' operation.
-			@rec()
+			@rec('Title change')
 		)
 
 		@$prop_size.change(=>
@@ -19,7 +19,7 @@ widgets.title = {
 
 			$text.removeClass().addClass('text ' + @$prop_size.val())
 
-			@rec()
+			@rec('Title change')
 		)
 
 		console.log 'Widget: Title loaded.'

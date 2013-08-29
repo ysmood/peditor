@@ -206,8 +206,11 @@ class Workpanel
 				js.src = $js[0].src
 				$('body')[0].appendChild(js)
 				js.onload = ->
-					widgets[name].$properties = $props
-					widgets[name].init()
+					# Init the widget interface.
+					widget = widgets[name]
+					widget.$properties = $props
+					widget.init()
+					widget.rec = peditor.rec
 
 					$('#workbench [peditor-widget="title"]').each(->
 						widgets[name].added($(this))
@@ -216,5 +219,6 @@ class Workpanel
 				$this.data('widget', $widget)
 			)
 		)
+
 
 workpanel = new Workpanel
