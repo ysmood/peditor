@@ -1,4 +1,4 @@
-class widgets.Title extends Peditor.Widget
+class PDT.widgets.Title extends PDT.Widget
 	constructor: ->
 		# Required interface.
 		# Triggered when this widget class is loaded.

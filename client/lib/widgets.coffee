@@ -1,10 +1,10 @@
 # A helper to generate new widget.
 
 do ->
-	name = _.keys(widgets)[0]
+	name = _.keys(PDT.widgets)[0]
 
-	widgets[name]::$properties = $('.properties')
-	widget = new widgets[name]
+	PDT.widgets[name]::$properties = $('.properties')
+	widget = new PDT.widgets[name]
 
 
 	$('.widget').after($('.widget').clone())
@@ -16,14 +16,14 @@ do ->
 
 	$('.widget').click(->
 		$this = $(this)
-		$selected = widgets.$selected
+		$selected = PDT.widgets.$selected
 
 		if $selected
 			$selected.removeClass('selected')
 
 		$this.addClass('selected')
 
-		widgets.$selected = $this
+		PDT.widgets.$selected = $this
 
 		widget.selected($this)
 	)

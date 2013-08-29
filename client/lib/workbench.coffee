@@ -4,7 +4,7 @@ Take the charge of Peditor's row system.
 
 ###
 
-class Peditor.Workbench
+class PDT.Workbench
 
 	# ********** Public **********
 
@@ -236,7 +236,7 @@ class Peditor.Workbench
 				@$selected_con = $elem
 
 				# Active properties editing.
-				workpanel.properties_active($elem)
+				PDT.workpanel.properties_active($elem)
 
 
 			e.stopPropagation()
@@ -248,8 +248,7 @@ class Peditor.Workbench
 
 		name = $elem.attr('peditor-widget')
 		if name
-			widgets[name].added($elem)
-
+			PDT.widgets[name].added($elem)
 
 	new_row: (width) ->
 		$row = $('<div>').addClass('r add_animate').one(
@@ -291,8 +290,8 @@ class Peditor.Workbench
 			@init_containers()
 
 			# This is a new doc, we need to reset the history.
-			peditor.init_history()
+			PDT.peditor.init_history()
 		)
 
 
-workbench = new Peditor.Workbench
+PDT.workbench = new PDT.Workbench

@@ -1,6 +1,6 @@
 # Peditor.Widget class is in the 'client/lib/widget.coffee' file.
 # Read it for more api details.
-class widget.Template extends Peditor.Widget
+class PDT.widgets.Template extends PDT.Widget
 
 	# Required interface.
 	# Triggered when this widget class is loaded.

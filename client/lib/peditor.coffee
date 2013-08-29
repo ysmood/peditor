@@ -7,7 +7,7 @@ Aug 2013, ys
 ###
 
 
-class Peditor.App
+class PDT.Peditor
 
 	# ********** Public **********
 
@@ -36,7 +36,7 @@ class Peditor.App
 
 		@history.push({
 			title: title
-			html: workbench.get_pdoc()
+			html: PDT.workbench.get_pdoc()
 		})
 
 		@update_history_btns()
@@ -62,7 +62,7 @@ class Peditor.App
 			type: "POST"
 			url: '/save'
 			data: {
-				pdoc: workbench.get_pdoc()
+				pdoc: PDT.workbench.get_pdoc()
 			}
 			dataType: "json"
 		}).done((data) ->
@@ -79,12 +79,12 @@ class Peditor.App
 
 		@history_index--
 
-		workpanel.properties_deactive()
+		PDT.workpanel.properties_deactive()
 
 		$('#workbench').empty().append(
 			@history[@history_index].html
 		)
-		workbench.init_containers()
+		PDT.workbench.init_containers()
 
 		@update_history_btns()
 
@@ -94,12 +94,12 @@ class Peditor.App
 
 		@history_index++
 
-		workpanel.properties_deactive()
+		PDT.workpanel.properties_deactive()
 
 		$('#workbench').empty().append(
 			@history[@history_index].html
 		)
-		workbench.init_containers()
+		PDT.workbench.init_containers()
 
 		@update_history_btns()
 
@@ -136,8 +136,8 @@ class Peditor.App
 
 	init_key_control: ->
 		Mousetrap.bind('ctrl+d', ->
-			if workbench.$selected_con
-				workpanel.properties_deactive()
+			if PDT.workbench.$selected_con
+				PDT.workpanel.properties_deactive()
 		)
 
-peditor = new Peditor.App
+PDT.peditor = new PDT.Peditor

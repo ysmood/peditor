@@ -7,7 +7,7 @@ Aug 2013, ys
 ###
 
 
-class Peditor.Workpanel
+class PDT.Workpanel
 
 	# ********** Public **********
 
@@ -25,75 +25,31 @@ class Peditor.Workpanel
 			@init_container_btn($(btn))
 
 	properties_active: ($elem) =>
-		$groups = $('#properties .group')
-
-		type = workbench.container_type($elem)
+		type = PDT.workbench.container_type($elem)
 
 		$indicator = $('.selected-con-i')
 		$indicator.show().text(type)
 
-		for g in $groups
-			$g = $(g)
-			if _.contains(
-				$g.attr('peditor-bind').split(/\s+/),
-				type
-			)
-				$g.show()
-
-				@bind_property($g, $elem)
-			else
-				$g.hide()
-
 		if type == 'widget'
-			widgets.$selected = workbench.$selected_con
-			name = widgets.$selected.attr('peditor-widget')
-			widgets[name].$properties.show()
-			widgets[name].selected(widgets.$selected)
-
+			PDT.widgets.$selected = PDT.workbench.$selected_con
+			name = PDT.widgets.$selected.attr('peditor-widget')
+			PDT.widgets[name].$properties.show()
+			PDT.widgets[name].selected(PDT.widgets.$selected)
 
 		$.fn.scroll_to({
 			parent: $('#workpanel')
 			to: $('#properties')
 		})
 
-	bind_property: ($g, $elem) ->
-		$ps = $g.find('[peditor-css]')
-
-		# Get the value.
-		$ps.each(->
-			$p = $(@)
-			c = $p.attr('peditor-css')
-			$p.val($elem.data(c))
-		)
-
-		# Set the value.
-		$ps.off().change(->
-			$p = $(@)
-			c = $p.attr('peditor-css')
-			v = $p.val()
-
-			# Store the property data.
-			$elem.data(c, v)
-			switch c
-				when 'background-image'
-					$elem.css(c, "url(#{v})")
-
-				when 'column-width'
-					$elem.attr('w', v)
-
-				else
-					$elem.css(c, v)
-		)
-
 	properties_deactive: ($elem) ->
 		$indicator = $('.selected-con-i')
 		$indicator.hide()
 
-		if workbench.$selected_con
-			workbench.$selected_con.removeClass('selected')
-			workbench.$selected_con = null
+		if PDT.workbench.$selected_con
+			PDT.workbench.$selected_con.removeClass('selected')
+			PDT.workbench.$selected_con = null
 
-		$('#properties .group, .properties').hide()
+		$('#properties .properties').hide()
 
 	# ********** Private **********
 
@@ -117,7 +73,7 @@ class Peditor.Workpanel
 
 				# The positioning guide will help indicate which side to
 				# insert the new container.
-				workbench.update_pos_guide(e)
+				PDT.workbench.update_pos_guide(e)
 
 			mouse_up: (e) =>
 				@exe_command(e)
@@ -128,27 +84,27 @@ class Peditor.Workpanel
 	exe_command: (e) ->
 		switch e.data.type
 			when 'row'
-				workbench.add_row(e)
+				PDT.workbench.add_row(e)
 
 			when 'column'
-				workbench.add_column(e,
+				PDT.workbench.add_column(e,
 					$('.containers .column-width').val()
 				)
 
 			when 'delete'
-				workbench.del_container(e)
+				PDT.workbench.del_container(e)
 
 			when 'widget'
-				workbench.add_widget(e)
+				PDT.workbench.add_widget(e)
 
-		peditor.rec('container')
+		PDT.peditor.rec('container')
 
 	show_cur_decoration: (e) ->
 		# Hide the selected container animation.
 		# Choose the corresponding dragging icon.
 
-		if workbench.$selected_con
-			workbench.$selected_con.removeClass('selected')
+		if PDT.workbench.$selected_con
+			PDT.workbench.$selected_con.removeClass('selected')
 
 		@$cur_decoration.show()
 
@@ -167,8 +123,8 @@ class Peditor.Workpanel
 
 	hide_cur_decoration: ->
 		# Recover the selected container animation.
-		if workbench.$selected_con
-			workbench.$selected_con.addClass('selected')
+		if PDT.workbench.$selected_con
+			PDT.workbench.$selected_con.addClass('selected')
 
 		@$cur_decoration.removeAttr('style').hide()
 
@@ -211,11 +167,11 @@ class Peditor.Workpanel
 				js.onload = ->
 					# Init the widget interface.
 					class_name = _.str.titleize(name)
-					w_class = widgets[class_name]
+					w_class = PDT.widgets[class_name]
 					w_class::$properties = $props
-					w_class::rec = peditor.rec
+					w_class::rec = PDT.peditor.rec
 					widget = new w_class
-					widgets[name] = widget
+					PDT.widgets[name] = widget
 
 					console.log "Widget: #{name} loaded."
 
@@ -229,4 +185,4 @@ class Peditor.Workpanel
 		)
 
 
-workpanel = new Peditor.Workpanel
+PDT.workpanel = new PDT.Workpanel

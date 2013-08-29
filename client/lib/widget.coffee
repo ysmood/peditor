@@ -1,4 +1,4 @@
-class Peditor.Widget
+class PDT.Widget
 
 	# Your widget's property pannel object.
 	# Will be init by the Workpanel.
@@ -12,4 +12,4 @@ class Peditor.Widget
 
 	# Current selected widget. Return a jQuery object.
 	$get_selected: ->
-		widgets.$selected
+		PDT.widgets.$selected
