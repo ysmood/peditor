@@ -134,7 +134,7 @@ class PDT.Peditor
 	btn_help_clicked: (btn) ->
 		$.fn.msg_box({
 			title: 'Help'
-			body: $('#help').pdoc()
+			body: $('#help').html()
 		})
 
 	init_key_control: ->
