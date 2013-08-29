@@ -62,7 +62,7 @@ class Peditor_server
 		@app.get('/pdoc/:id', @render_client)
 
 	init_routes: ->
-		@widget_scaffolding()
+		@widget_editor()
 
 		@test()
 
@@ -96,11 +96,11 @@ class Peditor_server
 			@render_sections(pages, done, htmls)
 		)
 
-	widget_scaffolding: ->
+	widget_editor: ->
 		# A helper page to create new widget.
 		# New widget page should be located in the 'client/widget/'.
 
-		@app.get('/widgets/:name', (req, res) =>
+		@app.get('/widget_editor/:name', (req, res) =>
 			@render_sections(
 				['head', 'foot'],
 				(htmls) =>
@@ -116,7 +116,7 @@ class Peditor_server
 						path,
 						(err, html) =>
 							res.locals.widget = html
-							res.render('widgets')
+							res.render('widget_editor')
 					)
 			)
 		)
