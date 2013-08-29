@@ -1,0 +1,57 @@
+<!-- The root tag declears the peditor namespace. -->
+<div peditor>
+
+	<div peditor-widget="/* widget name */" class="thumb">
+		<!-- A thumbnail will be displayed in the widgets section. -->
+	</div>
+
+	<div peditor-widget="/* widget name */" class="properties">
+		<!-- A widget's property editor. -->
+	</div>
+
+	<div peditor-widget="/* widget name */" class="widget">
+		<!-- Implement widget here. -->
+	</div>
+
+	<!-- CSS is optional. -->
+	<link rel="stylesheet" type="text/css" href="/* absolute path */">
+
+	<!--
+	At least the interface below is required. All codes out
+	of the '<div peditor-widget></div>' are ignored. Therefore,
+	you should declear the code below into a separate js file.
+	-->
+	<script type="text/javascript">
+
+		widgets./* widget name */ = {
+
+			// Required interface.
+			// Triggered when this widget class is loaded.
+			init: function () {},
+
+			// Required interface.
+			// Triggered when a new widget is add to a container.
+			// A widget specified initialization should be implemented here.
+			// Such as widget's js based animation.
+			added: function ($widget) {},
+
+			// Required interface.
+			// Triggered when a widget is selected.
+			selected: function ($widget) {},
+
+			/* Native api that your widget can access. You shouldn't write them.
+
+			// Record the history for the 'undo & redo' operation.
+			// It's the widget's responsibility to notify the Peditor
+			// that the pdoc has changed.
+			rec: function (title = '')
+
+			// Your widget's property pannel object.
+			$properties: jQuery
+
+			*/
+		}
+
+	</script>
+
+</div>
