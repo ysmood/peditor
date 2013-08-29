@@ -24,11 +24,22 @@ class PDT.Workpanel
 		for btn in $('.btn_container, .btn_widget')
 			@init_container_btn($(btn))
 
-	properties_active: ($elem) =>
+		$('#workpanel .containers .column-width').val(6)
+
+	edit_active: ($elem) =>
 		type = PDT.workbench.container_type($elem)
 
 		$indicator = $('.selected-con-i')
 		$indicator.show().text(type)
+
+		# Show the current container's editable properties.
+		$groups = $('#workpanel [peditor-bind]')
+			.hide()
+			.filter("[peditor-bind~='#{type}']")
+			.show()
+
+		for g in $groups
+			@bind_property($(g), $elem)
 
 		if type == 'widget'
 			PDT.widgets.$selected = PDT.workbench.$selected_con
@@ -36,12 +47,13 @@ class PDT.Workpanel
 			PDT.widgets[name].$properties.show()
 			PDT.widgets[name].selected(PDT.widgets.$selected)
 
+		# Scrolling to the actived properties.
 		$.fn.scroll_to({
 			parent: $('#workpanel')
 			to: $('#properties')
 		})
 
-	properties_deactive: ($elem) ->
+	edit_deactive: ($elem) ->
 		$indicator = $('.selected-con-i')
 		$indicator.hide()
 
@@ -52,6 +64,43 @@ class PDT.Workpanel
 		$('#properties .properties').hide()
 
 	# ********** Private **********
+
+	bind_property: ($g, $elem) ->
+		$ps = $g.find('[peditor-bind-prop]')
+
+		# Display the current value.
+		$ps.each(->
+			$p = $(@)
+			c = $p.attr('peditor-bind-prop')
+
+			switch c
+				when 'background-image'
+					m = $elem.css(c).match(/url\((.+)\)/)
+					$p.val(if m then m[1])
+
+				when 'column-width'
+					$p.val($elem.attr('w'))
+
+				else
+					$p.val($elem.css(c))
+		)
+
+		# Set the value.
+		$ps.off().change(->
+			$p = $(@)
+			c = $p.attr('peditor-bind-prop')
+			v = $p.val()
+
+			switch c
+				when 'background-image'
+					$elem.css(c, "url(#{v})")
+
+				when 'column-width'
+					$elem.attr('w', v)
+
+				else
+					$elem.css(c, v)
+		)
 
 	init_container_btn: ($btn) ->
 		$.fn.dragging({

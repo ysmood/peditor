@@ -236,7 +236,7 @@ class PDT.Workbench
 				@$selected_con = $elem
 
 				# Active properties editing.
-				PDT.workpanel.properties_active($elem)
+				PDT.workpanel.edit_active($elem)
 
 
 			e.stopPropagation()
@@ -265,7 +265,7 @@ class PDT.Workbench
 				$col.removeClass('add_animate')
 		)
 		# Set width.
-		$col.attr('w', width).data('column-width', width)
+		$col.attr('w', width)
 		return $col
 
 	new_widget: ($target) ->

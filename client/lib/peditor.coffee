@@ -82,7 +82,7 @@ class PDT.Peditor
 
 		@history_index--
 
-		PDT.workpanel.properties_deactive()
+		PDT.workpanel.edit_deactive()
 
 		$('#workbench').empty().append(
 			@history[@history_index].pdoc
@@ -97,7 +97,7 @@ class PDT.Peditor
 
 		@history_index++
 
-		PDT.workpanel.properties_deactive()
+		PDT.workpanel.edit_deactive()
 
 		$('#workbench').empty().append(
 			@history[@history_index].pdoc
@@ -140,7 +140,7 @@ class PDT.Peditor
 	init_key_control: ->
 		Mousetrap.bind('ctrl+d', ->
 			if PDT.workbench.$selected_con
-				PDT.workpanel.properties_deactive()
+				PDT.workpanel.edit_deactive()
 		)
 
 PDT.peditor = new PDT.Peditor

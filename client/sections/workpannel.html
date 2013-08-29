@@ -1,8 +1,8 @@
 <% function select_12() { %>
-	<select class="column-width form-control" title="The n-twelfth width of a row">
+	<select class="column-width form-control" peditor-bind-prop="column-width" title="The n-twelfth width of a row">
 		<% for(var i = 1; i < 13; i++) { %>
 
-		<option value="<%= i %>" <% if(i == 6) print('selected') %> ><%= i %></option>
+		<option value="<%= i %>"><%= i %></option>
 
 		<% } %>
 	</select>
@@ -13,16 +13,16 @@
 	<div id="properties">
 		<h2 class="font-n font-20">Properties <span class="selected-con-i badge font-14"></span></h2>
 
-		<div class="group">
+		<div class="group" peditor-bind="root row column">
 			<div class="font-n font-16">Background</div>
 			<div class="input-group" title="Such as '/img/peditor.png'">
 				<span class="input-group-addon">URL</span>
-				<input class="form-control" type="text" placeholder="Image url...">
+				<input class="form-control" peditor-bind-prop="background-image" type="text" placeholder="Image url...">
 			</div>
 			<div class="input-group">
 				<span class="input-group-addon">Repeat</span>
-				<select class="form-control">
-					<option value="repeat" selected>Repeat</option>
+				<select class="form-control" peditor-bind-prop="background-repeat">
+					<option value="repeat">Repeat</option>
 					<option value="repeat-x">Repeat Horizontal</option>
 					<option value="repeat-y">Repeat Vertical</option>
 					<option value="no-repeat">None</option>
@@ -30,12 +30,12 @@
 			</div>
 		</div>
 
-		<div class="group">
+		<div class="group" peditor-bind="root">
 			<div class="font-n font-16">Width</div>
-			<input class="form-control" placeholder="Unit px or % ..." type="text">
+			<input class="form-control" peditor-bind-prop="width" placeholder="Unit px or % ..." type="text">
 		</div>
 
-		<div class="group">
+		<div class="group" peditor-bind="column">
 			<div class="font-n font-16">Column Size</div>
 			<% select_12() %>
 		</div>
