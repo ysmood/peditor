@@ -7,7 +7,7 @@ Aug 2013, ys
 ###
 
 
-class Peditor
+class Peditor.App
 
 	# ********** Public **********
 
@@ -140,4 +140,4 @@ class Peditor
 				workpanel.properties_deactive()
 		)
 
-peditor = new Peditor
+peditor = new Peditor.App

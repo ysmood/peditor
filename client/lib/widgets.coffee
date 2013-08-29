@@ -2,10 +2,10 @@
 
 do ->
 	name = _.keys(widgets)[0]
-	widget = widgets[name]
-	widget.$properties = $('.properties')
-	widget.rec = -> null
-	widget.init()
+
+	widgets[name]::$properties = $('.properties')
+	widget = new widgets[name]
+
 
 	$('.widget').after($('.widget').clone())
 
@@ -27,3 +27,9 @@ do ->
 
 		widget.selected($this)
 	)
+
+	$('.widget:first').click()
+
+	$('[title]').tooltip({
+		placement: "auto"
+	})

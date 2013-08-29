@@ -4,7 +4,7 @@ Take the charge of Peditor's row system.
 
 ###
 
-class Workbench
+class Peditor.Workbench
 
 	# ********** Public **********
 
@@ -290,4 +290,4 @@ class Workbench
 		)
 
 
-workbench = new Workbench
+workbench = new Peditor.Workbench

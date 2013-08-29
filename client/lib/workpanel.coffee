@@ -7,7 +7,7 @@ Aug 2013, ys
 ###
 
 
-class Workpanel
+class Peditor.Workpanel
 
 	# ********** Public **********
 
@@ -173,8 +173,6 @@ class Workpanel
 		@$cur_decoration.removeAttr('style').hide()
 
 	load_widgets: ->
-		window.widgets = {}
-
 		$('[peditor-widget-btn]').each(->
 			$this = $(this)
 			name = $this.attr('peditor-widget-btn')
@@ -210,10 +208,12 @@ class Workpanel
 				$('body')[0].appendChild(js)
 				js.onload = ->
 					# Init the widget interface.
-					widget = widgets[name]
-					widget.$properties = $props
-					widget.init()
-					widget.rec = peditor.rec
+					class_name = _.str.titleize(name)
+					w_class = widgets[class_name]
+					w_class::$properties = $props
+					w_class::rec = peditor.rec
+					widget = new w_class
+					widgets[name] = widget
 
 					$('#workbench [peditor-widget="title"]').each(->
 						widgets[name].added($(this))
@@ -224,4 +224,4 @@ class Workpanel
 		)
 
 
-workpanel = new Workpanel
+workpanel = new Peditor.Workpanel
