@@ -62,7 +62,7 @@ class PDT.Workpanel
 			PDT.workbench.$selected_con.removeClass('selected')
 			PDT.workbench.$selected_con = null
 
-		$('#properties .properties').hide()
+		$('#properties [peditor-bind], #properties .properties').hide()
 
 	# ********** Private **********
 
