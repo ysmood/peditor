@@ -173,7 +173,9 @@ class Peditor.Workpanel
 		@$cur_decoration.removeAttr('style').hide()
 
 	load_widgets: ->
-		$('[peditor-widget-btn]').each(->
+		count = 0
+		$btn_widgets = $('[peditor-widget-btn]')
+		$btn_widgets.each(->
 			$this = $(this)
 			name = $this.attr('peditor-widget-btn')
 
@@ -215,11 +217,14 @@ class Peditor.Workpanel
 					widget = new w_class
 					widgets[name] = widget
 
-					$('#workbench [peditor-widget="title"]').each(->
-						widgets[name].added($(this))
-					)
-
 					console.log "Widget: #{name} loaded."
+
+					count++
+
+					if count == $btn_widgets.length
+						console.log 'All widgets loaded.'
+
+						$('#peditor').trigger('widgets_loaded')
 			)
 		)
 

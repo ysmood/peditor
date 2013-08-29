@@ -12,7 +12,10 @@ class Peditor.Workbench
 		@grid_size = 12
 		@guide_threshold = 20
 	) ->
-		@load_pdoc()
+		# Load pdoc after all wdigets are loaded.
+		$('#peditor').on('widgets_loaded', =>
+			@load_pdoc()
+		)
 
 		console.log 'Workbench Loaded.'
 
@@ -117,9 +120,6 @@ class Peditor.Workbench
 				return
 
 		@init_container($widget)
-
-		name = $widget.attr('peditor-widget')
-		widgets[name].added($widget)
 
 	del_container: (e) ->
 		if not @$current_container
@@ -245,6 +245,11 @@ class Peditor.Workbench
 			.mouseover(mouse_over)
 			.mouseout(mouse_out)
 			.click(clicked)
+
+		name = $elem.attr('peditor-widget')
+		if name
+			widgets[name].added($elem)
+
 
 	new_row: (width) ->
 		$row = $('<div>').addClass('r add_animate').one(
