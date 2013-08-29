@@ -1,5 +1,6 @@
 widgets.title = {
 	init: ->
+		# Required interface.
 		# Triggered when this widget class is loaded.
 
 		@$prop_text = @$properties.find('.text')
@@ -11,6 +12,8 @@ widgets.title = {
 			$span.text(@$prop_text.val())
 
 			# Record the history for the 'undo & redo' operation.
+			# It's the widget's responsibility to notify the Peditor
+			# that the pdoc has changed.
 			@rec('Title change')
 		)
 
@@ -22,9 +25,8 @@ widgets.title = {
 			@rec('Title change')
 		)
 
-		console.log 'Widget: Title loaded.'
-
 	added: ($widget) ->
+		# Required interface.
 		# Triggered when a new widget is add to a container.
 		# A widget specified initialization should be implemented here.
 		# Such as widget's js based animation.
@@ -44,6 +46,7 @@ widgets.title = {
 		requestAnimationFrame(animate)
 
 	selected: ($widget) ->
+		# Required interface.
 		# Triggered when a widget is selected.
 
 		$text = $widget.find('.text')

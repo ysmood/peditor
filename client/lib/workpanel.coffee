@@ -199,6 +199,9 @@ class Workpanel
 				$('#properties').append($props)
 				$('body').append($css)
 
+				# Attach the $widget to the button.
+				$this.data('widget', $widget)
+
 				# We need to use the native way to create the script element,
 				# or the browser will not excute the script.
 				js = document.createElement("script")
@@ -216,7 +219,7 @@ class Workpanel
 						widgets[name].added($(this))
 					)
 
-				$this.data('widget', $widget)
+					console.log "Widget: #{name} loaded."
 			)
 		)
 
