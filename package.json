@@ -27,7 +27,7 @@
     "url": "https://github.com/ysmood/peditor/issues"
   },
   "dependencies": {
-    "bower": "~1.2.4",
+    "bower": "~1.2.5",
     "express": "~3.3.4",
     "request": "~2.25.0",
     "consolidate": "~0.9.1",
