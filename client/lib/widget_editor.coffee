@@ -53,8 +53,8 @@ do ->
 		PDT.widgets[name]::$properties = $('.properties')
 		widget = new PDT.widgets[name]
 
-
-		$('.widget').after($('.widget').clone())
+		if location.search.indexOf('one') == -1
+			$('.widget').after($('.widget').clone())
 
 		$('.widget').each(->
 			$this = $(this)
