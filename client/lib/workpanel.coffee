@@ -191,11 +191,11 @@ class PDT.Workpanel
 				$html = $(html)
 
 				# Extract each part of a editable widget.
-				$thumb = $html.find('.thumb')
-				$props = $html.find('.properties')
-				$widget = $html.find('.widget:first')
-				$css = $html.find('.scripts link')
-				$js = $html.find('.scripts script')
+				$thumb = $html.find('[peditor-widget].thumb')
+				$props = $html.find('[peditor-widget].properties')
+				$widget = $html.find('[peditor-widget].widget:first')
+				$css = $html.find('link[peditor-widget]')
+				$js = $html.find('script[peditor-widget]')
 
 				# Hide the properties
 				$props.hide()
@@ -212,6 +212,7 @@ class PDT.Workpanel
 				# or the browser will not excute the script.
 				js = document.createElement("script")
 				js.type = "text/javascript"
+				js.setAttribute('peditor-widget', name)
 				js.src = $js[0].src
 				$('#scripts')[0].appendChild(js)
 				js.onload = ->
