@@ -250,7 +250,7 @@ class PDT.Workbench
 			.mouseout(mouse_out)
 			.click(clicked)
 
-		name = $elem.attr('peditor-widget')
+		name = $elem.attr('PDT-widget')
 		if name
 			PDT.widgets[name].added($elem)
 

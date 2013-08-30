@@ -33,9 +33,9 @@ class PDT.Workpanel
 		$indicator.show().text(type)
 
 		# Show the current container's editable properties.
-		$groups = $('#workpanel [peditor-bind]')
+		$groups = $('#workpanel [PDT-bind]')
 			.hide()
-			.filter("[peditor-bind~='#{type}']")
+			.filter("[PDT-bind~='#{type}']")
 			.show()
 		$('#workpanel .properties').hide()
 
@@ -44,7 +44,7 @@ class PDT.Workpanel
 
 		if type == 'widget'
 			PDT.widgets.$selected = PDT.workbench.$selected_con
-			name = PDT.widgets.$selected.attr('peditor-widget')
+			name = PDT.widgets.$selected.attr('PDT-widget')
 			PDT.widgets[name].$properties.show()
 			PDT.widgets[name].selected(PDT.widgets.$selected)
 
@@ -62,17 +62,17 @@ class PDT.Workpanel
 			PDT.workbench.$selected_con.removeClass('selected')
 			PDT.workbench.$selected_con = null
 
-		$('#properties [peditor-bind], #properties .properties').hide()
+		$('#properties [PDT-bind], #properties .properties').hide()
 
 	# ********** Private **********
 
 	edit_bind: ($g, $elem) ->
-		$ps = $g.find('[peditor-bind-prop]')
+		$ps = $g.find('[PDT-bind-prop]')
 
 		# Display the current value.
 		$ps.each(->
 			$p = $(@)
-			c = $p.attr('peditor-bind-prop')
+			c = $p.attr('PDT-bind-prop')
 
 			switch c
 				when 'background-image'
@@ -89,7 +89,7 @@ class PDT.Workpanel
 		# Set the value.
 		$ps.off().change(->
 			$p = $(@)
-			c = $p.attr('peditor-bind-prop')
+			c = $p.attr('PDT-bind-prop')
 			v = $p.val()
 
 			switch c
@@ -107,7 +107,7 @@ class PDT.Workpanel
 		$.fn.dragging({
 			$target: $btn
 			data: {
-				type: $btn.attr('peditor-type')
+				type: $btn.attr('PDT-type')
 			}
 			mouse_down: (e) =>
 				@show_cur_decoration(e)
@@ -180,10 +180,10 @@ class PDT.Workpanel
 
 	load_widgets: ->
 		count = 0
-		$btn_widgets = $('[peditor-widget-btn]')
+		$btn_widgets = $('[PDT-widget-btn]')
 		$btn_widgets.each(->
 			$this = $(this)
-			name = $this.attr('peditor-widget-btn')
+			name = $this.attr('PDT-widget-btn')
 
 			url = '/widgets/' + name + '/index.html'
 
@@ -191,11 +191,11 @@ class PDT.Workpanel
 				$html = $(html)
 
 				# Extract each part of a editable widget.
-				$thumb = $html.find('[peditor-widget].thumb')
-				$props = $html.find('[peditor-widget].properties')
-				$widget = $html.find('[peditor-widget].widget:first')
-				$css = $html.find('link[peditor-widget]')
-				$js = $html.find('script[peditor-widget]')
+				$thumb = $html.find('[PDT-widget].thumb')
+				$props = $html.find('[PDT-widget].properties')
+				$widget = $html.find('[PDT-widget].widget:first')
+				$css = $html.find('link[PDT-widget]')
+				$js = $html.find('script[PDT-widget]')
 
 				# Hide the properties
 				$props.hide()
@@ -212,7 +212,7 @@ class PDT.Workpanel
 				# or the browser will not excute the script.
 				js = document.createElement("script")
 				js.type = "text/javascript"
-				js.setAttribute('peditor-widget', name)
+				js.setAttribute('PDT-widget', name)
 				js.src = $js[0].src
 				$('#scripts')[0].appendChild(js)
 				js.onload = ->
