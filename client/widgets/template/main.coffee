@@ -1,5 +1,8 @@
 # Peditor.Widget class is in the 'client/lib/widget.coffee' file.
 # Read it for more api details.
+
+# The prefix of 'PDT.widgets' is required.
+# Class name's first letter should be capitalized.
 class PDT.widgets.Template extends PDT.Widget
 
 	# Required interface.

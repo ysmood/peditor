@@ -1,7 +1,23 @@
 # A helper to generate new widget.
 
 do ->
-	name = _.keys(PDT.widgets)[0]
+	name = _.str.trim(
+		location.pathname.replace('widget_editor', '')
+		'/'
+	)
+	name = _.str.capitalize(name)
+
+	if not _.has(PDT.widgets, name)
+		first = _.keys(PDT.widgets)[0]
+		$.fn.msg_box({
+			title: "Error"
+			body: "
+				Widget class name should be <b>#{name}</b>,
+				not <b>#{first}</b>.<br>
+				Please double check your js file.
+			"
+		})
+		return
 
 	PDT.widgets[name]::$properties = $('.properties')
 	widget = new PDT.widgets[name]
