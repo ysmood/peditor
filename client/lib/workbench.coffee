@@ -14,7 +14,7 @@ class PDT.Workbench
 	) ->
 		# Load pdoc after all wdigets are loaded.
 		$('#peditor').on('widgets_loaded', =>
-			@load_pdoc()
+			@load_doc()
 		)
 
 		console.log 'Workbench Loaded.'
@@ -207,6 +207,10 @@ class PDT.Workbench
 			.removeClass('selected add_animate hover')
 		return $wb.html()
 
+	get_scripts: ->
+		# TODO: Only get the scripts that the pdoc has used.
+		scripts = $('#scripts').html()
+
 	# ********** Private **********
 
 	init_container: (elem) ->
@@ -276,7 +280,7 @@ class PDT.Workbench
 			$col.attr('w')
 		)
 
-	load_pdoc: ->
+	load_doc: ->
 		m = location.pathname.match(/^(?:\/pdoc\/(.+))/)
 		if not m
 			@init_containers()
@@ -285,7 +289,7 @@ class PDT.Workbench
 
 		$.getJSON('/get/' + id).done((data) =>
 			if data.error != 'not_found'
-				$('#workbench').empty().append($(data.pdoc))
+				$('#workbench').empty().append($(data.doc))
 
 			@init_containers()
 

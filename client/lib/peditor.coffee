@@ -61,12 +61,16 @@ class PDT.Peditor
 		@rec('origin')
 
 	btn_save_clicked: (btn) ->
+		pdoc = {
+			mime: 'text/pdoc+json'
+			doc: PDT.workbench.get_doc()
+			scripts: PDT.workbench.get_scripts()
+		}
+
 		$.ajax({
 			type: "POST"
 			url: '/save'
-			data: {
-				pdoc: PDT.workbench.get_doc()
-			}
+			data: pdoc
 			dataType: "json"
 		}).done((data) ->
 			if data.ok
