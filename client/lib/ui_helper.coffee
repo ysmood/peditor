@@ -143,4 +143,14 @@ $.fn.load_js = (url, selector, done) ->
 
 	$(selector)[0].appendChild(js)
 
+$.fn.load_css = (url, selector) ->
+	css = document.createElement("link")
+	css.setAttribute("rel", "stylesheet")
+	css.setAttribute("type", "text/css")
+	css.type = "text/css"
+	css.href = url
+
+	$(selector)[0].appendChild(css)
+
+
 $.fn.report_compatibility()

@@ -206,7 +206,9 @@ class PDT.Workpanel
 				# Inject all the parts into the app.
 				$this.append($thumb)
 				$('#properties').append($props)
-				$('#scripts').append($css)
+
+				# Inject css.
+				$css.each(-> $.fn.load_css(this.href, '#scripts'))
 
 				# We need to use the native way to create the script element,
 				# or the browser will not excute the script.

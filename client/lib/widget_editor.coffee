@@ -11,11 +11,19 @@ do ->
 	$.ajax(url).done((html) ->
 		$html = $(html)
 
+		$doc_css = $html.find('link[PDT-widget]')
+		$css = $doc_css.clone()
+		$doc_css.remove()
+
 		$doc_js = $html.find('script[PDT-widget]')
 		$js = $doc_js.clone()
 		$doc_js.remove()
 
 		$('#main').append($html)
+
+		$css.each(->
+			$.fn.load_css(this.href, '#scripts')
+		)
 
 		count = 0
 		$js.each(->
