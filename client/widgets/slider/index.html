@@ -1,0 +1,51 @@
+<!--
+	The root tag declears the peditor namespace.
+	All resource without 'PDT-widget' attribute will be ignored.
+-->
+<div PDT>
+
+	<h3>Thumb</h3>
+	<div PDT-widget="slider" class="thumb font-30 text-center">
+		<a href="/widget_editor/slider" target="_blank"><i class="icon-film"></i> Slider</a>
+	</div><hr>
+
+	<h3>Properties</h3>
+	<div PDT-widget="slider" class="properties">
+		<!-- A widget's property editor. -->
+	</div><hr>
+
+	<h3>Widget</h3>
+	<div PDT-widget="slider" class="widget">
+
+		<div class="carousel slide">
+			<ol class="carousel-indicators">
+				<li data-slide-to="0" class="active"></li>
+				<li data-slide-to="1"></li>
+				<li data-slide-to="2"></li>
+			</ol>
+			<div class="font-l text-center carousel-inner">
+				<div class="item active">
+					<h1>Hello</h1>
+				</div>
+				<div class="item">
+					<h1>This</h1>
+				</div>
+				<div class="item">
+					<h1>World</h1>
+				</div>
+			</div>
+			<a class="left carousel-control" data-slide="prev">
+				<span class="icon-prev"></span>
+			</a>
+			<a class="right carousel-control" data-slide="next">
+				<span class="icon-next"></span>
+			</a>
+		</div>
+
+	</div>
+
+	<link PDT-widget="slider" type="text/css" href="/widgets/slider/main.css">
+
+	<script PDT-widget="slider" type="text/javascript" src="/widgets/slider/main.js"></script>
+
+</div>
