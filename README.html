@@ -244,31 +244,6 @@
 			</ul>
 		</li>
 		<li>
-			<h3>Widget API</h3>
-			<p>Here a simple overview of the widget api.</p>
-			<ul>
-				<li>
-					Every widget should be placed into the <span class="al">client/widgets/</span>
-					folder.
-				</li>
-				<li>
-					All assets of a widget should be placed into a folder,
-					and the folder's name should be the widget's name.
-				</li>
-				<li>
-					The entrance file of a widget should be <span class="al">index.html</span>,
-					and it should be directly under the widget's root folder.
-				</li>
-				<li>
-					There's a <span class="al">/client/widgets/template/index.html</span> you should read for
-					more details information about the api.
-				</li>
-				<li>
-					There's a <span class="al">/client/widgets/title/</span>. It is a basic example of how to use the api.
-				</li>
-			</ul>
-		</li>
-		<li>
 			<h3>Widget Scaffolding</h3>
 			<p>
 				You can visit
@@ -319,16 +294,58 @@
 	<ul>
 		<li>
 			<h3>Widget API</h3>
-			<p>
-				TODO: What method should a widget has. How does a widget expose its editable properties.
-			</p>
+			<p>Here a simple overview of the widget api.</p>
+			<ul>
+				<li>
+					Every widget should be placed into the <span class="al">client/widgets/</span>
+					folder.
+				</li>
+				<li>
+					All assets of a widget should be placed into a folder,
+					and the folder's name should be the widget's name.
+				</li>
+				<li>
+					The entrance file of a widget should be <span class="al">index.html</span>,
+					and it should be directly under the widget's root folder.
+				</li>
+				<li>
+					There's a <span class="al">/client/widgets/template/index.html</span> you should read for
+					more details information about the api.
+				</li>
+				<li>
+					There's a <span class="al">/client/widgets/title/</span>. It is a basic example of how to use the api.
+				</li>
+			</ul>
 		</li>
 		<li>
 			<h3>Page Document</h3>
 			<p>
-				TODO: Mainly a file format for saving the edit's states is enough. I call the format <b>Page Document</b>,
+				A file for saving the edit's states. I call the format <b>Page Document</b>,
 				file extension '.pdoc'. It saves the edit commands and page resources.
+				The pdoc is based on json, and utf-8 encoded. Here's the overview of its fields.
 			</p>
+			<table>
+				<tr>
+					<td>_id</td>
+					<td>A unique id of the pdoc.</td>
+				</tr>
+				<tr>
+					<td>_rev</td>
+					<td>The unique revision id of the pdoc.</td>
+				</tr>
+				<tr>
+					<td>mime</td>
+					<td>The file's MIME information. Default value is <span class="code pt">'text/pdoc+json'</span>.</td>
+				</tr>
+				<tr>
+					<td>doc</td>
+					<td>The html that represents the current page state.</td>
+				</tr>
+				<tr>
+					<td>scripts</td>
+					<td>The js and css that the page requirs.</td>
+				</tr>
+			</table>
 		</li>
 	</ul>
 
