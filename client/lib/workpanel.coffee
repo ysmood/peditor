@@ -194,26 +194,26 @@ class PDT.Workpanel
 				$thumb = $html.find('.thumb')
 				$props = $html.find('.properties')
 				$widget = $html.find('.widget:first')
-				$css = $html.find('link')
-				$js = $html.find('script')
+				$css = $html.find('.scripts link')
+				$js = $html.find('.scripts script')
 
 				# Hide the properties
 				$props.hide()
 
+				# Attach the $widget to the button.
+				$this.data('widget', $widget)
+
 				# Inject all the parts into the app.
 				$this.append($thumb)
 				$('#properties').append($props)
-				$('body').append($css)
-
-				# Attach the $widget to the button.
-				$this.data('widget', $widget)
+				$('#scripts').append($css)
 
 				# We need to use the native way to create the script element,
 				# or the browser will not excute the script.
 				js = document.createElement("script")
 				js.type = "text/javascript"
 				js.src = $js[0].src
-				$('body')[0].appendChild(js)
+				$('#scripts')[0].appendChild(js)
 				js.onload = ->
 					# Init the widget interface.
 					class_name = _.str.titleize(name)

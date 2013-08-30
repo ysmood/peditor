@@ -1,52 +1,59 @@
-<h3>Thumb</h3>
+<div peditor>
 
-<div peditor-widget="title" class="thumb font-30 text-center">
-	<a href="/widget_editor/title" target="_blank"><i class="icon-flag"></i> Title</a>
-</div>
+	<h3>Thumb</h3>
 
-<hr>
-
-<h3>Properties</h3>
-
-<div peditor-widget="title" class="properties">
-	<div class="font-n font-16">Text Content</div>
-	<input class="text form-control" type="text" placeholder="your content...">
-
-	<div class="input-group">
-		<span class="input-group-addon">Size</span>
-		<select class="size form-control">
-			<% for(var i = 1; i < 7; i++) { %>
-			<option value="h<%= i %>">H<%= i %></option>
-			<% } %>
-		</select>
+	<div peditor-widget="title" class="thumb font-30 text-center">
+		<a href="/widget_editor/title" target="_blank"><i class="icon-flag"></i> Title</a>
 	</div>
 
-	<div class="align btn-group" data-toggle="buttons" title="Text align">
-		<label class="btn btn-default">
-			<input type="radio" name="mode" value="left">
-			Left
-		</label>
-		<label class="btn btn-default">
-			<input type="radio" name="mode" value="center">
-			Center
-		</label>
-		<label class="btn btn-default" >
-			<input type="radio" name="mode" value="right">
-			Right
-		</label>
+	<hr>
+
+	<h3>Properties</h3>
+
+	<div peditor-widget="title" class="properties">
+		<div class="font-n font-16">Text Content</div>
+		<input class="text form-control" type="text" placeholder="your content...">
+
+		<div class="input-group">
+			<span class="input-group-addon">Size</span>
+			<select class="size form-control">
+				<% for(var i = 1; i < 7; i++) { %>
+				<option value="h<%= i %>">H<%= i %></option>
+				<% } %>
+			</select>
+		</div>
+
+		<div class="align btn-group" data-toggle="buttons" title="Text align">
+			<label class="btn btn-default">
+				<input type="radio" name="mode" value="left">
+				Left
+			</label>
+			<label class="btn btn-default">
+				<input type="radio" name="mode" value="center">
+				Center
+			</label>
+			<label class="btn btn-default" >
+				<input type="radio" name="mode" value="right">
+				Right
+			</label>
+		</div>
 	</div>
-</div>
 
-<hr>
+	<hr>
 
-<h3>Widget</h3>
+	<h3>Widget</h3>
 
-<div peditor-widget="title" class="widget">
-	<div class="text h1">
-		<i class="icon-th-large"></i>
-		<span>Title Content...</span>
+	<div peditor-widget="title" class="widget">
+		<div class="text h1">
+			<i class="icon-th-large"></i>
+			<span>Title Content...</span>
+		</div>
 	</div>
-</div>
 
-<link rel="stylesheet" type="text/css" href="/widgets/title/title.css">
-<script type="text/javascript" src="/widgets/title/title.js"></script>
+
+	<div peditor-widget="title" class="scripts">
+		<link rel="stylesheet" type="text/css" href="/widgets/title/title.css">
+		<script type="text/javascript" src="/widgets/title/title.js"></script>
+	</div>
+
+</div>
