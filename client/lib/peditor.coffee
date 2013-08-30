@@ -26,7 +26,7 @@ class PDT.Peditor
 		# The last two history are the same,
 		# return directly.
 		if @history.length == 1 and
-		@history[0].pdoc == PDT.workbench.get_pdoc()
+		@history[0].pdoc == PDT.workbench.get_doc()
 			return
 		else if @history.length > 1 and
 		_.last(@history).pdoc == _.first(_.last(@history, 2)).pdoc
@@ -39,7 +39,7 @@ class PDT.Peditor
 
 		@history.push({
 			title: title
-			pdoc: PDT.workbench.get_pdoc()
+			pdoc: PDT.workbench.get_doc()
 		})
 
 		@update_history_btns()
@@ -65,7 +65,7 @@ class PDT.Peditor
 			type: "POST"
 			url: '/save'
 			data: {
-				pdoc: PDT.workbench.get_pdoc()
+				pdoc: PDT.workbench.get_doc()
 			}
 			dataType: "json"
 		}).done((data) ->

@@ -201,7 +201,7 @@ class PDT.Workbench
 		for elem in $containers
 			@init_container(elem)
 
-	get_pdoc: ->
+	get_doc: ->
 		$wb = $('#workbench').clone()
 		$wb.find('.r, .c, .widget')
 			.removeClass('selected add_animate hover')
