@@ -132,5 +132,15 @@ $.fn.push_state = (options) ->
 		options.url,
 	)
 
+$.fn.load_js = (url, selector, done) ->
+	js = document.createElement("script")
+	js.type = "text/javascript"
+	js.src = url
+	js.onload = ->
+		done($(js))
+	js.onerror = ->
+		done($(js))
+
+	$(selector)[0].appendChild(js)
 
 $.fn.report_compatibility()

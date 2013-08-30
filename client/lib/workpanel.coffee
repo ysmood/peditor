@@ -179,7 +179,7 @@ class PDT.Workpanel
 		@$cur_decoration.removeAttr('style').hide()
 
 	load_widgets: ->
-		count = 0
+		w_count = 0
 		$btn_widgets = $('[PDT-widget-btn]')
 		$btn_widgets.each(->
 			$this = $(this)
@@ -210,28 +210,28 @@ class PDT.Workpanel
 
 				# We need to use the native way to create the script element,
 				# or the browser will not excute the script.
-				js = document.createElement("script")
-				js.type = "text/javascript"
-				js.setAttribute('PDT-widget', name)
-				js.src = $js[0].src
-				$('#scripts')[0].appendChild(js)
-				js.onload = ->
-					# Init the widget interface.
-					class_name = _.str.titleize(name)
-					w_class = PDT.widgets[class_name]
-					w_class::$properties = $props
-					w_class::rec = PDT.peditor.rec
-					widget = new w_class
-					PDT.widgets[name] = widget
+				js_count = 0
+				$js.each(->
+					$.fn.load_js(this.src, '#scripts', ($new_js) ->
+						$new_js.attr('PDT-widget', name)
 
-					console.log "Widget: #{name} loaded."
+						if ++js_count == $js.length
+							# Init the widget interface.
+							class_name = _.str.titleize(name)
+							w_class = PDT.widgets[class_name]
+							w_class::$properties = $props
+							w_class::rec = PDT.peditor.rec
+							widget = new w_class
+							PDT.widgets[name] = widget
 
-					count++
+							console.log "Widget: #{name} loaded."
 
-					if count == $btn_widgets.length
-						console.log 'All widgets loaded.'
+							if ++w_count == $btn_widgets.length
+								console.log 'All widgets loaded.'
 
-						$('#peditor').trigger('widgets_loaded')
+								$('#peditor').trigger('widgets_loaded')
+					)
+				)
 			)
 		)
 

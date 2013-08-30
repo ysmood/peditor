@@ -105,19 +105,7 @@ class Peditor_server
 				['head', 'foot'],
 				(htmls) =>
 					_.extend(res.locals, htmls)
-
-					path = 'widgets/' + req.params.name + '/index.html'
-
-					if not fs.existsSync('client/' + path)
-						@render_404(req, res)
-						return
-
-					@app.render(
-						path,
-						(err, html) =>
-							res.locals.widget = html
-							res.render('widget_editor')
-					)
+					res.render('widget_editor')
 			)
 		)
 
