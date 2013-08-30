@@ -60,7 +60,7 @@ class PDT.Peditor
 
 		@rec('origin')
 
-	btn_save_clicked: (btn) ->
+	btn_save_clicked: (btn) =>
 		pdoc = {
 			mime: 'text/pdoc+json'
 			doc: PDT.workbench.get_doc()
@@ -80,7 +80,7 @@ class PDT.Peditor
 				})
 		)
 
-	btn_undo_clicked: (btn) ->
+	btn_undo_clicked: (btn) =>
 		if $(btn).attr('disabled')
 			return
 
@@ -95,7 +95,7 @@ class PDT.Peditor
 
 		@update_history_btns()
 
-	btn_redo_clicked: (btn) ->
+	btn_redo_clicked: (btn) =>
 		if $(btn).attr('disabled')
 			return
 
@@ -109,6 +109,12 @@ class PDT.Peditor
 		PDT.workbench.init_containers()
 
 		@update_history_btns()
+
+	btn_help_clicked: (btn) =>
+		$.fn.msg_box({
+			title: 'Help'
+			body: $('#help').html()
+		})
 
 	update_history_btns: ->
 		undo = false
@@ -135,14 +141,24 @@ class PDT.Peditor
 		else
 			$('#navbar .redo').attr('disabled', true)
 
-	btn_help_clicked: (btn) ->
-		$.fn.msg_box({
-			title: 'Help'
-			body: $('#help').html()
-		})
-
 	init_key_control: ->
-		Mousetrap.bind('ctrl+d', ->
+		# Save
+		Mousetrap.bind(
+			'S'
+			@btn_save_clicked
+		)
+		# Undo
+		Mousetrap.bind(
+			'Z'
+			@btn_undo_clicked
+		)
+		# Redo
+		Mousetrap.bind(
+			'Y'
+			@btn_redo_clicked
+		)
+		# Edit Deactive
+		Mousetrap.bind('D', ->
 			if PDT.workbench.$selected_con
 				PDT.workpanel.edit_deactive()
 		)
