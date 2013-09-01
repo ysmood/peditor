@@ -8,6 +8,7 @@ express = require 'express'
 request = require 'request'
 consolidate = require 'consolidate'
 _ = require 'underscore'
+faker = require 'Faker'
 
 fs = require 'fs'
 
@@ -64,10 +65,12 @@ class Peditor_server
 	init_routes: ->
 		@widget_editor()
 
-		@test()
-
 		@save()
 		@get()
+
+		if config.mode == 'development'
+			@test()
+			@fake()
 
 		@app.use(@render_404)
 
@@ -162,6 +165,13 @@ class Peditor_server
 					else
 						res.send(body)
 			)
+		)
+
+	fake: ->
+		# For test project only.
+
+		@app.get('/fake/:type/:method', (req, res) =>
+			res.send faker[req.params.type][req.params.method]()
 		)
 
 # ************ Exports ************
