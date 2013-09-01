@@ -50,5 +50,7 @@ class PDT.widgets.Slider extends PDT.Widget
 
 
 	get_doc: ($widget) ->
-		@$orgin_widget.html()
+		$doc = $widget.clone()
+		$doc.find('.slider-wrapper').remove()
+		$doc.html()
 
