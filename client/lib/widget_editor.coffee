@@ -83,6 +83,3 @@ do ->
 		$('[title]').tooltip({
 			placement: "auto"
 		})
-
-		$('.PDT-info').delay(1000 * 5).slideUp()
-
