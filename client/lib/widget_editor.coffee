@@ -61,7 +61,7 @@ do ->
 			widget.added($this)
 		)
 
-		$('.widget').click(->
+		$('.widget').click((e) ->
 			$this = $(this)
 			$selected = PDT.widgets.$selected
 
@@ -73,6 +73,8 @@ do ->
 			PDT.widgets.$selected = $this
 
 			widget.selected($this)
+
+			e.stopPropagation()
 		)
 
 		$('.widget:first').click()

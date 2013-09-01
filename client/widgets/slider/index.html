@@ -17,35 +17,25 @@
 	<h3>Widget</h3>
 	<div PDT-widget="slider" class="widget">
 
-		<div class="carousel slide">
-			<ol class="carousel-indicators">
-				<li data-slide-to="0" class="active"></li>
-				<li data-slide-to="1"></li>
-				<li data-slide-to="2"></li>
-			</ol>
-			<div class="font-l text-center carousel-inner">
-				<div class="item active">
-					<h1>Hello</h1>
-				</div>
-				<div class="item">
-					<h1>This</h1>
-				</div>
-				<div class="item">
-					<h1>World</h1>
-				</div>
-			</div>
-			<a class="left carousel-control" data-slide="prev">
-				<span class="icon-prev"></span>
-			</a>
-			<a class="right carousel-control" data-slide="next">
-				<span class="icon-next"></span>
-			</a>
+		<div class="slider-wrapper theme-default">
+		    <div id="slider" class="nivoSlider">
+		        <img src="/nivo-slider/demo/images/toystory.jpg" data-thumb="/nivo-slider/demo/images/toystory.jpg" alt="" />
+		        <a href="http://dev7studios.com"><img src="/nivo-slider/demo/images/up.jpg" data-thumb="/nivo-slider/demo/images/up.jpg" alt="" title="This is an example of a caption" /></a>
+		        <img src="/nivo-slider/demo/images/walle.jpg" data-thumb="/nivo-slider/demo/images/walle.jpg" alt="" data-transition="slideInLeft" />
+		        <img src="/nivo-slider/demo/images/nemo.jpg" data-thumb="/nivo-slider/demo/images/nemo.jpg" alt="" title="#htmlcaption" />
+		    </div>
+		    <div id="htmlcaption" class="nivo-html-caption">
+		        <strong>This</strong> is an example of a <em>HTML</em> caption with <a href="#">a link</a>. 
+		    </div>
 		</div>
 
 	</div>
 
+	<link PDT-widget="slider" rel="stylesheet" type="text/css" href="/nivo-slider/nivo-slider.css">
+	<link PDT-widget="slider" rel="stylesheet" type="text/css" href="/nivo-slider/themes/default/default.css">
 	<link PDT-widget="slider" type="text/css" href="/widgets/slider/main.css">
 
+	<script PDT-widget="slider" type="text/javascript" src="/nivo-slider/jquery.nivo.slider.js"></script>
 	<script PDT-widget="slider" type="text/javascript" src="/widgets/slider/main.js"></script>
 
 </div>
