@@ -8,3 +8,6 @@ class PDT.widgets.Slider extends PDT.Widget
 
 	selected: ($widget) ->
 
+	get_doc: ($widget) ->
+		@$widget.html()
+

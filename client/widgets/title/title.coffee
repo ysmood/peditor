@@ -77,3 +77,6 @@ class PDT.widgets.Title extends PDT.Widget
 		})
 
 		@rec('Title align changed')
+
+	get_doc: ($widget) ->
+		$widget.html()
