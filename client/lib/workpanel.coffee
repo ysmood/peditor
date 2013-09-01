@@ -180,10 +180,10 @@ class PDT.Workpanel
 
 	load_widgets: ->
 		w_count = 0
-		$btn_widgets = $('[PDT-widget-btn]')
+		$btn_widgets = $('#workpanel .widgets [PDT-widget]')
 		$btn_widgets.each(->
 			$this = $(this)
-			name = $this.attr('PDT-widget-btn')
+			name = $this.attr('PDT-widget')
 
 			url = '/widgets/' + name + '/index.html'
 
@@ -199,9 +199,6 @@ class PDT.Workpanel
 
 				# Hide the properties
 				$props.hide()
-
-				# Attach the $widget to the button.
-				$this.data('widget', $widget)
 
 				# Inject all the parts into the app.
 				$this.append($thumb)
@@ -222,6 +219,7 @@ class PDT.Workpanel
 							class_name = _.str.titleize(name)
 							w_class = PDT.widgets[class_name]
 							w_class::$properties = $props
+							w_class::$widget = $widget
 							w_class::rec = PDT.peditor.rec
 							widget = new w_class
 							PDT.widgets[name] = widget
