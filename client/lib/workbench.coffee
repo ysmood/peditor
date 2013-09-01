@@ -205,6 +205,13 @@ class PDT.Workbench
 		$wb = $('#workbench').clone()
 		$wb.find('.r, .c, .widget')
 			.removeClass('selected add_animate hover')
+
+		$wb.find('.widget').each(->
+			$this = $(this)
+			name = $this.attr('PDT-widget')
+			doc = PDT.widgets[name].get_doc($this)
+			$this.html(doc)
+		)
 		return $wb.html()
 
 	get_scripts: ->

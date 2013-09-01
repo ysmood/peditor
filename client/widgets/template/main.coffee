@@ -19,3 +19,8 @@ class PDT.widgets.Template extends PDT.Widget
 	# Triggered when a widget is selected.
 	selected: ($widget) ->
 
+	# Get the pdoc of current widget.
+	# Remove all the temporary doms here.
+	# Return pure html.
+	get_doc: ($widget) ->
+
