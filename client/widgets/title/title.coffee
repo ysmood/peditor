@@ -18,20 +18,6 @@ class PDT.widgets.Title extends PDT.Widget
 		# A widget specified initialization should be implemented here.
 		# Such as js based animation for a widget.
 
-		$icon = $widget.find('i')
-		op = 0.8
-		v = 0.01
-		animate = ->
-			$icon.css('opacity', op)
-
-			if op >= 1 or op <= 0.5
-				v *= -1
-			op += v
-
-			requestAnimationFrame(animate)
-
-		requestAnimationFrame(animate)
-
 	selected: ($widget) ->
 		# Required interface.
 		# Triggered when a widget is selected.
