@@ -4,10 +4,15 @@ class PDT.widgets.Slider extends PDT.Widget
 	constructor: ->
 
 	added: ($widget) ->
-		$('#slider').nivoSlider()
+		# $('#slider').nivoSlider({
+		# 	effect: 'sliceDown'
+		# 	slices: 10
+		# 	boxCols: 4
+		# 	boxRows: 4
+		# })
 
 	selected: ($widget) ->
 
 	get_doc: ($widget) ->
-		@$widget.html()
+		@$orgin_widget.html()
 

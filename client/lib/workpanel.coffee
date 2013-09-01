@@ -219,7 +219,7 @@ class PDT.Workpanel
 							class_name = _.str.titleize(name)
 							w_class = PDT.widgets[class_name]
 							w_class::$properties = $props
-							w_class::$widget = $widget
+							w_class::$orgin_widget = $widget
 							w_class::rec = PDT.peditor.rec
 							widget = new w_class
 							PDT.widgets[name] = widget

@@ -280,7 +280,7 @@ class PDT.Workbench
 
 	new_widget: ($btn) ->
 		name = $btn.attr('PDT-widget')
-		PDT.widgets[name].$widget.clone()
+		PDT.widgets[name].$orgin_widget.clone()
 
 	get_col_size: ($col) ->
 		return parseInt(
