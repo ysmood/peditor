@@ -242,7 +242,6 @@ class PDT.Workbench
 				# Active properties editing.
 				PDT.workpanel.edit_active($elem)
 
-
 			e.stopPropagation()
 
 		$elem
