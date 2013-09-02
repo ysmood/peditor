@@ -64,7 +64,7 @@ class PDT.Peditor
 
 		@rec('origin')
 
-	btn_save_clicked: (btn) =>
+	btn_save_clicked: =>
 		pdoc = {
 			mime: 'text/pdoc+json'
 			doc: PDT.workbench.get_doc()
@@ -84,8 +84,8 @@ class PDT.Peditor
 				})
 		)
 
-	btn_undo_clicked: (btn) =>
-		if $(btn).attr('disabled')
+	btn_undo_clicked: =>
+		if $('#navbar .undo').attr('disabled')
 			return
 
 		@history_index--
@@ -99,8 +99,8 @@ class PDT.Peditor
 
 		@update_history_btns()
 
-	btn_redo_clicked: (btn) =>
-		if $(btn).attr('disabled')
+	btn_redo_clicked: =>
+		if $('#navbar .redo').attr('disabled')
 			return
 
 		@history_index++
@@ -114,13 +114,13 @@ class PDT.Peditor
 
 		@update_history_btns()
 
-	btn_help_clicked: (btn) =>
+	btn_help_clicked: =>
 		$.fn.msg_box({
 			title: 'Help'
 			body: $('#help').html()
 		})
 
-	btn_about_clicked: (btn) =>
+	btn_about_clicked: =>
 		$.fn.msg_box({
 			title: 'About'
 			body: $('#about').html()
@@ -180,10 +180,26 @@ class PDT.Peditor
 			'Y'
 			@btn_redo_clicked
 		)
+		# Remove current
+		Mousetrap.bind('R', ->
+			if PDT.workbench.$selected_con
+				PDT.workbench.$selected_con.remove()
+				PDT.peditor.rec('del_container')
+
+		)
 		# Edit Deactive
 		Mousetrap.bind('D', ->
 			if PDT.workbench.$selected_con
 				PDT.workpanel.edit_deactive()
+		)
+
+		# Column size increase.
+		Mousetrap.bind('+', ->
+			PDT.workbench.column_increase()
+		)
+		# Column size decrease.
+		Mousetrap.bind('_', ->
+			PDT.workbench.column_increase(-1)
 		)
 
 PDT.peditor = new PDT.Peditor

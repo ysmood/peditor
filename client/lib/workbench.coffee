@@ -125,6 +125,8 @@ class PDT.Workbench
 
 		@init_container($widget)
 
+		$widget.click()
+
 		PDT.peditor.rec('add_widget')
 
 	del_container: (e) ->
@@ -181,9 +183,16 @@ class PDT.Workbench
 				else if delta.y > con_height - @guide_threshold
 					$con.addClass('after')
 
-	update_col_height: ($col) ->
-		# To make the columns that in the same tree depth
-		# have the same height.
+	column_increase: (d = 1) ->
+		if @container_type(@$selected_con) != 'column'
+			return
+
+		w = @$selected_con.attr('w')
+		w = parseInt(w)
+		w_new = w + d
+
+		if w_new > 0 and w_new < 13
+			@$selected_con.attr('w', w_new)
 
 	container_type: ($con) ->
 		list = $con.attr('class').split(/\s+/)
@@ -290,7 +299,7 @@ class PDT.Workbench
 
 	new_widget: ($btn) ->
 		name = $btn.attr('PDT-widget')
-		PDT.widgets[name].$orgin_widget.clone().click()
+		PDT.widgets[name].$orgin_widget.clone()
 
 	get_col_size: ($col) ->
 		return parseInt(
