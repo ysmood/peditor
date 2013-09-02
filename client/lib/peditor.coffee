@@ -120,6 +120,19 @@ class PDT.Peditor
 			body: $('#help').html()
 		})
 
+	view_mode_clicked: (btn) =>
+		mode = $(btn).find('.active input').val()
+		$workbench = $('#workbench')
+		$workpanel = $('#workpanel')
+		switch mode
+			when 'preview'
+				$workbench.removeClass('preview').addClass('outline')
+				$workpanel.removeClass('preview').addClass('outline')
+
+			when 'outline'
+				$workbench.removeClass('outline').addClass('preview')
+				$workpanel.removeClass('outline').addClass('preview')
+
 	update_history_btns: ->
 		undo = false
 		redo = false

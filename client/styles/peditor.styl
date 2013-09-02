@@ -28,6 +28,7 @@ $navbar_height = 40px
 #navbar
 	height $navbar_height
 	line-height $navbar_height
+	border-bottom 1px solid #333
 
 	.button
 		float left
@@ -60,14 +61,11 @@ $workpanel_width = 300px
 
 #workspace
 	height_calc 100% \- $navbar_height
-	border 1px solid #333
 
-#workbench, #workpanel
+#workbench.outline
 	float left
-	height 100%
-
-#workbench
 	width 100%
+	height 100%
 	margin-right - $workpanel_width
 	padding-right $workpanel_width
 
@@ -127,9 +125,43 @@ $workpanel_width = 300px
 		.r, .c, .widget
 			container_selected()
 
-#workpanel
-	padding 0 10px
+#workbench.preview
+	height 100%
+
+	#outline
+		background-color #fff
+		width 100%
+		height 100%
+		overflow auto
+
+		$container_margin = 15px
+		.root
+			width 100%
+			height 100%
+			margin auto
+			overflow-y auto
+
+		.c
+			margin $container_margin 0 0 $container_margin
+			padding 0 $container_margin $container_margin 0
+
+		.r
+			clearfix()
+
+		.c
+			float left
+		.widget
+			width 100%
+
+		for i in (1 .. 12)
+			{s('[w="%s"]', i)}
+				width_calc (100 / 12 * i)% \- $container_margin
+
+#workpanel.outline
+	float left
 	width $workpanel_width
+	height 100%
+	padding 0 10px
 	overflow auto
 	border-left 1px solid #333
 
@@ -157,7 +189,11 @@ $workpanel_width = 300px
 	.input-group
 		margin 10px 0
 
+#workpanel.preview
+	display none
+
 // Workspace End
+
 
 #cur_decoration
 	position absolute
