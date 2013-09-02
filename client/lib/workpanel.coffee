@@ -190,6 +190,8 @@ class PDT.Workpanel
 			$.ajax(url).done((html) ->
 				$html = $(html)
 
+				$html.find('[PDT-widget]').attr('PDT-widget', name)
+
 				# Extract each part of a editable widget.
 				$thumb = $html.find('[PDT-widget].thumb')
 				$props = $html.find('[PDT-widget].properties')
@@ -205,13 +207,13 @@ class PDT.Workpanel
 				$('#properties').append($props)
 
 				# Inject css.
-				$css.each(-> $.fn.load_css(this.href, '#scripts'))
+				$css.each(-> $.fn.load_css(this, '#scripts'))
 
 				# We need to use the native way to create the script element,
 				# or the browser will not excute the script.
 				js_count = 0
 				$js.each(->
-					$.fn.load_js(this.src, '#scripts', ($new_js) ->
+					$.fn.load_js(this, '#scripts', ($new_js) ->
 						$new_js.attr('PDT-widget', name)
 
 						if ++js_count == $js.length

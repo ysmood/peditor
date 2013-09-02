@@ -11,7 +11,9 @@ do ->
 	$.ajax(url).done((html) ->
 		$html = $(html)
 
-		$doc_css = $html.find('link[PDT-widget]')
+		$html.find('[PDT-widget]').attr('PDT-widget', name)
+
+		$doc_css = $html.find('link[PDT-widget], style[PDT-widget]')
 		$css = $doc_css.clone()
 		$doc_css.remove()
 
@@ -22,12 +24,12 @@ do ->
 		$('#main').append($html)
 
 		$css.each(->
-			$.fn.load_css(this.href, '#scripts')
+			$.fn.load_css(this, '#scripts')
 		)
 
 		count = 0
 		$js.each(->
-			$.fn.load_js(this.src, '#scripts', ($new_js) ->
+			$.fn.load_js(this, '#scripts', ($new_js) ->
 				$new_js.attr('PDT-widget', name)
 				if ++count == $js.length
 					init()

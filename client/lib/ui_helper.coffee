@@ -132,23 +132,43 @@ $.fn.push_state = (options) ->
 		options.url,
 	)
 
-$.fn.load_js = (url, selector, done) ->
+$.fn.load_js = (elem, selector, done) ->
 	js = document.createElement("script")
 	js.type = "text/javascript"
-	js.src = url
-	js.onload = ->
-		done($(js))
-	js.onerror = ->
+	if elem.src
+		js.src = elem.src
+		js.onload = ->
+			done($(js))
+		js.onerror = ->
+			done($(js))
+	else
+		try
+			js.appendChild(
+				document.createTextNode(elem.text)
+			)
+		catch e
+			js.text = elem.text
 		done($(js))
 
 	$(selector)[0].appendChild(js)
 
-$.fn.load_css = (url, selector) ->
-	css = document.createElement("link")
-	css.setAttribute("rel", "stylesheet")
-	css.setAttribute("type", "text/css")
-	css.type = "text/css"
-	css.href = url
+$.fn.load_css = (elem, selector) ->
+	if elem.href
+		css = document.createElement("link")
+		css.setAttribute("rel", "stylesheet")
+		css.setAttribute("type", "text/css")
+		css.type = "text/css"
+		css.href = elem.href
+	else
+		css = document.createElement("style")
+		if css.styleSheet
+			css.styleSheet.cssText = elem.styleSheet.cssText
+		else
+			css.appendChild(
+				document.createTextNode(
+					$(elem).text()
+				)
+			)
 
 	$(selector)[0].appendChild(css)
 
