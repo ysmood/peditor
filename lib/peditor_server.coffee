@@ -170,8 +170,18 @@ class Peditor_server
 	fake: ->
 		# For test project only.
 
-		@app.get('/fake/:type/:method', (req, res) =>
-			res.send faker[req.params.type][req.params.method]()
+		@app.get('/fake/music_list', (req, res) ->
+			list = []
+			for i in [1 .. 30]
+				item = {
+					no: i
+					title: faker.Lorem.words().join(' ')
+					artist: faker.Name.findName()
+					album: faker.Lorem.words().join(' ')
+				}
+				list.push item
+
+			res.send list
 		)
 
 # ************ Exports ************

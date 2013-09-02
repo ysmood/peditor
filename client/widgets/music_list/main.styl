@@ -1,0 +1,40 @@
+
+[PDT-widget="music_list"].thumb
+	padding 20px
+
+// [PDT-widget="title"].properties
+// 	.input-group
+// 		margin 10px 0
+
+[PDT-widget="music_list"].widget
+	height 400px
+	overflow auto
+
+	.item
+		background #fff
+		height 50px
+		border-bottom 1px solid #aaa
+		&:nth-child(even)
+			background #f4f8ff
+		&:hover
+			background #d0e2fc
+
+	.num, .img, .info
+		float left
+	.num
+		line-height 50px
+		padding 0 10px
+		width 50px
+		text-align center
+		font-weight bold
+	.img
+		line-height 50px
+		margin-right 10px
+		img
+			width 30px
+			height 30px
+
+	.info
+		margin-top 5px
+		.title
+			font-weight bold
