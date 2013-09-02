@@ -101,6 +101,8 @@ class PDT.Workpanel
 
 				else
 					$elem.css(c, v)
+
+			PDT.peditor.rec('container_alt')
 		)
 
 	init_container_btn: ($btn) ->
@@ -146,8 +148,6 @@ class PDT.Workpanel
 
 			when 'widget'
 				PDT.workbench.add_widget(e)
-
-		PDT.peditor.rec('container')
 
 	show_cur_decoration: (e) ->
 		# Hide the selected container animation.

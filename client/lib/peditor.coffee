@@ -32,6 +32,10 @@ class PDT.Peditor
 		_.last(@history).pdoc == _.first(_.last(@history, 2)).pdoc
 			return
 
+		if @history_index < @history.length - 1
+			@history = _.first(@history, @history_index + 1)
+			@history_index = @history.length - 1
+
 		if @history.length == @config.max_history
 			@history = _.rest(@history)
 		else

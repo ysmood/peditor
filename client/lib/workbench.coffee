@@ -47,6 +47,8 @@ class PDT.Workbench
 
 		@init_container($row)
 
+		PDT.peditor.rec('add_row')
+
 	add_column: (e, width = 6) ->
 		# Add a column to another column's left or right side.
 
@@ -93,6 +95,8 @@ class PDT.Workbench
 
 		@init_container($col)
 
+		PDT.peditor.rec('add_column')
+
 	add_widget: (e) ->
 		if not @$current_container
 			return
@@ -121,6 +125,8 @@ class PDT.Workbench
 
 		@init_container($widget)
 
+		PDT.peditor.rec('add_widget')
+
 	del_container: (e) ->
 		if not @$current_container
 			return
@@ -130,6 +136,8 @@ class PDT.Workbench
 			@$root.empty()
 		else
 			@$current_container.remove()
+
+		PDT.peditor.rec('del_container')
 
 	update_pos_guide: (e) ->
 		if not @$current_container
