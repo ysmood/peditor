@@ -13,7 +13,7 @@ class PDT.Workbench
 		@guide_threshold = 20
 	) ->
 		# Load pdoc after all wdigets are loaded.
-		$('#peditor').on('widgets_loaded', =>
+		$('#peditor').on('all_widgets_loaded', =>
 			@load_doc()
 		)
 

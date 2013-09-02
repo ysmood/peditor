@@ -1,12 +1,10 @@
 class PDT.widgets.Music_list extends PDT.Widget
 	constructor: ->
-
 		@$properties.find('.random').click(=>
 			@added(@$get_selected())
 		)
 
 	added: ($widget) ->
-
 		$.getJSON('/fake/music_list').done((list)->
 			list_html = ''
 			for i in list
@@ -25,8 +23,3 @@ class PDT.widgets.Music_list extends PDT.Widget
 				list_html += html
 			$widget.find('.list').html(list_html)
 		)
-
-	selected: ($widget) ->
-
-	get_doc: ($widget) ->
-		$widget.html()

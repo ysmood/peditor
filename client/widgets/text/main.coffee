@@ -10,11 +10,5 @@ class PDT.widgets.Text extends PDT.Widget
 			)
 		)
 
-	added: ($widget) ->
-
 	selected: ($widget) ->
 		@$prop.val($widget.find('.editable').html())
-
-	get_doc: ($widget) ->
-		$widget.html()
-

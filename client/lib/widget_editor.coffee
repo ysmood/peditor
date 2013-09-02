@@ -28,20 +28,26 @@ do ->
 		)
 
 		count = 0
-		$js.each(->
-			$.fn.load_js(this, '#scripts', ($new_js) ->
-				$new_js.attr('PDT-widget', name)
-				if ++count == $js.length
-					init()
+		if $js.length
+			$js.each(->
+				$.fn.load_js(this, '#scripts', ($new_js) ->
+					$new_js.attr('PDT-widget', name)
+					if ++count == $js.length
+						init()
+				)
 			)
-		)
+		else
+			init()
 	)
 
 	init = ->
 		name = _.str.capitalize(name)
 
+		first = _.keys(PDT.widgets)[0]
+		if first == undefined
+			class PDT.widgets[name] extends PDT.Widget
+
 		if not _.has(PDT.widgets, name)
-			first = _.keys(PDT.widgets)[0]
 			$.fn.msg_box({
 				title: "Error"
 				body: "

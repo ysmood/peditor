@@ -179,8 +179,19 @@ class PDT.Workpanel
 		@$cur_decoration.removeAttr('style').hide()
 
 	load_widgets: ->
-		w_count = 0
+		self = this
 		$btn_widgets = $('#workpanel .widgets [PDT-widget]')
+
+		# Check if all widgets are loaded.
+		w_count = 0
+		$('#peditor').on('widget_loaded', ->
+			if ++w_count == $btn_widgets.length
+				console.log 'All widgets loaded.'
+
+				$('#peditor').trigger('all_widgets_loaded')
+		)
+
+		# Load widget.
 		$btn_widgets.each(->
 			$this = $(this)
 			name = $this.attr('PDT-widget')
@@ -212,30 +223,37 @@ class PDT.Workpanel
 				# We need to use the native way to create the script element,
 				# or the browser will not excute the script.
 				js_count = 0
+				if $js.length == 0
+					self.init_widget(name, $props, $widget)
+
 				$js.each(->
-					$.fn.load_js(this, '#scripts', ($new_js) ->
+					$.fn.load_js(this, '#scripts', ($new_js) =>
 						$new_js.attr('PDT-widget', name)
 
 						if ++js_count == $js.length
-							# Init the widget interface.
-							class_name = _.str.titleize(name)
-							w_class = PDT.widgets[class_name]
-							w_class::$properties = $props
-							w_class::$orgin_widget = $widget
-							w_class::rec = PDT.peditor.rec
-							widget = new w_class
-							PDT.widgets[name] = widget
-
-							console.log "Widget: #{name} loaded."
-
-							if ++w_count == $btn_widgets.length
-								console.log 'All widgets loaded.'
-
-								$('#peditor').trigger('widgets_loaded')
+							self.init_widget(name, $props, $widget)
 					)
 				)
 			)
 		)
+
+	init_widget: (name, $props, $widget) ->
+		# Init the widget interface.
+		class_name = _.str.titleize(name)
+		w_class = PDT.widgets[class_name]
+
+		# If not specified auto add one.
+		w_class ?= class PDT.widgets[class_name] extends PDT.Widget
+
+		w_class::$properties = $props
+		w_class::$orgin_widget = $widget
+		w_class::rec = PDT.peditor.rec
+		widget = new w_class
+		PDT.widgets[name] = widget
+
+		console.log "Widget: #{name} loaded."
+
+		$('#peditor').trigger('widget_loaded')
 
 
 PDT.workpanel = new PDT.Workpanel
