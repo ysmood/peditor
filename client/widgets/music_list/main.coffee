@@ -23,7 +23,7 @@ class PDT.widgets.Music_list extends PDT.Widget
 						</div>
 					</div>"
 				list_html += html
-			$widget.html(list_html)
+			$widget.find('.list').html(list_html)
 		)
 
 	selected: ($widget) ->
