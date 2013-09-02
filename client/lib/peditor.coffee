@@ -20,8 +20,6 @@ class PDT.Peditor
 
 		@init_history()
 
-		console.log 'Peditor loaded.'
-
 	rec: (title = '') =>
 		# The last two history are the same,
 		# return directly.
@@ -55,6 +53,8 @@ class PDT.Peditor
 		$('[title]').tooltip({
 			placement: "auto"
 		})
+
+		$('#navbar .view_mode input').change(@view_mode_changed)
 
 	init_history: ->
 		# The edit history stack.
@@ -120,16 +120,16 @@ class PDT.Peditor
 			body: $('#help').html()
 		})
 
-	view_mode_clicked: (btn) =>
-		mode = $(btn).find('.active input').val()
+	view_mode_changed: ->
+		mode = $(this).val()
 		$workbench = $('#workbench')
 		$workpanel = $('#workpanel')
 		switch mode
-			when 'preview'
+			when 'outline'
 				$workbench.removeClass('preview').addClass('outline')
 				$workpanel.removeClass('preview').addClass('outline')
 
-			when 'outline'
+			when 'preview'
 				$workbench.removeClass('outline').addClass('preview')
 				$workpanel.removeClass('outline').addClass('preview')
 

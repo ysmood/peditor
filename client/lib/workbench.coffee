@@ -302,15 +302,15 @@ class PDT.Workbench
 		else
 			id = m[1]
 
-		$.getJSON('/get/' + id).done((data) =>
-			if data.error != 'not_found'
-				$('#workbench').empty().append($(data.doc))
+			$.getJSON('/get/' + id).done((data) =>
+				if data.error != 'not_found'
+					$('#workbench').empty().append($(data.doc))
 
-			@init_containers()
+				@init_containers()
 
-			# This is a new doc, we need to reset the history.
-			PDT.peditor.init_history()
-		)
+				# This is a new doc, we need to reset the history.
+				PDT.peditor.init_history()
+			)
 
 
 PDT.workbench = new PDT.Workbench
