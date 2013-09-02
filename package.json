@@ -21,7 +21,7 @@
     "editor"
   ],
   "author": "Yad Smood",
-  "license": "BSD",
+  "license": "BSD-2-Clause",
   "readmeFilename": "README.html",
   "bugs": {
     "url": "https://github.com/ysmood/peditor/issues"

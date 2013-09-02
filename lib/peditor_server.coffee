@@ -131,6 +131,7 @@ class Peditor_server
 				'workbench'
 				'workpannel'
 				'help'
+				'about'
 				'foot'
 			],
 			(htmls) =>

@@ -21,7 +21,7 @@ class PDT.Workpanel
 		console.log 'Workpanel loaded.'
 
 	init_container_tools: ->
-		for btn in $('.btn_container, .btn_widget')
+		for btn in $('.btn_drag')
 			@init_container_btn($(btn))
 
 		$('#workpanel .containers .column-width').val(6)
@@ -196,7 +196,7 @@ class PDT.Workpanel
 			$this = $(this)
 			name = $this.attr('PDT-widget')
 
-			url = '/widgets/' + name
+			url = '/widgets/' + name + '/index.html'
 
 			$.ajax(url).done((html) ->
 				$html = $(html)

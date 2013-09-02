@@ -120,6 +120,12 @@ class PDT.Peditor
 			body: $('#help').html()
 		})
 
+	btn_about_clicked: (btn) =>
+		$.fn.msg_box({
+			title: 'About'
+			body: $('#about').html()
+		})
+
 	view_mode_changed: ->
 		mode = $(this).val()
 		$workbench = $('#workbench')

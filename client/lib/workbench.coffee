@@ -257,7 +257,7 @@ class PDT.Workbench
 				# Active properties editing.
 				PDT.workpanel.edit_active($elem)
 
-			e.stopPropagation()
+			if e then e.stopPropagation()
 
 		$elem
 			.mouseover(mouse_over)
@@ -268,27 +268,29 @@ class PDT.Workbench
 		if name
 			PDT.widgets[name].added($elem)
 
-	new_row: (width) ->
-		$row = $('<div>').addClass('r add_animate').one(
+	add_animation: ($con) ->
+		$con.addClass('add_animate').one(
 			'animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd',
 			->
-				$row.removeClass('add_animate')
+				$con.removeClass('add_animate')
+				$con.click()
 		)
+
+	new_row: (width) ->
+		$row = $('<div>').addClass('r')
+		@add_animation($row)
 		return $row
 
 	new_column: (width) ->
-		$col = $('<div>').addClass("c add_animate").one(
-			'animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd',
-			->
-				$col.removeClass('add_animate')
-		)
+		$col = $('<div>').addClass("c")
 		# Set width.
 		$col.attr('w', width)
+		@add_animation($col)
 		return $col
 
 	new_widget: ($btn) ->
 		name = $btn.attr('PDT-widget')
-		PDT.widgets[name].$orgin_widget.clone()
+		PDT.widgets[name].$orgin_widget.clone().click()
 
 	get_col_size: ($col) ->
 		return parseInt(

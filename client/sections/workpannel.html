@@ -1,18 +1,21 @@
 
 <% function select_12() { %>
 	<select class="column-width form-control" PDT-bind-prop="column-width" title="The n-twelfth width of a row">
-		<% for(var i = 1; i < 13; i++) { %>
+		<% _.each(_.range(1, 13), function (i) { %>
 
 		<option value="<%= i %>"><%= i %></option>
 
-		<% } %>
+		<% }); %>
 	</select>
 <% } %>
 
 <div id="workpanel" class="outline">
 
 	<div id="properties">
-		<h2 class="font-n font-20">Properties <span class="selected-con-i badge font-14"></span></h2>
+		<h2 class="font-n font-20">
+			<i class="icon-bar-chart"></i> Properties
+			<span class="selected-con-i badge font-14"></span>
+		</h2>
 
 		<div class="group" PDT-bind="root row column">
 			<div class="font-n font-16">Background</div>
@@ -44,47 +47,29 @@
 	<hr>
 
 	<div class="containers">
-		<h2 class="font-n font-20">Containers</h2>
+		<h2 class="font-n font-20"><i class="icon-th"></i> Containers</h2>
 
-		<div class="group">
-			<button
-				PDT-type="row"
-				class="btn_container btn btn-primary"
-				title="Drag to the left pannel"
-			>
-				<i class="icon-reorder"></i> Row
-			</button>
+		<div PDT-type="row" class="font-22 btn_drag" title="Drag to the left pannel">
+			<i class="icon-reorder"></i> Row
 		</div>
 
-		<div class="group">
-			<button
-				PDT-type="column"
-				class="btn_container btn btn-primary"
-				title="Drag to the left pannel"
-			>
+		<div PDT-type="column" class="btn_drag" title="Drag to the left pannel">
+			<span class='font-22'>
 				<i class="icon-trello"></i> Column
-			</button>
-			Size:
-			<% select_12() %>
+			</span>
 		</div>
 
-		<div class="group">
-			<button
-				PDT-type="delete"
-				class="btn_container btn btn-primary"
-				title="Drag onto the container that you want to delete"
-			>
-				<i class="icon-trash"></i> Delete
-			</button>
+		<div PDT-type="delete" class="font-22 btn_drag" title="Drag onto the container that you want to delete">
+			<i class="icon-trash"></i> Delete
 		</div>
 	</div>
 	<hr>
 
 	<div class="widgets">
-		<h2 class="font-n font-20">Widgets</h2>
+		<h2 class="font-n font-20"><i class="icon-gears"></i> Widgets</h2>
 
 		<% _.each(widget_list, function(w){ %>
-			<div PDT-widget="<%= w %>" PDT-type="widget" class="btn_widget"></div>
+			<div PDT-widget="<%= w %>" PDT-type="widget" class="btn_drag"></div>
 		<% }); %>
 
 	</div>
