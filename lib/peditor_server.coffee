@@ -113,6 +113,17 @@ class Peditor_server
 		)
 
 	render_client: (req, res) =>
+		widgets_path = 'client/widgets/'
+		list = fs.readdirSync(widgets_path)
+		widget_list = []
+
+		for i in list
+			if fs.lstatSync(widgets_path + i).isDirectory()
+				if i != 'template'
+					widget_list.push i
+
+		@app.locals.widget_list = widget_list
+
 		@render_sections(
 			[
 				'head'

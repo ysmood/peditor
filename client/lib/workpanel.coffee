@@ -196,7 +196,7 @@ class PDT.Workpanel
 			$this = $(this)
 			name = $this.attr('PDT-widget')
 
-			url = '/widgets/' + name + '/index.html'
+			url = '/widgets/' + name
 
 			$.ajax(url).done((html) ->
 				$html = $(html)

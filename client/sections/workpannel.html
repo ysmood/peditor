@@ -83,10 +83,10 @@
 	<div class="widgets">
 		<h2 class="font-n font-20">Widgets</h2>
 
-		<div PDT-widget="title" PDT-type="widget" class="btn_widget"></div>
-		<div PDT-widget="slider" PDT-type="widget" class="btn_widget"></div>
-		<div PDT-widget="text" PDT-type="widget" class="btn_widget"></div>
-		<div PDT-widget="music_list" PDT-type="widget" class="btn_widget"></div>
+		<% _.each(widget_list, function(w){ %>
+			<div PDT-widget="<%= w %>" PDT-type="widget" class="btn_widget"></div>
+		<% }); %>
+
 	</div>
 	<hr>
 </div>
