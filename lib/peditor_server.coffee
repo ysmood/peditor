@@ -194,6 +194,8 @@ class Peditor_server
 			else
 				path = '/' + id + '?revs=true'
 
+			# First get all the full versin list.
+			# This can't be done by step operation?
 			request.get(
 				@db_url + '/' + id + '?revs=true',
 				(err, rres, body) =>
@@ -202,6 +204,8 @@ class Peditor_server
 						res.send(err)
 					else
 						revs = JSON.parse(body)._revisions
+
+						# Then get the specific version.
 						request.get(
 							@db_url + path,
 							(err, rres, body) ->

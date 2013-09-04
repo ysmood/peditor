@@ -147,6 +147,13 @@ class PDT.Peditor
 			body: $('#about').html()
 		})
 
+	btn_version_item: ->
+		$.fn.push_state({
+			obj: 'pdoc'
+			url: $(this).attr('PDT-herf')
+		})
+		PDT.workbench.load_pdoc()
+
 	view_mode_changed: ->
 		mode = $(this).val()
 		$workbench = $('#workbench')
@@ -194,13 +201,7 @@ class PDT.Peditor
 		for i in [0 ... vers.length]
 			n = i + 1
 			$item = $("<li PDT-herf='/pdoc/#{id}/#{n}-#{vers[i]}'> <a> #{n} </a> </li>")
-			$item.click(->
-				$.fn.push_state({
-					obj: 'pdoc'
-					url: $(this).attr('PDT-herf')
-				})
-				PDT.workbench.load_pdoc()
-			)
+			$item.click(@btn_version_item)
 			$list.append($item)
 
 	init_key_control: ->
