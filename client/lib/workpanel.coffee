@@ -51,12 +51,6 @@ class PDT.Workpanel
 			PDT.widgets[name].$properties.show()
 			PDT.widgets[name].selected(PDT.widgets.$selected)
 
-		# Scrolling to the actived properties.
-		$.fn.scroll_to({
-			parent: $('#workpanel')
-			to: $('#properties')
-		})
-
 	edit_deactive: ($elem) ->
 		$indicator = $('.selected-con-i')
 		$indicator.hide()
