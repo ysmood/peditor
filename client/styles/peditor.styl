@@ -28,15 +28,22 @@ $button_highlight = #1fa1e6
 
 // Navbar
 
-$navbar_height = 40px
+$navbar_height = 50px
 #navbar
 	height $navbar_height
 	line-height $navbar_height
+	background none
+	border none
+	margin 0
 
 	.button
 		float left
 		padding 0 15px
 		cursor pointer
+		>a
+			padding 15px 0
+			&:hover, &:focus
+				background none
 		&:hover
 			background #fff
 			color $button_highlight
@@ -46,14 +53,14 @@ $navbar_height = 40px
 			cursor not-allowed
 
 	.view_mode
-		float right
-		line-height normal
-
+		.btn-group
+			display block
 		label
-			height 40px
+			height $navbar_height
+			line-height $navbar_height
 			border none
-			padding-top 10px
 			border-radius 0
+			padding 0 15px
 
 // Navbar End
 

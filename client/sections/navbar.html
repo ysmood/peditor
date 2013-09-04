@@ -1,30 +1,48 @@
-<div id="navbar"class="font-n">
-	<a class="font-l font-24 button" href="/">Peditor</a>
-	<div class="button" onclick="PDT.peditor.btn_save_clicked(this)" title="This will create a unique link">
-		<i class="icon-save"></i> Save
+<nav id='navbar' class="navbar navbar-default" role="navigation">
+	<div class="navbar-header">
+		<a class="navbar-brand font-l font-26" href="/">Peditor</a>
 	</div>
-	<div class="button undo" disabled onclick="PDT.peditor.btn_undo_clicked(this)">
-		<i class="icon-undo"></i> Undo
+
+	<div class="collapse navbar-collapse">
+		<ul class="nav navbar-nav">
+			<li class="button" onclick="PDT.peditor.btn_save_clicked(this)">
+				<i class="icon-save"></i> Save
+			</li>
+			<li class="button dropdown" disabled>
+				<span href="#" class="dropdown-toggle" data-toggle="dropdown">
+					<i class="icon-book"></i> Version
+					<b class="caret"></b>
+				</span>
+				<ul class="dropdown-menu">
+				</ul>
+			</li>
+			<li class="button undo" disabled onclick="PDT.peditor.btn_undo_clicked(this)">
+				<i class="icon-undo"></i> Undo
+			</li>
+			<li class="button redo" disabled onclick="PDT.peditor.btn_redo_clicked(this)">
+				<i class="icon-repeat"></i> Redo
+			</li>
+			<li class="button" onclick="PDT.peditor.btn_help_clicked(this)">
+				<i class="icon-question"></i> Help
+			</li>
+			<li class="button" onclick="PDT.peditor.btn_about_clicked(this)">
+				About
+			</li>
+		</ul>
+
+		<ul class="nav navbar-nav navbar-right">
+			<li class="view_mode" title="Choose a display mode">
+				<div class="btn-group" data-toggle="buttons">
+					<label class="btn btn-info active">
+						<input type="radio" name="mode" value="outline" checked="checked">
+						Outline
+					</label>
+					<label class="btn btn-info">
+						<input type="radio" value="preview" name="mode">
+						Preview
+					</label>
+				</div>
+			</li>
+		</ul>
 	</div>
-	<div class="button redo" disabled onclick="PDT.peditor.btn_redo_clicked(this)">
-		<i class="icon-repeat"></i> Redo
-	</div>
-	<div class="button" onclick="PDT.peditor.btn_help_clicked(this)">
-		<i class="icon-question"></i> Help
-	</div>
-	<div class="button" onclick="PDT.peditor.btn_about_clicked(this)">
-		About
-	</div>
-	<div class="view_mode" title="Choose a display mode">
-		<div class="btn-group" data-toggle="buttons">
-			<label class="btn btn-info active">
-				<input type="radio" name="mode" value="outline" checked="checked">
-				Outline
-			</label>
-			<label class="btn btn-info">
-				<input type="radio" value="preview" name="mode">
-				Preview
-			</label>
-		</div>
-	</div>
-</div>
+</nav>
