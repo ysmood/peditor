@@ -14,7 +14,7 @@ class PDT.Workbench
 	) ->
 		# Load pdoc after all wdigets are loaded.
 		$('#peditor').on('all_widgets_loaded', =>
-			@load_doc()
+			@load_pdoc()
 		)
 
 		console.log 'Workbench Loaded.'
@@ -219,6 +219,9 @@ class PDT.Workbench
 			@init_container(elem)
 
 	get_doc: ->
+		# Only get the html doc, not the script resources.
+		# That's why I call it get_doc, not get_pdoc.
+
 		$wb = $('#workbench').clone()
 		$wb.find('.root, .r, .c, .widget')
 			.removeClass('selected add_animate hover')
@@ -234,6 +237,37 @@ class PDT.Workbench
 	get_scripts: ->
 		# TODO: Only get the scripts that the pdoc has used.
 		scripts = $('#scripts').html()
+
+	save_pdoc: ->
+		# Save pdoc, including html and script resources, to the server.
+		# After it has finished, it will trigger a pdoc_saved event.
+
+		pdoc = {
+			mime: 'text/pdoc+json'
+			doc: @get_doc()
+			scripts: @get_scripts()
+		}
+
+		$.ajax({
+			type: "POST"
+			url: '/save'
+			data: pdoc
+			dataType: "json"
+		}).done((data) ->
+			if data.ok
+				$.fn.push_state({
+					obj: 'pdoc'
+					url: '/pdoc/' + data.id
+				})
+				$('#peditor').trigger('pdoc_saved')
+				console.log 'The pdoc loaded.'
+			else
+				$.fn.msg_box({
+					title: 'Error'
+					body: "Save failed, please try again later."
+				})
+		)
+
 
 	# ********** Private **********
 
@@ -306,16 +340,22 @@ class PDT.Workbench
 			$col.attr('w')
 		)
 
-	load_doc: ->
+	load_pdoc: ->
+		# Load the pdoc from the server.
+		# After it has finished, it will trigger a pdoc_loaded event.
+
 		m = location.pathname.match(/^(?:\/pdoc\/(.+))/)
 		if not m
 			@init_containers()
 		else
 			id = m[1]
 
-			$.getJSON('/get/' + id).done((data) =>
-				if data.error != 'not_found'
-					$('#workbench').empty().append($(data.doc))
+			$.getJSON('/get/' + id).done((pdoc) =>
+				if pdoc.error != 'not_found'
+					$('#workbench').empty().append($(pdoc.doc))
+					$('#peditor').trigger('pdoc_loaded')
+
+					console.log 'The pdoc loaded.'
 
 				@init_containers()
 

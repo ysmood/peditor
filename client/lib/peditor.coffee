@@ -85,6 +85,10 @@ class PDT.Peditor
 			placement: "auto"
 		})
 
+		# Save button hover event.
+		$('#navbar hover')
+
+		# View mode click events.
 		$('#navbar .view_mode input').change(@view_mode_changed)
 
 	init_history: ->
@@ -96,24 +100,7 @@ class PDT.Peditor
 		@rec('origin')
 
 	btn_save_clicked: =>
-		pdoc = {
-			mime: 'text/pdoc+json'
-			doc: PDT.workbench.get_doc()
-			scripts: PDT.workbench.get_scripts()
-		}
-
-		$.ajax({
-			type: "POST"
-			url: '/save'
-			data: pdoc
-			dataType: "json"
-		}).done((data) ->
-			if data.ok
-				$.fn.push_state({
-					obj: 'pdoc'
-					url: '/pdoc/' + data.id
-				})
-		)
+		PDT.workbench.save_pdoc()
 
 	btn_undo_clicked: =>
 		if $('#navbar .undo').attr('disabled')
