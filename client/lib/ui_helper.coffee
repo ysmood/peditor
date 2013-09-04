@@ -4,28 +4,6 @@ UI helper
 
 ###
 
-$.fn.report_compatibility = ->
-	# Here will list all html5 tech used in project.
-	# If the report is not empty, alert a report.
-
-	report = ''
-	if not Modernizr.boxsizing
-		report += "CSS box-sizing not supported.<br>"
-
-	if not Modernizr.css_calc
-		report += "CSS calc not supported.<br>"
-
-	if not Modernizr.cssanimations
-		report += "CSS animation not supported.<br>"
-
-	if report
-		$.fn.msg_box({
-			title: '<div class="alert alert-danger">Compatibility issue</div>',
-			body: report
-		})
-	else
-		console.log "Compatibility: all supported."
-
 Modernizr.addTest("boxsizing", ->
 	return Modernizr.testAllProps("boxSizing") and
 	(document.documentMode == undefined or document.documentMode > 7)
@@ -171,6 +149,3 @@ $.fn.load_css = (elem, selector) ->
 			)
 
 	$(selector)[0].appendChild(css)
-
-
-$.fn.report_compatibility()

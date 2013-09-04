@@ -6,14 +6,6 @@
 
 	<link rel="stylesheet" type="text/css" href="/css/peditor.css">
 
-	<script type="text/javascript">
-		// Main namespace.
-		var PDT = {}
-
-		// A hash table to store the widgets.
-		PDT.widgets = {}
-	</script>
-
 </head>
 <body>
 
@@ -45,11 +37,19 @@
 	<%= foot %>
 
 	<!-- Peditor -->
+	<script type="text/javascript">
+		// Main namespace.
+		var PDT = {}
+	</script>
 	<script type="text/javascript" src="/js/ui_helper.js"></script>
+	<script type="text/javascript" src="/js/peditor.js"></script>
 	<script type="text/javascript" src="/js/widget.js"></script>
 	<script type="text/javascript" src="/js/workpanel.js"></script>
 	<script type="text/javascript" src="/js/workbench.js"></script>
-	<script type="text/javascript" src="/js/peditor.js"></script>
+	<script type="text/javascript">
+		// Main entrance.
+		PDT.peditor = new PDT.Peditor
+	</script>
 
 </body>
 </html>

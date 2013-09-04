@@ -12,6 +12,9 @@ class PDT.Workpanel
 	# ********** Public **********
 
 	constructor: ->
+		# A hash table to store the widgets.
+		PDT.widgets = {}
+
 		@load_widgets()
 
 		@$cur_decoration = $('#cur_decoration')
@@ -254,6 +257,3 @@ class PDT.Workpanel
 		console.log "Widget: #{name} loaded."
 
 		$('#peditor').trigger('widget_loaded')
-
-
-PDT.workpanel = new PDT.Workpanel

@@ -12,7 +12,13 @@ class PDT.Peditor
 	# ********** Public **********
 
 	constructor: ->
+		# Check compatibility.
+		@report_compatibility()
+
 		@config = {}
+
+		PDT.workpanel = new PDT.Workpanel
+		PDT.workbench = new PDT.Workbench
 
 		@init_ui_components()
 
@@ -21,6 +27,9 @@ class PDT.Peditor
 		@init_history()
 
 	rec: (title = '') =>
+		# This method will trigger a history record action.
+		# Used for redo and undo.
+
 		# The last two history are the same,
 		# return directly.
 		if @history.length == 1 and
@@ -47,6 +56,28 @@ class PDT.Peditor
 		@update_history_btns()
 
 	# ********** Private **********
+
+	report_compatibility: ->
+		# Here will list all html5 tech used in project.
+		# If the report is not empty, alert a report.
+
+		report = ''
+		if not Modernizr.boxsizing
+			report += "CSS box-sizing not supported.<br>"
+
+		if not Modernizr.css_calc
+			report += "CSS calc not supported.<br>"
+
+		if not Modernizr.cssanimations
+			report += "CSS animation not supported.<br>"
+
+		if report
+			$.fn.msg_box({
+				title: '<div class="alert alert-danger">Compatibility issue</div>',
+				body: report
+			})
+		else
+			console.log "Compatibility: all supported."
 
 	init_ui_components: ->
 		# Init all bootstrap tooltips.
@@ -201,5 +232,3 @@ class PDT.Peditor
 		Mousetrap.bind('_', ->
 			PDT.workbench.column_increase(-1)
 		)
-
-PDT.peditor = new PDT.Peditor

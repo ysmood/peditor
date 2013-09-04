@@ -322,6 +322,3 @@ class PDT.Workbench
 				# This is a new doc, we need to reset the history.
 				PDT.peditor.init_history()
 			)
-
-
-PDT.workbench = new PDT.Workbench
