@@ -60,7 +60,7 @@ class Peditor_server
 		)
 
 		@app.get('/', @render_client)
-		@app.get('/pdoc/:id', @render_client)
+		@app.get('/pdoc/:id/:rev?', @render_client)
 
 	init_routes: ->
 		@widget_editor()
@@ -150,32 +150,69 @@ class Peditor_server
 		)
 
 	save: ->
-		@app.post('/save', (req, res) =>
+		@app.post('/save/:id?', (req, res) =>
 			delete req.body.__proto__
+			id = req.params.id
 
-			request.post({
-					url: @db_url
+			# If has a id, then update the exist pdoc,
+			# else create a new one.
+			if id
+				request.put({
+					url: @db_url + '/' + id
 					body: req.body
 					json: true
-			}, (err, rres, body) ->
-				if err
-					res.status(500)
-					res.send(err)
-				else
-					res.send(body)
-			)
-		)
-
-	get: ->
-		@app.get('/get/:id', (req, res) =>
-			request.get(
-				@db_url + '/' + req.params.id,
-				(err, rres, body) ->
+				}, (err, rres, body) ->
 					if err
 						res.status(500)
 						res.send(err)
 					else
 						res.send(body)
+				)
+			else
+				request.post({
+						url: @db_url
+						body: req.body
+						json: true
+				}, (err, rres, body) ->
+					if err
+						res.status(500)
+						res.send(err)
+					else
+						res.send(body)
+				)
+		)
+
+	get: ->
+		@app.get('/get/:id/:rev?', (req, res) =>
+			id = req.params.id
+			rev = req.params.rev
+
+			# if rev specified, get the revision,
+			# else get the lastest revision.
+			if rev
+				path = "/#{id}?rev=#{rev}"
+			else
+				path = '/' + id + '?revs=true'
+
+			request.get(
+				@db_url + '/' + id + '?revs=true',
+				(err, rres, body) =>
+					if err
+						res.status(500)
+						res.send(err)
+					else
+						revs = JSON.parse(body)._revisions
+						request.get(
+							@db_url + path,
+							(err, rres, body) ->
+								if err
+									res.status(500)
+									res.send(err)
+								else
+									body = JSON.parse(body)
+									body._revisions = revs
+									res.send(body)
+						)
 			)
 		)
 

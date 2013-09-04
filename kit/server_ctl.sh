@@ -15,7 +15,7 @@ if [ ! -d client/css/ ]; then
 	mkdir client/css/
 fi
 $stylus -o client/css/ client/styles/ > /dev/null
-$stylus client/widgets/*
+$stylus client/widgets/* > /dev/null
 
 # Run controller.
 node js/kit/server_ctl.js $1

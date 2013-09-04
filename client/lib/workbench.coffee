@@ -242,24 +242,42 @@ class PDT.Workbench
 		# Save pdoc, including html and script resources, to the server.
 		# After it has finished, it will trigger a pdoc_saved event.
 
+		# Create a new pdoc
 		pdoc = {
 			mime: 'text/pdoc+json'
 			doc: @get_doc()
 			scripts: @get_scripts()
 		}
+		url = '/save'
+
+		if PDT.peditor.pdoc
+			pdoc._rev = PDT.peditor.pdoc._rev
+			url = '/save/' + PDT.peditor.pdoc._id
+		else
+			PDT.peditor.pdoc = pdoc
+			PDT.peditor.pdoc._revisions = { ids: [] }
 
 		$.ajax({
 			type: "POST"
-			url: '/save'
+			url: url
 			data: pdoc
 			dataType: "json"
 		}).done((data) ->
 			if data.ok
+				PDT.peditor.pdoc._id = data.id
+				PDT.peditor.pdoc._rev = data.rev
+				PDT.peditor.pdoc._revisions.ids.unshift(
+					data.rev.split('-')[1]
+				)
+
 				$.fn.push_state({
 					obj: 'pdoc'
-					url: '/pdoc/' + data.id
+					url: "/pdoc/#{data.id}/#{data.rev}"
 				})
 				$('#peditor').trigger('pdoc_saved')
+
+				PDT.peditor.update_version_list()
+
 				console.log 'The pdoc loaded.'
 			else
 				$.fn.msg_box({
@@ -267,6 +285,33 @@ class PDT.Workbench
 					body: "Save failed, please try again later."
 				})
 		)
+
+	load_pdoc: ->
+		# Load the pdoc from the server.
+		# After it has finished, it will trigger a pdoc_loaded event.
+
+		list = location.pathname.split('/')
+		if list.length < 3
+			@init_containers()
+		else
+			id = list[2]
+			rev = if list[3] then list[3] else ''
+
+			$.getJSON('/get/' + id + '/' + rev).done((pdoc) =>
+				if pdoc.error != 'not_found'
+					PDT.peditor.pdoc = pdoc
+					$('#workbench').empty().append($(pdoc.doc))
+					$('#peditor').trigger('pdoc_loaded')
+
+					PDT.peditor.update_version_list()
+
+					console.log 'The pdoc loaded.'
+
+				@init_containers()
+
+				# This is a new doc, we need to reset the history.
+				PDT.peditor.init_history()
+			)
 
 
 	# ********** Private **********
@@ -339,26 +384,3 @@ class PDT.Workbench
 		return parseInt(
 			$col.attr('w')
 		)
-
-	load_pdoc: ->
-		# Load the pdoc from the server.
-		# After it has finished, it will trigger a pdoc_loaded event.
-
-		m = location.pathname.match(/^(?:\/pdoc\/(.+))/)
-		if not m
-			@init_containers()
-		else
-			id = m[1]
-
-			$.getJSON('/get/' + id).done((pdoc) =>
-				if pdoc.error != 'not_found'
-					$('#workbench').empty().append($(pdoc.doc))
-					$('#peditor').trigger('pdoc_loaded')
-
-					console.log 'The pdoc loaded.'
-
-				@init_containers()
-
-				# This is a new doc, we need to reset the history.
-				PDT.peditor.init_history()
-			)

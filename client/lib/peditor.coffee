@@ -71,6 +71,9 @@ class PDT.Peditor
 		if not Modernizr.cssanimations
 			report += "CSS animation not supported.<br>"
 
+		if not history.pushState
+			report += "pushState not supported.<br>"
+
 		if report
 			$.fn.msg_box({
 				title: '<div class="alert alert-danger">Compatibility issue</div>',
@@ -181,6 +184,24 @@ class PDT.Peditor
 			$('#navbar .redo').removeAttr('disabled')
 		else
 			$('#navbar .redo').attr('disabled', true)
+
+	update_version_list: ->
+		$list = $('#navbar .version-list')
+		$list.empty()
+		vers = PDT.peditor.pdoc._revisions.ids
+		id = PDT.peditor.pdoc._id
+		vers.reverse()
+		for i in [0 ... vers.length]
+			n = i + 1
+			$item = $("<li PDT-herf='/pdoc/#{id}/#{n}-#{vers[i]}'> <a> #{n} </a> </li>")
+			$item.click(->
+				$.fn.push_state({
+					obj: 'pdoc'
+					url: $(this).attr('PDT-herf')
+				})
+				PDT.workbench.load_pdoc()
+			)
+			$list.append($item)
 
 	init_key_control: ->
 		# Save
