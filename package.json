@@ -1,7 +1,7 @@
 {
   "name": "peditor",
   "version": "0.0.1",
-  "description": "An application to abstract and visualize the edit procedure of common webpages.",
+  "description": "A highly extendable application to abstract and visualize the edit procedure of common web pages.",
   "main": "js/app.js",
   "scripts": {
     "client": "node_modules/.bin/bower install",
