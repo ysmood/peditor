@@ -238,7 +238,7 @@ class PDT.Workbench
 		# TODO: Only get the scripts that the pdoc has used.
 		scripts = $('#scripts').html()
 
-	save_pdoc: ->
+	save_pdoc: (done) ->
 		# Save pdoc, including html and script resources, to the server.
 		# After it has finished, it will trigger a pdoc_saved event.
 
@@ -274,19 +274,22 @@ class PDT.Workbench
 					obj: 'pdoc'
 					url: "/pdoc/#{data.id}/#{data.rev}"
 				})
-				$('#peditor').trigger('pdoc_saved')
 
 				PDT.peditor.update_version_list()
 
-				console.log 'The pdoc loaded.'
+				$('#peditor').trigger('pdoc_saved')
+
+				console.log 'The pdoc saved.'
 			else
 				$.fn.msg_box({
 					title: 'Error'
 					body: "Save failed, please try again later."
 				})
+
+			if done then done(data.ok)
 		)
 
-	load_pdoc: ->
+	load_pdoc: (done) ->
 		# Load the pdoc from the server.
 		# After it has finished, it will trigger a pdoc_loaded event.
 
@@ -307,10 +310,12 @@ class PDT.Workbench
 
 					console.log 'The pdoc loaded.'
 
-				@init_containers()
+					@init_containers()
 
-				# This is a new doc, we need to reset the history.
-				PDT.peditor.init_history()
+					# This is a new doc, we need to reset the history.
+					PDT.peditor.init_history()
+
+				if done then done(pdoc.error != 'not_found')
 			)
 
 

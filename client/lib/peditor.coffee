@@ -102,8 +102,42 @@ class PDT.Peditor
 
 		@rec('origin')
 
-	btn_save_clicked: =>
-		PDT.workbench.save_pdoc()
+	btn_save_clicked: (btn) =>
+		$icon = $('#navbar .save i')
+
+		if $icon.hasClass('icon-spinner')
+			return
+		else
+			$icon.addClass('icon-spinner icon-spin')
+
+		PDT.workbench.save_pdoc((ok) ->
+			if not ok then return
+			$icon.removeClass('icon-spinner icon-spin')
+		)
+
+	btn_version_item_clicked: ->
+		$icon = $('#navbar .version i')
+
+		if $icon.hasClass('icon-spinner')
+			return false
+		else
+			$icon.addClass('icon-spinner icon-spin')
+
+		$.fn.push_state({
+			obj: 'pdoc'
+			url: this.href
+		})
+		PDT.workbench.load_pdoc((ok) ->
+			if not ok
+				history.back()
+				return
+
+			$icon.removeClass('icon-spinner icon-spin')
+		)
+
+		$(this).parent().parent().parent().removeClass('open')
+
+		return false
 
 	btn_undo_clicked: =>
 		if $('#navbar .undo').attr('disabled')
@@ -146,17 +180,6 @@ class PDT.Peditor
 			title: 'About'
 			body: $('#about').html()
 		})
-
-	btn_version_item_clicked: ->
-		$.fn.push_state({
-			obj: 'pdoc'
-			url: this.href
-		})
-		PDT.workbench.load_pdoc()
-
-		$(this).parent().parent().parent().removeClass('open')
-
-		return false
 
 	view_mode_changed: ->
 		mode = $(this).val()

@@ -33,7 +33,7 @@ $.fn.dragging = (options) ->
 		options.mouse_down(e)
 
 		$(window).mousemove(mouse_move)
-		$(window).mouseup(mouse_up)
+		$(window).one('mouseup', mouse_up)
 
 	mouse_move = (e) ->
 		e.$target = options.$target
@@ -47,7 +47,6 @@ $.fn.dragging = (options) ->
 
 		# Release event resource.
 		$(window).off('mousemove', mouse_move)
-		$(window).off('mouseup', mouse_up)
 
 	options.$target.mousedown(mouse_down)
 
