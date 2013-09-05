@@ -147,12 +147,16 @@ class PDT.Peditor
 			body: $('#about').html()
 		})
 
-	btn_version_item: ->
+	btn_version_item_clicked: ->
 		$.fn.push_state({
 			obj: 'pdoc'
-			url: $(this).attr('PDT-herf')
+			url: this.href
 		})
 		PDT.workbench.load_pdoc()
+
+		$(this).parent().parent().parent().removeClass('open')
+
+		return false
 
 	view_mode_changed: ->
 		mode = $(this).val()
@@ -197,12 +201,25 @@ class PDT.Peditor
 		$list.empty()
 		vers = PDT.peditor.pdoc._revisions.ids
 		id = PDT.peditor.pdoc._id
+
+		# The default version list order is reversed.
+		# This stip make the lastest one the last.
 		vers.reverse()
 		for i in [0 ... vers.length]
 			n = i + 1
-			$item = $("<li PDT-herf='/pdoc/#{id}/#{n}-#{vers[i]}'> <a> #{n} </a> </li>")
-			$item.click(@btn_version_item)
-			$list.append($item)
+			ver = n + '-' + vers[i]
+			$a = $("<a href='/pdoc/#{id}/#{ver}'> #{n} </a>")
+			$li = $('<li>')
+
+			if ver == PDT.peditor.pdoc._rev
+				$a.addClass('icon-check')
+			else
+				$a.addClass('icon-check-empty')
+
+			$a.click(@btn_version_item_clicked)
+
+			$li.append($a)
+			$list.append($li)
 
 	init_key_control: ->
 		# Save
