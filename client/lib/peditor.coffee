@@ -111,7 +111,6 @@ class PDT.Peditor
 			$icon.addClass('icon-spinner icon-spin')
 
 		PDT.workbench.save_pdoc((ok) ->
-			if not ok then return
 			$icon.removeClass('icon-spinner icon-spin')
 		)
 
