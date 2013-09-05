@@ -169,6 +169,7 @@ class Peditor_server
 						res.send(body)
 				)
 			else
+				delete req.body._revisions
 				request.post({
 						url: @db_url
 						body: req.body

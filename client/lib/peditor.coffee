@@ -6,7 +6,6 @@ Aug 2013, ys
 
 ###
 
-
 class PDT.Peditor
 
 	# ********** Public **********
@@ -221,11 +220,12 @@ class PDT.Peditor
 	update_version_list: ->
 		$list = $('#navbar .version-list')
 		$list.empty()
-		vers = PDT.peditor.pdoc._revisions.ids
 		id = PDT.peditor.pdoc._id
 
 		# The default version list order is reversed.
 		# This stip make the lastest one the last.
+		# Don't affect the orginal array, we clone a new one.
+		vers = _.clone(PDT.peditor.pdoc._revisions.ids)
 		vers.reverse()
 		for i in [0 ... vers.length]
 			n = i + 1

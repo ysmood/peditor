@@ -250,12 +250,13 @@ class PDT.Workbench
 		}
 		url = '/save'
 
+		# If this is the first time that it saves a pdoc.
 		if PDT.peditor.pdoc
-			pdoc._rev = PDT.peditor.pdoc._rev
+			pdoc._rev = @latest_revision_num()
 			url = '/save/' + PDT.peditor.pdoc._id
 		else
 			PDT.peditor.pdoc = pdoc
-			PDT.peditor.pdoc._revisions = { ids: [] }
+			PDT.peditor.pdoc._revisions = { start: 0, ids: [] }
 
 		$.ajax({
 			type: "POST"
@@ -266,6 +267,7 @@ class PDT.Workbench
 			if data.ok
 				PDT.peditor.pdoc._id = data.id
 				PDT.peditor.pdoc._rev = data.rev
+				PDT.peditor.pdoc._revisions.start++
 				PDT.peditor.pdoc._revisions.ids.unshift(
 					data.rev.split('-')[1]
 				)
@@ -320,6 +322,11 @@ class PDT.Workbench
 
 
 	# ********** Private **********
+
+	latest_revision_num: ->
+		return PDT.peditor.pdoc._revisions.start +
+			'-' +
+			PDT.peditor.pdoc._revisions.ids[0]
 
 	init_container: (elem) ->
 		# This method will init the hover and the selected effects.
